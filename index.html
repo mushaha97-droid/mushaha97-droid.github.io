@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Musharraf Hassan — Sustainability Data Analyst</title>
+<meta name="description" content="Sustainability consultant turning ESG and emissions data into models, dashboards, and advisory deliverables. GHG accounting, CBAM, carbon markets. Rotterdam, NL.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --mist:#F3F6F2;
+    --panel:#E7EEE7;
+    --ink:#10271F;
+    --ink-soft:#3C5247;
+    --green:#2C7A57;
+    --green-deep:#1C5A40;
+    --line:#C9D6CC;
+    --mono-slate:#5B6B62;
+    --ochre:#A8731F;
+    --radius:10px;
+    --maxw:1080px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--mist);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--green);color:#fff}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  a{color:var(--green-deep)}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:4px}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(243,246,242,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw);margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .nav-name{
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;
+    letter-spacing:.02em;text-decoration:none;color:var(--ink);
+  }
+  .nav-links{display:flex;gap:22px;flex-wrap:wrap}
+  .nav-links a{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.04em;
+    text-decoration:none;color:var(--mono-slate);
+  }
+  .nav-links a:hover{color:var(--green-deep)}
+
+  /* ---------- hero ---------- */
+  header{padding:84px 0 0}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--green-deep);margin-bottom:18px;
+  }
+  h1{
+    font-family:'Archivo',sans-serif;font-weight:800;
+    font-size:clamp(34px,5.4vw,58px);line-height:1.06;letter-spacing:-.022em;
+    max-width:18ch;
+  }
+  h1 em{font-style:normal;color:var(--green)}
+  .hero-sub{
+    margin-top:24px;max-width:62ch;font-size:18px;color:var(--ink-soft);
+  }
+  .hero-meta{
+    margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+  }
+  .btn{
+    font-family:'IBM Plex Mono',monospace;font-size:13.5px;letter-spacing:.03em;
+    text-decoration:none;padding:11px 20px;border-radius:6px;
+    border:1px solid var(--green-deep);transition:background .18s,color .18s;
+  }
+  .btn-solid{background:var(--green-deep);color:#fff}
+  .btn-solid:hover{background:var(--ink)}
+  .btn-ghost{color:var(--green-deep)}
+  .btn-ghost:hover{background:var(--panel)}
+  .hero-loc{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--mono-slate);
+  }
+
+  /* signature: emissions flow */
+  .flow{margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+  .flow svg{display:block;width:100%;height:auto}
+  .flow-caption{
+    max-width:var(--maxw);margin:0 auto;padding:10px 28px 14px;
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--mono-slate);
+    letter-spacing:.04em;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .band{stroke-dasharray:6 10;animation:drift 26s linear infinite}
+    .band.b2{animation-duration:34s}
+    .band.b3{animation-duration:44s}
+    @keyframes drift{to{stroke-dashoffset:-640}}
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:78px 0 6px}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:34px}
+  .sec-label{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--green-deep);white-space:nowrap;
+  }
+  .sec-rule{flex:1;height:1px;background:var(--line)}
+  h2{
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);
+    letter-spacing:-.015em;margin-bottom:26px;
+  }
+
+  /* what i do */
+  .domains{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .domain{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 22px;
+  }
+  .domain h3{font-family:'Archivo',sans-serif;font-size:17px;font-weight:700;margin-bottom:10px}
+  .domain p{font-size:15px;color:var(--ink-soft)}
+  .domain .tag{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;
+    color:var(--green-deep);background:var(--panel);border-radius:4px;
+    padding:2px 8px;margin-bottom:14px;letter-spacing:.05em;
+  }
+
+  /* projects */
+  .projects{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .proj{
+    display:block;text-decoration:none;color:inherit;
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 24px;transition:border-color .18s, transform .18s;
+  }
+  .proj:hover{border-color:var(--green);transform:translateY(-2px)}
+  .proj-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+  .proj-lang{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.05em;
+    color:var(--mono-slate);
+  }
+  .proj-lang::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;
+    background:var(--green);margin-right:7px;vertical-align:1px}
+  .proj-arrow{font-family:'IBM Plex Mono',monospace;color:var(--green-deep);font-size:14px}
+  .proj h3{font-family:'Archivo',sans-serif;font-size:18px;font-weight:700;margin-bottom:9px}
+  .proj p{font-size:15px;color:var(--ink-soft)}
+  .proj-stack{
+    margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;
+  }
+  .chip{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--mono-slate);
+    border:1px solid var(--line);border-radius:4px;padding:2px 8px;
+  }
+
+  /* experience */
+  .xp{border-left:2px solid var(--line);margin-left:6px;padding-left:30px;display:flex;flex-direction:column;gap:40px}
+  .xp-item{position:relative}
+  .xp-item::before{
+    content:"";position:absolute;left:-37px;top:7px;width:11px;height:11px;border-radius:50%;
+    background:var(--mist);border:2.5px solid var(--green);
+  }
+  .xp-when{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--mono-slate);letter-spacing:.04em}
+  .xp-role{font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;margin:5px 0 2px}
+  .xp-org{font-size:15px;color:var(--green-deep);font-weight:600;margin-bottom:10px}
+  .xp ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .xp li{font-size:15px;color:var(--ink-soft);padding-left:18px;position:relative}
+  .xp li::before{content:"–";position:absolute;left:0;color:var(--green)}
+  .xp-metric{color:var(--ochre);font-weight:600}
+
+  /* skills */
+  .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .skill-group{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .skill-group h3{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--green-deep);margin-bottom:14px}
+  .skill-group .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .skill-group .chip{font-size:12px;padding:4px 10px;color:var(--ink-soft)}
+
+  /* education + certs */
+  .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+  .edu-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .edu-card .xp-when{display:block;margin-bottom:6px}
+  .edu-card h3{font-family:'Archivo',sans-serif;font-size:16.5px;font-weight:700;margin-bottom:3px}
+  .edu-card .org{font-size:14.5px;color:var(--green-deep);font-weight:600}
+  .edu-card .thesis{font-size:13.5px;color:var(--mono-slate);margin-top:10px;font-style:italic}
+  .cert-empty{
+    border:1.5px dashed var(--line);border-radius:var(--radius);padding:22px;
+    font-size:14.5px;color:var(--mono-slate);background:transparent;
+  }
+
+  /* contact */
+  .contact{
+    margin:84px 0 0;background:var(--ink);color:#E9F1EB;border-radius:14px;
+    padding:54px 48px;
+  }
+  .contact .sec-label{color:#7FC9A4}
+  .contact h2{color:#fff;max-width:22ch}
+  .contact p{color:#B9CCC0;max-width:56ch;margin-bottom:28px}
+  .contact-links{display:flex;gap:14px;flex-wrap:wrap}
+  .contact .btn{border-color:#7FC9A4;color:#CFE8DA}
+  .contact .btn-solid{background:#2C7A57;color:#fff;border-color:#2C7A57}
+  .contact .btn-solid:hover{background:#3a9069}
+  .contact .btn-ghost:hover{background:rgba(255,255,255,.07)}
+
+  footer{
+    padding:30px 0 40px;text-align:center;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--mono-slate);
+  }
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+
+  @media (max-width:860px){
+    .domains{grid-template-columns:1fr}
+    .projects,.skills,.edu-grid{grid-template-columns:1fr}
+    .contact{padding:40px 26px}
+    header{padding-top:56px}
+  }
+  @media (max-width:560px){
+    .nav-links{display:none}
+    body{font-size:16px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="#top">Musharraf Hassan</a>
+    <div class="nav-links">
+      <a href="#work">work</a>
+      <a href="#projects">projects</a>
+      <a href="#experience">experience</a>
+      <a href="#skills">skills</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <p class="eyebrow">Sustainability · Data · Advisory — Rotterdam, NL</p>
+    <h1>Turning emissions and ESG data into <em>decisions people act on</em>.</h1>
+    <p class="hero-sub">
+      I'm Musharraf — a sustainability consultant who builds the models, dashboards, and
+      advisory deliverables behind GHG accounting (Scope 1–3), CBAM compliance, carbon-market
+      analysis, and disclosure under ESRS, GRI, and BRSR. Python, SQL, and Power BI on the
+      technical side; stakeholder interviews and qualitative coding on the human side.
+    </p>
+    <div class="hero-meta">
+      <a class="btn btn-solid" href="#projects">View projects</a>
+      <a class="btn btn-ghost" href="https://github.com/mushaha97-droid" target="_blank" rel="noopener">GitHub ↗</a>
+      <span class="hero-loc">MSc Global Business &amp; Sustainability, Erasmus University Rotterdam</span>
+    </div>
+  </div>
+
+  <!-- signature: scope 1/2/3 flows converging into one reporting stream -->
+  <div class="flow" aria-hidden="true">
+    <svg viewBox="0 0 1200 190" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path class="band b1" d="M0,40  C 300,40 420,95 1200,95"  fill="none" stroke="#2C7A57" stroke-width="14" opacity=".55"/>
+      <path class="band b2" d="M0,95  C 300,95 420,95 1200,95"  fill="none" stroke="#1C5A40" stroke-width="20" opacity=".75"/>
+      <path class="band b3" d="M0,150 C 300,150 420,95 1200,95" fill="none" stroke="#6FAE8C" stroke-width="14" opacity=".5"/>
+      <g font-family="IBM Plex Mono, monospace" font-size="12" fill="#3C5247">
+        <text x="14" y="28">scope 1 · direct</text>
+        <text x="14" y="84">scope 2 · energy</text>
+        <text x="14" y="178">scope 3 · value chain</text>
+        <text x="1050" y="78" fill="#1C5A40">→ one clear report</text>
+      </g>
+    </svg>
+  </div>
+  <p class="flow-caption">fig. 01 — measured, modelled, reported</p>
+</header>
+
+<main class="wrap">
+
+  <!-- WHAT I DO -->
+  <section id="work">
+    <div class="sec-head"><span class="sec-label">What I do</span><span class="sec-rule"></span></div>
+    <h2>Three lines of work, one method: measure first.</h2>
+    <div class="domains">
+      <div class="domain reveal">
+        <span class="tag">measure</span>
+        <h3>Carbon &amp; emissions accounting</h3>
+        <p>Scope 1–3 GHG inventories under the GHG Protocol and ISO 14064, CBAM embedded-emissions
+        modelling for EU importers, and automated emission-factor pipelines that cut reporting turnaround.</p>
+      </div>
+      <div class="domain reveal">
+        <span class="tag">analyse</span>
+        <h3>Markets &amp; material flows</h3>
+        <p>Carbon-credit market analysis (Verra, Gold Standard) by project type and price history,
+        plus district-level Material Flow Analysis of agri-waste and biomass supply chains in Python.</p>
+      </div>
+      <div class="domain reveal">
+        <span class="tag">advise</span>
+        <h3>Disclosure &amp; strategy</h3>
+        <p>ESRS, GRI, and BRSR disclosure support, ESG workshops and executive briefings, and funding
+        strategies for public-benefit organisations grounded in scraped financial data and interviews.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-head"><span class="sec-label">Selected projects</span><span class="sec-rule"></span></div>
+    <h2>Open work on GitHub</h2>
+    <div class="projects">
+      <a class="proj reveal" href="https://github.com/mushaha97-droid/carbon-market-analysis-india-" target="_blank" rel="noopener">
+        <div class="proj-top"><span class="proj-lang">Python · Power BI</span><span class="proj-arrow">↗</span></div>
+        <h3>Carbon Market Analysis — India</h3>
+        <p>Five-year analysis of Verra and Gold Standard carbon credits, mapping credit volume against
+        long-run price by project type. The output shortlisted projects for a four-year investment horizon.</p>
+        <div class="proj-stack"><span class="chip">pandas</span><span class="chip">carbon credits</span><span class="chip">market analysis</span></div>
+      </a>
+      <a class="proj reveal" href="https://github.com/mushaha97-droid/CSRD-compliance-" target="_blank" rel="noopener">
+        <div class="proj-top"><span class="proj-lang">Python</span><span class="proj-arrow">↗</span></div>
+        <h3>CSRD Compliance</h3>
+        <p>Tooling around EU Corporate Sustainability Reporting Directive requirements — structuring
+        ESRS data points so disclosure work starts from clean, analysis-ready inputs.</p>
+        <div class="proj-stack"><span class="chip">ESRS</span><span class="chip">EU regulation</span><span class="chip">reporting</span></div>
+      </a>
+      <a class="proj reveal" href="https://github.com/mushaha97-droid/ANBI-funding-structure-" target="_blank" rel="noopener">
+        <div class="proj-top"><span class="proj-lang">Jupyter Notebook</span><span class="proj-arrow">↗</span></div>
+        <h3>ANBI Funding Structures</h3>
+        <p>Scraped anbi.nl for financial statements of Dutch public-benefit organisations and mapped
+        revenue mix, cost structure, and donor concentration — the data backbone of a client funding strategy.</p>
+        <div class="proj-stack"><span class="chip">web scraping</span><span class="chip">pandas</span><span class="chip">nonprofit finance</span></div>
+      </a>
+      <a class="proj reveal" href="https://github.com/mushaha97-droid/sustainbility-data" target="_blank" rel="noopener">
+        <div class="proj-top"><span class="proj-lang">Python</span><span class="proj-arrow">↗</span></div>
+        <h3>Sustainability Data</h3>
+        <p>A working collection of sustainability data pipelines and analysis — emission-factor lookups,
+        cleaning scripts, and reusable building blocks from client and research work.</p>
+        <div class="proj-stack"><span class="chip">data pipelines</span><span class="chip">GHG accounting</span><span class="chip">automation</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="sec-head"><span class="sec-label">Experience</span><span class="sec-rule"></span></div>
+    <h2>Where I've done it</h2>
+    <div class="xp">
+      <div class="xp-item reveal">
+        <span class="xp-when">Jul 2025 – present · Rotterdam, NL</span>
+        <p class="xp-role">Founder</p>
+        <p class="xp-org">Impact Root</p>
+        <ul>
+          <li>Advise registered public-benefit organisations on sustainable-finance architecture, funding resilience, and donor diversification.</li>
+          <li>Grew the client base to <span class="xp-metric">9 organisations</span> in the first year — 4 Dutch ANBI partnerships and 5 international NGOs.</li>
+          <li>Designed and built a recurring newsletter for 5 ANBI organisations.</li>
+        </ul>
+      </div>
+      <div class="xp-item reveal">
+        <span class="xp-when">Dec 2025 – Apr 2026 · Delhi, IN</span>
+        <p class="xp-role">Sustainability Analyst</p>
+        <p class="xp-org">Development Alternatives</p>
+        <ul>
+          <li>Led a field survey on biomass supply-chain bottlenecks; coded responses in Atlas.ti to underpin the Mirzapur biomass strategy.</li>
+          <li>Built a district-level agri-waste Material Flow Analysis in Python across 5 blocks.</li>
+          <li>Developed a 5-year biomass roadmap and go-to-market strategy for 10 biomass-linked agri-products, driving a <span class="xp-metric">25% increase in sales</span>.</li>
+        </ul>
+      </div>
+      <div class="xp-item reveal">
+        <span class="xp-when">May 2025 – Nov 2025 · Delhi, IN</span>
+        <p class="xp-role">Sustainability Analyst Intern</p>
+        <p class="xp-org">Enen Green</p>
+        <ul>
+          <li>Ran a 5-year Verra / Gold Standard carbon-credit analysis in Python and Power BI used to shortlist projects for the next 4 years.</li>
+          <li>Modelled CBAM embedded emissions for a steel importer and built a reusable template covering all EU transitional-regime data fields.</li>
+          <li>Conducted Scope 1–3 GHG accounting for two industrial clients and automated emission-factor lookups.</li>
+          <li>Delivered ESG workshops and executive briefings for a major steel-sector client.</li>
+        </ul>
+      </div>
+      <div class="xp-item reveal">
+        <span class="xp-when">Jan 2025 – Apr 2025 · Rotterdam, NL</span>
+        <p class="xp-role">Sustainability Data Researcher</p>
+        <p class="xp-org">RAAP! (Regenerative Agriculture as Project)</p>
+        <ul>
+          <li>Scraped anbi.nl in Python to map revenue mix, cost structure, and donor concentration of agriculture-sector ANBIs.</li>
+          <li>Conducted 20 impact-investor interviews, coded in Atlas.ti using the Gioia methodology.</li>
+          <li>Combined both into a funding strategy the client adopted to diversify revenue.</li>
+        </ul>
+      </div>
+      <div class="xp-item reveal">
+        <span class="xp-when">Jan 2024 – Aug 2024 · Delhi, IN</span>
+        <p class="xp-role">Data &amp; Operations Intern</p>
+        <p class="xp-org">Pehchaan The Street School</p>
+        <ul>
+          <li>Scraped the Government of India CSR portal (BeautifulSoup, requests) into an analysis-ready dataset of CSR spend.</li>
+          <li>Built a targeting model ranking Delhi-NCR corporates that fed the NGO's outreach pipeline.</li>
+          <li>Contributed to <span class="xp-metric">USD 50,000 raised</span> in CSR funding.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-head"><span class="sec-label">Toolkit</span><span class="sec-rule"></span></div>
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill-group reveal">
+        <h3>Sustainability &amp; reporting</h3>
+        <div class="chips">
+          <span class="chip">GHG accounting (Scope 1–3)</span><span class="chip">GHG Protocol</span>
+          <span class="chip">ISO 14064</span><span class="chip">CBAM</span><span class="chip">Carbon markets</span>
+          <span class="chip">Material Flow Analysis</span><span class="chip">ESRS</span><span class="chip">GRI</span><span class="chip">BRSR (SEBI)</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Programming &amp; data</h3>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">pandas</span><span class="chip">NumPy</span>
+          <span class="chip">matplotlib</span><span class="chip">seaborn</span>
+          <span class="chip">SQL (joins, window functions, CTEs)</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Visualisation &amp; tools</h3>
+        <div class="chips">
+          <span class="chip">Power BI</span><span class="chip">Tableau</span>
+          <span class="chip">Advanced Excel</span><span class="chip">Reporting automation</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Qualitative research &amp; languages</h3>
+        <div class="chips">
+          <span class="chip">Gioia methodology</span><span class="chip">Atlas.ti</span>
+          <span class="chip">Stakeholder interviews</span>
+          <span class="chip">English (C2)</span><span class="chip">Hindi (C2)</span><span class="chip">Dutch (B1)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION & CERTIFICATIONS -->
+  <section id="education">
+    <div class="sec-head"><span class="sec-label">Education &amp; certifications</span><span class="sec-rule"></span></div>
+    <h2>Background</h2>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <span class="xp-when">May 2026 · Rotterdam, NL</span>
+        <h3>MSc, Global Business &amp; Sustainability</h3>
+        <p class="org">Erasmus University Rotterdam</p>
+        <p class="thesis">Thesis: The Sustainability Paradox — How AI is Revolutionising Sustainability Reporting While Creating New Challenges</p>
+      </div>
+      <div class="edu-card reveal">
+        <span class="xp-when">2024 · Indore, IN</span>
+        <h3>Pre-Master, Business Analytics</h3>
+        <p class="org">Indian Institute of Management (IIM) Indore</p>
+      </div>
+      <div class="edu-card reveal">
+        <span class="xp-when">Aug 2023 · Beijing, CN</span>
+        <h3>BSc, International Business Economics (International Trade)</h3>
+        <p class="org">University of International Business and Economics</p>
+        <p class="thesis">Thesis: Revisiting Protectionism in Developing Countries — An Economic Analysis of Trade, Industrialization, and Growth</p>
+      </div>
+
+      <!-- CERTIFICATIONS — duplicate the block below for each new certification -->
+      <div class="cert-empty reveal" id="certifications">
+        <strong style="color:var(--ink)">Certifications</strong><br>
+        New certifications are added here as they're completed.
+        <!-- Template — copy, fill in, and place above this card:
+        <div class="edu-card">
+          <span class="xp-when">2026</span>
+          <h3>Certification name</h3>
+          <p class="org">Issuing organisation</p>
+        </div>
+        -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="padding-top:0">
+    <div class="contact reveal">
+      <p class="sec-label" style="margin-bottom:16px">Contact</p>
+      <h2>Working on emissions data, disclosure, or impact funding?</h2>
+      <p>I'm based in Rotterdam and open to sustainability analyst and consulting roles, as well as
+      project work with NGOs and public-benefit organisations. The fastest way to reach me is email.</p>
+      <div class="contact-links">
+        <a class="btn btn-solid" href="mailto:mu.hassan2345@gmail.com">mu.hassan2345@gmail.com</a>
+        <a class="btn btn-ghost" href="https://github.com/mushaha97-droid" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn btn-ghost" href="tel:+31685670414">+31 06 8567 0414</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 Musharraf Hassan · Rotterdam, Netherlands
+</footer>
+
+<script>
+  // gentle scroll reveal, skipped when reduced motion is preferred
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>

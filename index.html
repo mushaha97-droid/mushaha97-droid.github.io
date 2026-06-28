@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Musharraf Hassan — Sustainability Data &amp; Finance</title>
 <meta name="description" content="Analyst working where sustainability data meets finance: GHG accounting, CBAM, carbon markets, ESRS/GRI/BRSR disclosure — and LBO/PE deal modelling, DCF, and Dutch tax-aware valuation. Python, SQL, Power BI. Rotterdam, NL.">
-<meta name="theme-color" content="#F3F6F2">
+<meta name="theme-color" content="#0B1512">
+<script>
+  /* set theme before paint to avoid flash; default dark */
+  (function(){
+    try{
+      var t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if(m) m.setAttribute('content', t === 'dark' ? '#0B1512' : '#F3F6F2');
+    }catch(e){}
+  })();
+</script>
 <meta property="og:title" content="Musharraf Hassan — Sustainability Data &amp; Finance">
 <meta property="og:description" content="Turning sustainability and financial data into decisions people act on. ESG & emissions analytics plus PE/LBO deal modelling. Rotterdam, NL.">
 <meta property="og:type" content="website">
@@ -108,6 +119,14 @@
   .theme-toggle .moon{display:none}
   [data-theme="dark"] .theme-toggle .sun{display:none}
   [data-theme="dark"] .theme-toggle .moon{display:block}
+
+  /* scroll progress bar */
+  .scroll-progress{
+    position:fixed;top:0;left:0;height:3px;width:100%;z-index:60;
+    background:linear-gradient(90deg,var(--green),var(--green-deep));
+    transform:scaleX(0);transform-origin:0 50%;will-change:transform;
+    box-shadow:0 0 10px color-mix(in srgb,var(--green) 60%,transparent);
+  }
 
   /* ============ HERO ============ */
   header{padding:84px 0 0;position:relative;overflow:hidden}
@@ -364,6 +383,8 @@
 </style>
 </head>
 <body>
+
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
 <nav>
   <div class="nav-inner">
@@ -736,9 +757,7 @@
   /* ---------- theme toggle ---------- */
   (function(){
     const root = document.documentElement;
-    const saved = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initial = saved || (prefersDark ? 'dark' : 'light');
+    const initial = root.getAttribute('data-theme') || 'dark';
     root.setAttribute('data-theme', initial);
     const meta = document.querySelector('meta[name="theme-color"]');
     const setMeta = t => meta && meta.setAttribute('content', t === 'dark' ? '#0B1512' : '#F3F6F2');
@@ -751,6 +770,15 @@
     });
   })();
 
+  /* ---------- staggered reveal delays (cards cascade in) ---------- */
+  if (!reduce) {
+    document.querySelectorAll('.stats-inner, .domains, .projects, .skills, .edu-grid').forEach(group=>{
+      [...group.children].filter(c=>c.classList.contains('reveal')).forEach((c,i)=>{
+        c.style.transitionDelay = Math.min(i,6) * 75 + 'ms';
+      });
+    });
+  }
+
   /* ---------- scroll reveal ---------- */
   if (!reduce && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries)=>{
@@ -760,6 +788,32 @@
   } else {
     document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
   }
+
+  /* ---------- scroll progress bar ---------- */
+  (function(){
+    const bar = document.getElementById('scrollProgress');
+    if (!bar) return;
+    let ticking = false;
+    const update = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+      ticking = false;
+    };
+    window.addEventListener('scroll', ()=>{ if(!ticking){ requestAnimationFrame(update); ticking = true; } }, {passive:true});
+    window.addEventListener('resize', update, {passive:true});
+    update();
+  })();
+
+  /* ---------- subtle hero parallax ---------- */
+  (function(){
+    if (reduce) return;
+    const glow = document.querySelector('.hero-glow');
+    if (!glow) return;
+    let ticking = false;
+    const update = () => { glow.style.transform = 'translateY(' + (window.scrollY * 0.25) + 'px)'; ticking = false; };
+    window.addEventListener('scroll', ()=>{ if(!ticking){ requestAnimationFrame(update); ticking = true; } }, {passive:true});
+  })();
 
   /* ---------- animated counters ---------- */
   (function(){

@@ -1,29 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Musharraf Hassan — Sustainability Data Analyst</title>
-<meta name="description" content="Sustainability consultant turning ESG and emissions data into models, dashboards, and advisory deliverables. GHG accounting, CBAM, carbon markets. Rotterdam, NL.">
+<meta name="description" content="Sustainability consultant turning ESG and emissions data into models, dashboards, and advisory deliverables. GHG accounting, CBAM, carbon markets, and Dutch private-equity modelling. Rotterdam, NL.">
+<meta name="theme-color" content="#F3F6F2">
+<meta property="og:title" content="Musharraf Hassan — Sustainability Data Analyst">
+<meta property="og:description" content="Turning emissions, ESG, and financial data into decisions people act on. Rotterdam, NL.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* ============ TOKENS ============ */
   :root{
     --mist:#F3F6F2;
     --panel:#E7EEE7;
+    --surface:#ffffff;
+    --surface-2:#FBFDFB;
     --ink:#10271F;
     --ink-soft:#3C5247;
     --green:#2C7A57;
     --green-deep:#1C5A40;
+    --green-faint:#dcebe2;
     --line:#C9D6CC;
     --mono-slate:#5B6B62;
     --ochre:#A8731F;
+    --contact-bg:#10271F;
+    --shadow:0 1px 2px rgba(16,39,31,.04);
+    --shadow-lg:0 18px 44px -22px rgba(16,39,31,.45);
     --radius:10px;
     --maxw:1080px;
   }
+  [data-theme="dark"]{
+    --mist:#0B1512;
+    --panel:#13211B;
+    --surface:#14241D;
+    --surface-2:#172a22;
+    --ink:#EAF3EE;
+    --ink-soft:#AAC4B6;
+    --green:#56BC8E;
+    --green-deep:#79D2A8;
+    --green-faint:#1d3a2d;
+    --line:#264035;
+    --mono-slate:#8AA396;
+    --ochre:#E0B061;
+    --contact-bg:#0E2019;
+    --shadow:0 1px 2px rgba(0,0,0,.3);
+    --shadow-lg:0 22px 50px -24px rgba(0,0,0,.7);
+  }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;scroll-padding-top:78px}
   body{
     background:var(--mist);
     color:var(--ink);
@@ -31,39 +59,74 @@
     font-size:17px;
     line-height:1.65;
     -webkit-font-smoothing:antialiased;
+    transition:background .4s ease,color .4s ease;
   }
   ::selection{background:var(--green);color:#fff}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
   a{color:var(--green-deep)}
   a:focus-visible, button:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:4px}
 
-  /* ---------- nav ---------- */
+  /* ============ NAV ============ */
   nav{
     position:sticky;top:0;z-index:50;
-    background:rgba(243,246,242,.88);
-    backdrop-filter:blur(10px);
+    background:color-mix(in srgb, var(--mist) 86%, transparent);
+    backdrop-filter:blur(12px);
     border-bottom:1px solid var(--line);
+    transition:background .4s ease,border-color .4s ease;
   }
   .nav-inner{
-    max-width:var(--maxw);margin:0 auto;padding:14px 28px;
+    max-width:var(--maxw);margin:0 auto;padding:13px 28px;
     display:flex;align-items:center;justify-content:space-between;gap:16px;
   }
   .nav-name{
     font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;
-    letter-spacing:.02em;text-decoration:none;color:var(--ink);
+    letter-spacing:.02em;text-decoration:none;color:var(--ink);white-space:nowrap;
   }
+  .nav-right{display:flex;align-items:center;gap:20px}
   .nav-links{display:flex;gap:22px;flex-wrap:wrap}
   .nav-links a{
     font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.04em;
-    text-decoration:none;color:var(--mono-slate);
+    text-decoration:none;color:var(--mono-slate);position:relative;padding:2px 0;
+    transition:color .2s;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;
+    background:var(--green);border-radius:2px;transform:scaleX(0);transform-origin:left;
+    transition:transform .25s ease;
   }
   .nav-links a:hover{color:var(--green-deep)}
+  .nav-links a.active{color:var(--green-deep)}
+  .nav-links a.active::after{transform:scaleX(1)}
 
-  /* ---------- hero ---------- */
-  header{padding:84px 0 0}
+  .theme-toggle{
+    width:38px;height:38px;flex:none;display:grid;place-items:center;
+    border:1px solid var(--line);border-radius:9px;background:var(--surface);
+    color:var(--ink-soft);cursor:pointer;transition:border-color .2s,color .2s,background .2s,transform .2s;
+  }
+  .theme-toggle:hover{border-color:var(--green);color:var(--green-deep);transform:translateY(-1px)}
+  .theme-toggle svg{width:18px;height:18px}
+  .theme-toggle .moon{display:none}
+  [data-theme="dark"] .theme-toggle .sun{display:none}
+  [data-theme="dark"] .theme-toggle .moon{display:block}
+
+  /* ============ HERO ============ */
+  header{padding:84px 0 0;position:relative;overflow:hidden}
+  .hero-glow{
+    position:absolute;inset:-20% 30% auto -10%;height:520px;pointer-events:none;
+    background:radial-gradient(60% 60% at 20% 10%, color-mix(in srgb,var(--green) 22%, transparent), transparent 70%);
+    opacity:.7;filter:blur(6px);z-index:0;
+  }
+  header .wrap{position:relative;z-index:1}
   .eyebrow{
     font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;
     text-transform:uppercase;color:var(--green-deep);margin-bottom:18px;
+    display:inline-flex;align-items:center;gap:9px;
+  }
+  .pulse{width:8px;height:8px;border-radius:50%;background:var(--green);position:relative;flex:none}
+  @media (prefers-reduced-motion: no-preference){
+    .pulse::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--green);
+      animation:ping 2.4s cubic-bezier(0,0,.2,1) infinite}
+    @keyframes ping{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(3);opacity:0}}
   }
   h1{
     font-family:'Archivo',sans-serif;font-weight:800;
@@ -79,20 +142,26 @@
   }
   .btn{
     font-family:'IBM Plex Mono',monospace;font-size:13.5px;letter-spacing:.03em;
-    text-decoration:none;padding:11px 20px;border-radius:6px;
-    border:1px solid var(--green-deep);transition:background .18s,color .18s;
+    text-decoration:none;padding:11px 20px;border-radius:7px;
+    border:1px solid var(--green-deep);transition:background .18s,color .18s,transform .18s,box-shadow .18s;
+    display:inline-flex;align-items:center;gap:8px;
   }
   .btn-solid{background:var(--green-deep);color:#fff}
-  .btn-solid:hover{background:var(--ink)}
+  .btn-solid:hover{background:var(--ink);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+  [data-theme="dark"] .btn-solid{color:#08130E}
+  [data-theme="dark"] .btn-solid:hover{background:var(--green)}
   .btn-ghost{color:var(--green-deep)}
-  .btn-ghost:hover{background:var(--panel)}
+  .btn-ghost:hover{background:var(--panel);transform:translateY(-2px)}
   .hero-loc{
     font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--mono-slate);
   }
 
   /* signature: emissions flow */
-  .flow{margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+  .flow{margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel);transition:background .4s,border-color .4s}
   .flow svg{display:block;width:100%;height:auto}
+  .flow .flow-band{transition:stroke .4s}
+  .flow .flow-label{fill:var(--ink-soft);transition:fill .4s}
+  .flow .flow-out{fill:var(--green-deep);transition:fill .4s}
   .flow-caption{
     max-width:var(--maxw);margin:0 auto;padding:10px 28px 14px;
     font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--mono-slate);
@@ -105,7 +174,22 @@
     @keyframes drift{to{stroke-dashoffset:-640}}
   }
 
-  /* ---------- sections ---------- */
+  /* ============ STATS STRIP ============ */
+  .stats{margin-top:0;border-bottom:1px solid var(--line);background:var(--surface-2);transition:background .4s,border-color .4s}
+  .stats-inner{
+    max-width:var(--maxw);margin:0 auto;padding:30px 28px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+  }
+  .stat{text-align:left;border-left:2px solid var(--green-faint);padding-left:16px}
+  .stat-num{
+    font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,3.2vw,34px);
+    color:var(--ink);letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums;
+  }
+  .stat-num .unit{color:var(--green)}
+  .stat-label{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--mono-slate);
+    letter-spacing:.03em;margin-top:8px;line-height:1.4}
+
+  /* ============ SECTIONS ============ */
   section{padding:78px 0 6px}
   .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:34px}
   .sec-label{
@@ -121,49 +205,76 @@
   /* what i do */
   .domains{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .domain{
-    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-    padding:24px 22px;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 22px;box-shadow:var(--shadow);transition:border-color .2s,transform .2s,box-shadow .2s,background .4s;
   }
+  .domain:hover{border-color:var(--green);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
   .domain h3{font-family:'Archivo',sans-serif;font-size:17px;font-weight:700;margin-bottom:10px}
   .domain p{font-size:15px;color:var(--ink-soft)}
   .domain .tag{
     display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;
-    color:var(--green-deep);background:var(--panel);border-radius:4px;
+    color:var(--green-deep);background:var(--green-faint);border-radius:4px;
     padding:2px 8px;margin-bottom:14px;letter-spacing:.05em;
   }
 
-  /* projects */
+  /* ============ PROJECTS ============ */
+  .proj-intro{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+  .proj-intro h2{margin-bottom:0}
+  .filters{display:flex;gap:8px;flex-wrap:wrap}
+  .filter{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.03em;
+    padding:7px 14px;border-radius:20px;border:1px solid var(--line);background:var(--surface);
+    color:var(--mono-slate);cursor:pointer;transition:all .2s;
+  }
+  .filter:hover{border-color:var(--green);color:var(--green-deep)}
+  .filter.active{background:var(--green-deep);border-color:var(--green-deep);color:#fff}
+  [data-theme="dark"] .filter.active{color:#08130E}
+
   .projects{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .proj{
-    display:block;text-decoration:none;color:inherit;
-    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-    padding:26px 24px;transition:border-color .18s, transform .18s;
+    display:flex;flex-direction:column;text-decoration:none;color:inherit;position:relative;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 24px;box-shadow:var(--shadow);
+    transition:border-color .2s, transform .15s, box-shadow .2s, opacity .35s, background .4s;
+    transform-style:preserve-3d;will-change:transform;
   }
-  .proj:hover{border-color:var(--green);transform:translateY(-2px)}
-  .proj-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+  .proj:hover{border-color:var(--green);box-shadow:var(--shadow-lg)}
+  .proj.hide{display:none}
+  .proj-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px}
   .proj-lang{
     font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.05em;
-    color:var(--mono-slate);
+    color:var(--mono-slate);display:inline-flex;align-items:center;gap:7px;
   }
-  .proj-lang::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;
-    background:var(--green);margin-right:7px;vertical-align:1px}
-  .proj-arrow{font-family:'IBM Plex Mono',monospace;color:var(--green-deep);font-size:14px}
-  .proj h3{font-family:'Archivo',sans-serif;font-size:18px;font-weight:700;margin-bottom:9px}
-  .proj p{font-size:15px;color:var(--ink-soft)}
-  .proj-stack{
-    margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;
+  .lang-dot{width:9px;height:9px;border-radius:50%;flex:none;background:var(--green)}
+  .badges{display:flex;gap:6px;align-items:center}
+  .badge{
+    font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;
+    padding:3px 7px;border-radius:5px;font-weight:500;
   }
+  .badge-new{background:var(--ochre);color:#fff}
+  [data-theme="dark"] .badge-new{color:#1a1206}
+  .badge-live{background:var(--green-faint);color:var(--green-deep);border:1px solid color-mix(in srgb,var(--green) 40%,transparent)}
+  .proj h3{font-family:'Archivo',sans-serif;font-size:18px;font-weight:700;margin-bottom:9px;letter-spacing:-.01em}
+  .proj p{font-size:14.5px;color:var(--ink-soft)}
+  .proj-stack{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
   .chip{
     font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--mono-slate);
     border:1px solid var(--line);border-radius:4px;padding:2px 8px;
   }
+  .proj-foot{
+    margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--mono-slate);
+  }
+  .proj-foot .go{color:var(--green-deep);display:inline-flex;align-items:center;gap:6px;transition:gap .2s}
+  .proj:hover .proj-foot .go{gap:11px}
 
-  /* experience */
+  /* ============ EXPERIENCE ============ */
   .xp{border-left:2px solid var(--line);margin-left:6px;padding-left:30px;display:flex;flex-direction:column;gap:40px}
   .xp-item{position:relative}
   .xp-item::before{
     content:"";position:absolute;left:-37px;top:7px;width:11px;height:11px;border-radius:50%;
-    background:var(--mist);border:2.5px solid var(--green);
+    background:var(--mist);border:2.5px solid var(--green);transition:background .4s;
   }
   .xp-when{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--mono-slate);letter-spacing:.04em}
   .xp-role{font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;margin:5px 0 2px}
@@ -173,17 +284,19 @@
   .xp li::before{content:"–";position:absolute;left:0;color:var(--green)}
   .xp-metric{color:var(--ochre);font-weight:600}
 
-  /* skills */
+  /* ============ SKILLS ============ */
   .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-  .skill-group{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .skill-group{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);transition:background .4s,border-color .2s,transform .2s}
+  .skill-group:hover{transform:translateY(-2px);border-color:var(--green)}
   .skill-group h3{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.07em;
     text-transform:uppercase;color:var(--green-deep);margin-bottom:14px}
   .skill-group .chips{display:flex;gap:8px;flex-wrap:wrap}
   .skill-group .chip{font-size:12px;padding:4px 10px;color:var(--ink-soft)}
 
-  /* education + certs */
+  /* ============ EDUCATION ============ */
   .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
-  .edu-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .edu-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);transition:background .4s,border-color .2s,transform .2s}
+  .edu-card:hover{transform:translateY(-2px);border-color:var(--green)}
   .edu-card .xp-when{display:block;margin-bottom:6px}
   .edu-card h3{font-family:'Archivo',sans-serif;font-size:16.5px;font-weight:700;margin-bottom:3px}
   .edu-card .org{font-size:14.5px;color:var(--green-deep);font-weight:600}
@@ -193,11 +306,12 @@
     font-size:14.5px;color:var(--mono-slate);background:transparent;
   }
 
-  /* contact */
+  /* ============ CONTACT ============ */
   .contact{
-    margin:84px 0 0;background:var(--ink);color:#E9F1EB;border-radius:14px;
-    padding:54px 48px;
+    margin:84px 0 0;background:var(--contact-bg);color:#E9F1EB;border-radius:14px;
+    padding:54px 48px;border:1px solid transparent;transition:background .4s;
   }
+  [data-theme="dark"] .contact{border-color:var(--line)}
   .contact .sec-label{color:#7FC9A4}
   .contact h2{color:#fff;max-width:22ch}
   .contact p{color:#B9CCC0;max-width:56ch;margin-bottom:28px}
@@ -212,22 +326,28 @@
     font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--mono-slate);
   }
 
-  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  /* ============ REVEAL ============ */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
   @media (prefers-reduced-motion: reduce){
     .reveal{opacity:1;transform:none;transition:none}
     html{scroll-behavior:auto}
+    .pulse::after{display:none}
   }
 
+  /* ============ RESPONSIVE ============ */
   @media (max-width:860px){
     .domains{grid-template-columns:1fr}
     .projects,.skills,.edu-grid{grid-template-columns:1fr}
+    .stats-inner{grid-template-columns:1fr 1fr;gap:22px 18px}
     .contact{padding:40px 26px}
     header{padding-top:56px}
   }
   @media (max-width:560px){
-    .nav-links{display:none}
+    .nav-links{gap:16px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .nav-links::-webkit-scrollbar{display:none}
     body{font-size:16px}
+    .proj-intro{flex-direction:column;align-items:flex-start}
   }
 </style>
 </head>
@@ -236,19 +356,26 @@
 <nav>
   <div class="nav-inner">
     <a class="nav-name" href="#top">Musharraf Hassan</a>
-    <div class="nav-links">
-      <a href="#work">work</a>
-      <a href="#projects">projects</a>
-      <a href="#experience">experience</a>
-      <a href="#skills">skills</a>
-      <a href="#contact">contact</a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#work">work</a>
+        <a href="#projects">projects</a>
+        <a href="#experience">experience</a>
+        <a href="#skills">skills</a>
+        <a href="#contact">contact</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
     </div>
   </div>
 </nav>
 
 <header id="top">
+  <div class="hero-glow" aria-hidden="true"></div>
   <div class="wrap">
-    <p class="eyebrow">Sustainability · Data · Advisory — Rotterdam, NL</p>
+    <p class="eyebrow"><span class="pulse" aria-hidden="true"></span>Sustainability · Data · Advisory — Rotterdam, NL</p>
     <h1>Turning emissions and ESG data into <em>decisions people act on</em>.</h1>
     <p class="hero-sub">
       I'm Musharraf — a sustainability consultant who builds the models, dashboards, and
@@ -266,19 +393,29 @@
   <!-- signature: scope 1/2/3 flows converging into one reporting stream -->
   <div class="flow" aria-hidden="true">
     <svg viewBox="0 0 1200 190" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path class="band b1" d="M0,40  C 300,40 420,95 1200,95"  fill="none" stroke="#2C7A57" stroke-width="14" opacity=".55"/>
-      <path class="band b2" d="M0,95  C 300,95 420,95 1200,95"  fill="none" stroke="#1C5A40" stroke-width="20" opacity=".75"/>
-      <path class="band b3" d="M0,150 C 300,150 420,95 1200,95" fill="none" stroke="#6FAE8C" stroke-width="14" opacity=".5"/>
-      <g font-family="IBM Plex Mono, monospace" font-size="12" fill="#3C5247">
-        <text x="14" y="28">scope 1 · direct</text>
-        <text x="14" y="84">scope 2 · energy</text>
-        <text x="14" y="178">scope 3 · value chain</text>
-        <text x="1050" y="78" fill="#1C5A40">→ one clear report</text>
+      <path class="band b1 flow-band" d="M0,40  C 300,40 420,95 1200,95"  fill="none" stroke="var(--green)"      stroke-width="14" opacity=".55"/>
+      <path class="band b2 flow-band" d="M0,95  C 300,95 420,95 1200,95"  fill="none" stroke="var(--green-deep)" stroke-width="20" opacity=".75"/>
+      <path class="band b3 flow-band" d="M0,150 C 300,150 420,95 1200,95" fill="none" stroke="var(--green)"      stroke-width="14" opacity=".42"/>
+      <g font-family="IBM Plex Mono, monospace" font-size="12">
+        <text class="flow-label" x="14" y="28">scope 1 · direct</text>
+        <text class="flow-label" x="14" y="84">scope 2 · energy</text>
+        <text class="flow-label" x="14" y="178">scope 3 · value chain</text>
+        <text class="flow-out" x="1050" y="78">→ one clear report</text>
       </g>
     </svg>
   </div>
   <p class="flow-caption">fig. 01 — measured, modelled, reported</p>
 </header>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat reveal"><div class="stat-num" data-count="9">0</div><div class="stat-label">client organisations<br>advised at Impact Root</div></div>
+    <div class="stat reveal"><div class="stat-num" data-count="38">0</div><div class="stat-label">EU companies analysed<br>in CSRD / ESRS thesis</div></div>
+    <div class="stat reveal"><div class="stat-num" data-count="14">0</div><div class="stat-label">NGOs benchmarked<br>for funding strategy</div></div>
+    <div class="stat reveal"><div class="stat-num"><span class="unit">$</span><span data-count="50">0</span><span class="unit">K</span></div><div class="stat-label">CSR funding raised<br>via targeting model</div></div>
+  </div>
+</div>
 
 <main class="wrap">
 
@@ -295,9 +432,9 @@
       </div>
       <div class="domain reveal">
         <span class="tag">analyse</span>
-        <h3>Markets &amp; material flows</h3>
-        <p>Carbon-credit market analysis (Verra, Gold Standard) by project type and price history,
-        plus district-level Material Flow Analysis of agri-waste and biomass supply chains in Python.</p>
+        <h3>Markets, money &amp; material flows</h3>
+        <p>Carbon-credit market analysis (Verra, Gold Standard), district-level Material Flow Analysis of
+        agri-waste in Python, and Dutch private-equity / LBO modelling tuned to 2026 NL tax law.</p>
       </div>
       <div class="domain reveal">
         <span class="tag">advise</span>
@@ -311,36 +448,101 @@
   <!-- PROJECTS -->
   <section id="projects">
     <div class="sec-head"><span class="sec-label">Selected projects</span><span class="sec-rule"></span></div>
-    <h2>Open work on GitHub</h2>
-    <div class="projects">
-      <a class="proj reveal" href="https://github.com/mushaha97-droid/carbon-market-analysis-india-" target="_blank" rel="noopener">
-        <div class="proj-top"><span class="proj-lang">Python · Power BI</span><span class="proj-arrow">↗</span></div>
+    <div class="proj-intro">
+      <h2>Open work on GitHub</h2>
+      <div class="filters" role="tablist" aria-label="Filter projects">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="sustainability">Sustainability</button>
+        <button class="filter" data-filter="finance">Finance</button>
+        <button class="filter" data-filter="data">Data &amp; Research</button>
+      </div>
+    </div>
+
+    <div class="projects" id="projGrid">
+
+      <!-- NEW: Dutch Deal Desk -->
+      <a class="proj reveal" data-cat="finance" href="https://github.com/mushaha97-droid/dutch-deal-desk" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript · React</span>
+          <span class="badges"><span class="badge badge-new">New</span><span class="badge badge-live">Interactive</span></span>
+        </div>
+        <h3>Dutch Deal Desk</h3>
+        <p>An LBO returns &amp; financial due-diligence dashboard for Netherlands mid-market private equity.
+        Type a deal in — entry multiple, leverage, exit — and get a full leveraged-buyout model, a value-creation
+        bridge, gross-vs-net fund returns, a DCF cross-check, sensitivity tables, and a diligence scorecard. Tuned
+        to Dutch 2026 tax law, including the earnings-stripping rule (Art. 15b CITA) that off-the-shelf templates ignore.</p>
+        <div class="proj-stack"><span class="chip">LBO model</span><span class="chip">DCF</span><span class="chip">NL tax law</span><span class="chip">sensitivity</span></div>
+        <div class="proj-foot"><span>Live dashboard · React + Vite</span><span class="go">View on GitHub →</span></div>
+      </a>
+
+      <!-- NEW: NL Grid Congestion × Solar Curtailment -->
+      <a class="proj reveal" data-cat="sustainability" href="https://github.com/mushaha97-droid/dutch-electric-grid-" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+          <span class="badges"><span class="badge badge-new">New</span><span class="badge badge-live">Interactive map</span></span>
+        </div>
+        <h3>NL Grid Congestion × Solar Curtailment</h3>
+        <p>Connects Dutch grid-congestion status to the cost of residential solar curtailment, framed around the
+        NL grid rules taking effect 1 July 2026. A spatial layer classifies every area by feed-in congestion from
+        the ACM register; a temporal layer models hourly rooftop-PV generation (pvlib + PVGIS) to compute lost kWh
+        and euro loss. Ships as an interactive choropleth map plus a Streamlit dashboard.</p>
+        <div class="proj-stack"><span class="chip">pvlib</span><span class="chip">Folium</span><span class="chip">Streamlit</span><span class="chip">geospatial</span></div>
+        <div class="proj-foot"><span>Choropleth map + dashboard</span><span class="go">View on GitHub →</span></div>
+      </a>
+
+      <!-- Carbon Market Analysis -->
+      <a class="proj reveal" data-cat="sustainability" href="https://github.com/mushaha97-droid/carbon-market-analysis-india-" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-lang"><span class="lang-dot" style="background:#3572A5"></span>Python · Power BI</span>
+        </div>
         <h3>Carbon Market Analysis — India</h3>
         <p>Five-year analysis of Verra and Gold Standard carbon credits, mapping credit volume against
         long-run price by project type. The output shortlisted projects for a four-year investment horizon.</p>
         <div class="proj-stack"><span class="chip">pandas</span><span class="chip">carbon credits</span><span class="chip">market analysis</span></div>
+        <div class="proj-foot"><span>Verra · Gold Standard · 5-yr</span><span class="go">View on GitHub →</span></div>
       </a>
-      <a class="proj reveal" href="https://github.com/mushaha97-droid/CSRD-compliance-" target="_blank" rel="noopener">
-        <div class="proj-top"><span class="proj-lang">Python</span><span class="proj-arrow">↗</span></div>
-        <h3>CSRD Compliance</h3>
-        <p>Tooling around EU Corporate Sustainability Reporting Directive requirements — structuring
-        ESRS data points so disclosure work starts from clean, analysis-ready inputs.</p>
-        <div class="proj-stack"><span class="chip">ESRS</span><span class="chip">EU regulation</span><span class="chip">reporting</span></div>
+
+      <!-- CSRD / ESRS thesis -->
+      <a class="proj reveal" data-cat="data" href="https://github.com/mushaha97-droid/CSRD-compliance-" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-lang"><span class="lang-dot" style="background:#3572A5"></span>Python · SQL · Power BI</span>
+        </div>
+        <h3>CSRD / ESRS Compliance — Master Thesis</h3>
+        <p>The compliance-scoring component of my MSc thesis: do AI-assisted ESG reporting tools improve ESRS
+        compliance? 38 EU companies (19 AI-platform users vs 19 matched peers) scored against the 12 ESRS standards
+        on a 0–3 rubric, then statistically re-analysed. Finding: the AI group scores marginally higher, but the gap
+        is not statistically significant — a careful, honest null result with full power analysis.</p>
+        <div class="proj-stack"><span class="chip">ESRS</span><span class="chip">statistics</span><span class="chip">t-test / Wilcoxon</span><span class="chip">reproducible</span></div>
+        <div class="proj-foot"><span>Erasmus RSM · 2025</span><span class="go">View on GitHub →</span></div>
       </a>
-      <a class="proj reveal" href="https://github.com/mushaha97-droid/ANBI-funding-structure-" target="_blank" rel="noopener">
-        <div class="proj-top"><span class="proj-lang">Jupyter Notebook</span><span class="proj-arrow">↗</span></div>
+
+      <!-- RAAP Fundraising Benchmark (sustainbility-data) -->
+      <a class="proj reveal" data-cat="data" href="https://github.com/mushaha97-droid/sustainbility-data" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-lang"><span class="lang-dot" style="background:#3572A5"></span>Python · SQL · Power BI</span>
+        </div>
+        <h3>RAAP! Fundraising Benchmark</h3>
+        <p>An income-source benchmark of 14 NGOs in regenerative agriculture and land restoration, built to guide
+        fundraising strategy for RAAP!. An Excel → SQLite pipeline with 13 analytical SQL queries surfaces the key
+        insight: business income (corporates + foundations) is 70% of pooled income and the path to scale, while
+        smaller NGOs anchor on community engagement.</p>
+        <div class="proj-stack"><span class="chip">SQLite</span><span class="chip">pandas</span><span class="chip">nonprofit finance</span></div>
+        <div class="proj-foot"><span>14 NGOs · 64 records</span><span class="go">View on GitHub →</span></div>
+      </a>
+
+      <!-- ANBI Funding Structures -->
+      <a class="proj reveal" data-cat="data" href="https://github.com/mushaha97-droid/ANBI-funding-structure-" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-lang"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+        </div>
         <h3>ANBI Funding Structures</h3>
-        <p>Scraped anbi.nl for financial statements of Dutch public-benefit organisations and mapped
-        revenue mix, cost structure, and donor concentration — the data backbone of a client funding strategy.</p>
-        <div class="proj-stack"><span class="chip">web scraping</span><span class="chip">pandas</span><span class="chip">nonprofit finance</span></div>
+        <p>Scraped anbi.nl for the financial statements of Dutch public-benefit organisations and mapped revenue
+        mix, cost structure, and donor concentration — the notebook-driven exploration behind the RAAP! funding
+        strategy, with the visualisations that show how concentrated most peer NGOs really are.</p>
+        <div class="proj-stack"><span class="chip">web scraping</span><span class="chip">pandas</span><span class="chip">visualisation</span></div>
+        <div class="proj-foot"><span>anbi.nl · donor concentration</span><span class="go">View on GitHub →</span></div>
       </a>
-      <a class="proj reveal" href="https://github.com/mushaha97-droid/sustainbility-data" target="_blank" rel="noopener">
-        <div class="proj-top"><span class="proj-lang">Python</span><span class="proj-arrow">↗</span></div>
-        <h3>Sustainability Data</h3>
-        <p>A working collection of sustainability data pipelines and analysis — emission-factor lookups,
-        cleaning scripts, and reusable building blocks from client and research work.</p>
-        <div class="proj-stack"><span class="chip">data pipelines</span><span class="chip">GHG accounting</span><span class="chip">automation</span></div>
-      </a>
+
     </div>
   </section>
 
@@ -502,8 +704,27 @@
 </footer>
 
 <script>
-  // gentle scroll reveal, skipped when reduced motion is preferred
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- theme toggle ---------- */
+  (function(){
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initial = saved || (prefersDark ? 'dark' : 'light');
+    root.setAttribute('data-theme', initial);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    const setMeta = t => meta && meta.setAttribute('content', t === 'dark' ? '#0B1512' : '#F3F6F2');
+    setMeta(initial);
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      setMeta(next);
+    });
+  })();
+
+  /* ---------- scroll reveal ---------- */
   if (!reduce && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
@@ -512,6 +733,81 @@
   } else {
     document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
   }
+
+  /* ---------- animated counters ---------- */
+  (function(){
+    const nums = document.querySelectorAll('[data-count]');
+    if (reduce || !('IntersectionObserver' in window)) {
+      nums.forEach(n => n.textContent = n.getAttribute('data-count'));
+      return;
+    }
+    const run = el => {
+      const target = +el.getAttribute('data-count');
+      const dur = 1100; const start = performance.now();
+      const tick = now => {
+        const p = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * target);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const co = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ run(e.target); co.unobserve(e.target);} });
+    },{threshold:.6});
+    nums.forEach(n=>co.observe(n));
+  })();
+
+  /* ---------- scrollspy ---------- */
+  (function(){
+    const links = [...document.querySelectorAll('.nav-links a')];
+    const map = {};
+    links.forEach(l => { const id = l.getAttribute('href').slice(1); const s = document.getElementById(id); if (s) map[id] = l; });
+    const sections = Object.keys(map).map(id => document.getElementById(id));
+    if (!('IntersectionObserver' in window)) return;
+    const so = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if (e.isIntersecting){
+          links.forEach(l=>l.classList.remove('active'));
+          const active = map[e.target.id];
+          if (active) active.classList.add('active');
+        }
+      });
+    },{rootMargin:'-45% 0px -50% 0px'});
+    sections.forEach(s=>so.observe(s));
+  })();
+
+  /* ---------- project filters ---------- */
+  (function(){
+    const filters = document.querySelectorAll('.filter');
+    const cards = document.querySelectorAll('#projGrid .proj');
+    filters.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        filters.forEach(f=>f.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.getAttribute('data-filter');
+        cards.forEach(c=>{
+          const show = f === 'all' || c.getAttribute('data-cat') === f;
+          c.classList.toggle('hide', !show);
+        });
+      });
+    });
+  })();
+
+  /* ---------- subtle card tilt (fine pointer only) ---------- */
+  (function(){
+    if (reduce || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    const max = 5;
+    document.querySelectorAll('.proj, .domain').forEach(card=>{
+      card.addEventListener('pointermove', e=>{
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - .5;
+        const py = (e.clientY - r.top) / r.height - .5;
+        card.style.transform = `perspective(900px) rotateX(${(-py*max).toFixed(2)}deg) rotateY(${(px*max).toFixed(2)}deg) translateY(-3px)`;
+      });
+      card.addEventListener('pointerleave', ()=>{ card.style.transform = ''; });
+    });
+  })();
 </script>
 
 </body>

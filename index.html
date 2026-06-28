@@ -268,6 +268,18 @@
   }
   .proj-foot .go{color:var(--green-deep);display:inline-flex;align-items:center;gap:6px;transition:gap .2s}
   .proj:hover .proj-foot .go{gap:11px}
+  .proj-foot-links{justify-content:flex-start;gap:10px}
+  .mini-btn{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.02em;text-decoration:none;
+    padding:7px 13px;border-radius:7px;border:1px solid var(--line);color:var(--green-deep);
+    display:inline-flex;align-items:center;gap:6px;transition:all .18s;
+  }
+  .mini-btn:hover{border-color:var(--green);transform:translateY(-1px)}
+  .mini-solid{background:var(--green-deep);color:#fff;border-color:var(--green-deep)}
+  .mini-solid:hover{background:var(--ink)}
+  [data-theme="dark"] .mini-solid{color:#08130E}
+  [data-theme="dark"] .mini-solid:hover{background:var(--green)}
+  .proj-static{cursor:default}
 
   /* ============ EXPERIENCE ============ */
   .xp{border-left:2px solid var(--line);margin-left:6px;padding-left:30px;display:flex;flex-direction:column;gap:40px}
@@ -461,10 +473,10 @@
     <div class="projects" id="projGrid">
 
       <!-- NEW: Dutch Deal Desk -->
-      <a class="proj reveal" data-cat="finance" href="https://github.com/mushaha97-droid/dutch-deal-desk" target="_blank" rel="noopener">
+      <div class="proj reveal proj-static" data-cat="finance">
         <div class="proj-top">
           <span class="proj-lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript · React</span>
-          <span class="badges"><span class="badge badge-new">New</span><span class="badge badge-live">Interactive</span></span>
+          <span class="badges"><span class="badge badge-new">New</span><span class="badge badge-live">● Live demo</span></span>
         </div>
         <h3>Dutch Deal Desk</h3>
         <p>An LBO returns &amp; financial due-diligence dashboard for Netherlands mid-market private equity.
@@ -472,8 +484,11 @@
         bridge, gross-vs-net fund returns, a DCF cross-check, sensitivity tables, and a diligence scorecard. Tuned
         to Dutch 2026 tax law, including the earnings-stripping rule (Art. 15b CITA) that off-the-shelf templates ignore.</p>
         <div class="proj-stack"><span class="chip">LBO model</span><span class="chip">DCF</span><span class="chip">NL tax law</span><span class="chip">sensitivity</span></div>
-        <div class="proj-foot"><span>Live dashboard · React + Vite</span><span class="go">View on GitHub →</span></div>
-      </a>
+        <div class="proj-foot proj-foot-links">
+          <a class="mini-btn mini-solid" href="deal-desk/" target="_blank" rel="noopener">Launch live demo ↗</a>
+          <a class="mini-btn" href="https://github.com/mushaha97-droid/dutch-deal-desk" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
 
       <!-- NEW: NL Grid Congestion × Solar Curtailment -->
       <a class="proj reveal" data-cat="sustainability" href="https://github.com/mushaha97-droid/dutch-electric-grid-" target="_blank" rel="noopener">

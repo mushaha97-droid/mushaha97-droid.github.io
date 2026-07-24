@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Musharraf Hassan — Sustainability Data &amp; Finance</title>
-<meta name="description" content="Analyst working where sustainability data meets finance: GHG accounting, CBAM, carbon markets, ESRS/GRI/BRSR disclosure — and LBO/PE deal modelling, DCF, and Dutch tax-aware valuation. Python, SQL, Power BI. Rotterdam, NL.">
+<title>Musharraf Hassan — Sustainability, Data &amp; Communication</title>
+<meta name="description" content="Sustainability analyst who turns ESG and emissions data into decisions and communication: GHG accounting, CBAM, carbon markets, geospatial analysis, and disclosure under ESRS/GRI/BRSR — plus ESG workshops, executive briefings, and impact storytelling. Python, SQL, Power BI. Rotterdam, NL.">
 <meta name="theme-color" content="#0B1512">
 <script>
   /* set theme before paint to avoid flash; default dark */
@@ -17,8 +17,8 @@
     }catch(e){}
   })();
 </script>
-<meta property="og:title" content="Musharraf Hassan — Sustainability Data &amp; Finance">
-<meta property="og:description" content="Turning sustainability and financial data into decisions people act on. ESG & emissions analytics plus PE/LBO deal modelling. Rotterdam, NL.">
+<meta property="og:title" content="Musharraf Hassan — Sustainability, Data &amp; Communication">
+<meta property="og:description" content="Turning sustainability and impact data into decisions people act on. ESG & emissions analytics, geospatial modelling, and impact communication. Rotterdam, NL.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -191,6 +191,10 @@
     .band.b2{animation-duration:34s}
     .band.b3{animation-duration:44s}
     @keyframes drift{to{stroke-dashoffset:-640}}
+    .orbit{transform-box:fill-box;transform-origin:center;animation:spin 22s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .node{animation:nodepulse 3.2s ease-in-out infinite}
+    @keyframes nodepulse{0%,100%{opacity:.35}50%{opacity:1}}
   }
 
   /* ============ STATS STRIP ============ */
@@ -452,14 +456,14 @@
 <header id="top">
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="wrap">
-    <p class="eyebrow"><span class="pulse" aria-hidden="true"></span>Sustainability · Data · Finance — Rotterdam, NL</p>
-    <h1>Turning sustainability and financial data into <em>decisions people act on</em>.</h1>
+    <p class="eyebrow"><span class="pulse" aria-hidden="true"></span>Sustainability · Data · Communication — Rotterdam, NL</p>
+    <h1>Turning sustainability and impact data into <em>decisions people act on</em>.</h1>
     <p class="hero-sub">
-      I'm Musharraf — I work where sustainability data meets finance. On the sustainability side:
-      GHG accounting (Scope 1–3), CBAM compliance, carbon-market analysis, and disclosure under
-      ESRS, GRI, and BRSR. On the finance side: LBO and private-equity underwriting, DCF valuation,
-      and Dutch tax-aware deal modelling. Python, SQL, and Power BI throughout — with stakeholder
-      interviews and qualitative coding where the numbers need a human read.
+      I'm Musharraf — I turn sustainability data into decisions and communication. On the data side:
+      GHG accounting (Scope 1–3), CBAM compliance, carbon-market analysis, and geospatial modelling
+      in Python, SQL, and Power BI. On the communication side: disclosure under ESRS, GRI, and BRSR,
+      ESG workshops and executive briefings, stakeholder interviews, and a recurring newsletter that
+      turns sector data into insight people act on.
     </p>
     <div class="hero-meta">
       <a class="btn btn-solid" href="#projects">View projects</a>
@@ -468,21 +472,58 @@
     </div>
   </div>
 
-  <!-- signature: scope 1/2/3 flows converging into one reporting stream -->
+  <!-- signature: scope 1/2/3 data streams converging into a live "data command center" -->
   <div class="flow" aria-hidden="true">
-    <svg viewBox="0 0 1200 190" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path class="band b1 flow-band" d="M0,40  C 300,40 420,95 1200,95"  fill="none" stroke="var(--green)"      stroke-width="14" opacity=".55"/>
-      <path class="band b2 flow-band" d="M0,95  C 300,95 420,95 1200,95"  fill="none" stroke="var(--green-deep)" stroke-width="20" opacity=".75"/>
-      <path class="band b3 flow-band" d="M0,150 C 300,150 420,95 1200,95" fill="none" stroke="var(--green)"      stroke-width="14" opacity=".42"/>
-      <g font-family="IBM Plex Mono, monospace" font-size="12">
-        <text class="flow-label" x="14" y="28">scope 1 · direct</text>
-        <text class="flow-label" x="14" y="84">scope 2 · energy</text>
-        <text class="flow-label" x="14" y="178">scope 3 · value chain</text>
-        <text class="flow-out" x="1050" y="78">→ one clear report</text>
+    <svg viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <radialGradient id="sphereGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"  stop-color="var(--green)" stop-opacity=".5"/>
+          <stop offset="45%" stop-color="var(--green)" stop-opacity=".13"/>
+          <stop offset="100%" stop-color="var(--green)" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="sphereBody" cx="40%" cy="36%" r="70%">
+          <stop offset="0%"  stop-color="var(--green)" stop-opacity=".22"/>
+          <stop offset="100%" stop-color="var(--green-deep)" stop-opacity=".05"/>
+        </radialGradient>
+      </defs>
+
+      <!-- three data streams flowing in from the left, converging on the core -->
+      <path class="band b1 flow-band" d="M0,70  C 260,70  400,140 560,140" fill="none" stroke="var(--green)"      stroke-width="12" opacity=".5"/>
+      <path class="band b2 flow-band" d="M0,140 C 240,140 400,140 560,140" fill="none" stroke="var(--green-deep)" stroke-width="16" opacity=".72"/>
+      <path class="band b3 flow-band" d="M0,210 C 260,210 400,140 560,140" fill="none" stroke="var(--green)"      stroke-width="12" opacity=".38"/>
+      <!-- output stream to the right -->
+      <path class="flow-band" d="M640,140 C 820,140 980,140 1200,140" fill="none" stroke="var(--green-deep)" stroke-width="14" opacity=".55"/>
+
+      <!-- the core: a live data sphere -->
+      <circle cx="600" cy="140" r="128" fill="url(#sphereGlow)"/>
+      <circle cx="600" cy="140" r="74" fill="url(#sphereBody)" stroke="var(--green)" stroke-opacity=".45" stroke-width="1.5"/>
+      <g stroke="var(--green)" stroke-opacity=".32" fill="none" stroke-width="1">
+        <ellipse cx="600" cy="140" rx="74" ry="26"/>
+        <ellipse cx="600" cy="140" rx="74" ry="52"/>
+        <ellipse cx="600" cy="140" rx="26" ry="74"/>
+        <ellipse cx="600" cy="140" rx="52" ry="74"/>
+        <line x1="526" y1="140" x2="674" y2="140"/>
+        <line x1="600" y1="66"  x2="600" y2="214"/>
+      </g>
+      <ellipse class="orbit" cx="600" cy="140" rx="100" ry="36" fill="none"
+               stroke="var(--green-deep)" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="3 9"/>
+      <g fill="var(--green-deep)">
+        <circle class="node" cx="600" cy="66"  r="3.5" style="animation-delay:0s"/>
+        <circle class="node" cx="674" cy="140" r="3"   style="animation-delay:.6s"/>
+        <circle class="node" cx="600" cy="214" r="3"   style="animation-delay:1.2s"/>
+        <circle class="node" cx="548" cy="98"  r="2.5" style="animation-delay:.9s"/>
+        <circle class="node" cx="652" cy="182" r="2.5" style="animation-delay:.3s"/>
+      </g>
+
+      <g font-family="IBM Plex Mono, monospace" font-size="13">
+        <text class="flow-label" x="16" y="62">scope 1 · direct</text>
+        <text class="flow-label" x="16" y="146">scope 2 · energy</text>
+        <text class="flow-label" x="16" y="230">scope 3 · value chain</text>
+        <text class="flow-out"   x="978" y="132">→ decisions people act on</text>
       </g>
     </svg>
   </div>
-  <p class="flow-caption">fig. 01 — measured, modelled, reported</p>
+  <p class="flow-caption">fig. 01 — measure · model · communicate</p>
 </header>
 
 <!-- STATS -->
@@ -500,7 +541,7 @@
   <!-- WHAT I DO -->
   <section id="work">
     <div class="sec-head"><span class="sec-label">What I do</span><span class="sec-rule"></span></div>
-    <h2>Two disciplines, one method: measure first.</h2>
+    <h2>Three lenses, one method: measure first.</h2>
     <div class="domains">
       <div class="domain reveal">
         <span class="tag">sustainability</span>
@@ -509,17 +550,16 @@
         modelling for EU importers, and automated emission-factor pipelines that cut reporting turnaround.</p>
       </div>
       <div class="domain reveal">
-        <span class="tag">finance</span>
-        <h3>Deal modelling &amp; valuation</h3>
-        <p>LBO and private-equity underwriting for Dutch mid-market deals — value-creation bridges,
-        gross-vs-net returns, DCF cross-checks, and modelling tuned to 2026 NL tax law — plus
-        carbon-credit market analysis across Verra and Gold Standard.</p>
+        <span class="tag">data</span>
+        <h3>Data &amp; analytics</h3>
+        <p>Python, SQL, and Power BI pipelines end to end — scraping and cleaning raw data, geospatial
+        modelling, carbon-market and material-flow analysis, and dashboards that make the numbers legible.</p>
       </div>
       <div class="domain reveal">
-        <span class="tag">advisory</span>
-        <h3>Disclosure &amp; strategy</h3>
-        <p>ESRS, GRI, and BRSR disclosure support, ESG workshops and executive briefings, Material Flow
-        Analysis, and funding strategies for public-benefit organisations grounded in scraped data and interviews.</p>
+        <span class="tag">communication</span>
+        <h3>Communication &amp; impact</h3>
+        <p>Disclosure under ESRS, GRI, and BRSR, ESG workshops and executive briefings, stakeholder
+        interviews, and a recurring newsletter — turning analysis into decisions people act on.</p>
       </div>
     </div>
   </section>
@@ -532,54 +572,11 @@
       <div class="filters" role="tablist" aria-label="Filter projects">
         <button class="filter active" data-filter="all">All</button>
         <button class="filter" data-filter="sustainability">Sustainability</button>
-        <button class="filter" data-filter="finance">Finance</button>
         <button class="filter" data-filter="data">Data &amp; Research</button>
       </div>
     </div>
 
     <div class="projects" id="projGrid">
-
-      <!-- FEATURED: Dutch Deal Desk -->
-      <div class="proj proj-static proj-featured reveal" data-cat="finance">
-        <div class="feat-viz" aria-hidden="true">
-          <!-- signature finance motif: a value-creation bridge into exit equity -->
-          <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg">
-            <line x1="18" y1="186" x2="322" y2="186" stroke="var(--line)" stroke-width="1.5"/>
-            <!-- waterfall: entry EBITDA, +growth, +margin, +multiple, −tax drag, = exit equity -->
-            <rect class="vbar" x="26"  y="128" width="32" height="58"  rx="3" fill="var(--green-deep)" style="animation-delay:.05s"/>
-            <rect class="vbar" x="74"  y="104" width="32" height="24"  rx="3" fill="var(--green)"      style="animation-delay:.15s"/>
-            <rect class="vbar" x="122" y="86"  width="32" height="18"  rx="3" fill="var(--green)"      style="animation-delay:.25s"/>
-            <rect class="vbar" x="170" y="70"  width="32" height="16"  rx="3" fill="var(--green)"      style="animation-delay:.35s"/>
-            <rect class="vbar" x="218" y="78"  width="32" height="14"  rx="3" fill="var(--ochre)"      style="animation-delay:.45s"/>
-            <rect class="vbar" x="280" y="44"  width="34" height="142" rx="3" fill="var(--green-deep)" style="animation-delay:.55s"/>
-            <!-- IRR trajectory -->
-            <path class="virr" d="M42,150 L90,118 L138,96 L186,80 L234,86 L297,58" fill="none"
-                  stroke="var(--ochre)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <g font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--mono-slate)">
-              <text x="26" y="204">entry</text>
-              <text x="150" y="204">value created</text>
-              <text x="280" y="204">exit</text>
-            </g>
-          </svg>
-        </div>
-        <div class="feat-body">
-          <div class="proj-top">
-            <span class="proj-lang"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript · React · Vite</span>
-            <span class="badges"><span class="badge badge-new">Featured</span><span class="badge badge-live">● Live demo</span></span>
-          </div>
-          <h3>Dutch Deal Desk</h3>
-          <p>An LBO returns &amp; financial due-diligence dashboard for Netherlands mid-market private equity.
-          Type a deal in — entry multiple, leverage, exit — and get a full leveraged-buyout model, a value-creation
-          bridge, gross-vs-net fund returns, a DCF cross-check, sensitivity tables, and a diligence scorecard. Tuned
-          to Dutch 2026 tax law, including the earnings-stripping rule (Art. 15b CITA) that off-the-shelf templates ignore.</p>
-          <div class="proj-result"><b>6</b><span>underwriting outputs from one input form — model, bridge, returns, DCF, sensitivity, scorecard</span></div>
-          <div class="proj-stack"><span class="chip">LBO model</span><span class="chip">DCF</span><span class="chip">NL tax law</span><span class="chip">sensitivity</span><span class="chip">FDD scorecard</span></div>
-          <div class="proj-foot proj-foot-links">
-            <a class="mini-btn mini-solid" href="deal-desk/" target="_blank" rel="noopener">Launch live demo ↗</a>
-            <a class="mini-btn" href="https://github.com/mushaha97-droid/dutch-deal-desk" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </div>
-      </div>
 
       <!-- NEW: NL Grid Congestion × Solar Curtailment -->
       <a class="proj reveal" data-cat="sustainability" href="https://github.com/mushaha97-droid/dutch-electric-grid-" target="_blank" rel="noopener">
@@ -640,20 +637,6 @@
         <div class="proj-foot"><span>14 NGOs · 64 records</span><span class="go">View on GitHub →</span></div>
       </a>
 
-      <!-- ANBI Funding Structures -->
-      <a class="proj reveal" data-cat="data" href="https://github.com/mushaha97-droid/ANBI-funding-structure-" target="_blank" rel="noopener">
-        <div class="proj-top">
-          <span class="proj-lang"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
-        </div>
-        <h3>ANBI Funding Structures</h3>
-        <p>Scraped anbi.nl for the financial statements of Dutch public-benefit organisations and mapped revenue
-        mix, cost structure, and donor concentration — the notebook-driven exploration behind the RAAP! funding
-        strategy, with the visualisations that show how concentrated most peer NGOs really are.</p>
-        <div class="proj-result"><b>14</b><span>Dutch ANBIs benchmarked — over half lean on a single income source</span></div>
-        <div class="proj-stack"><span class="chip">web scraping</span><span class="chip">pandas</span><span class="chip">visualisation</span></div>
-        <div class="proj-foot"><span>anbi.nl · donor concentration</span><span class="go">View on GitHub →</span></div>
-      </a>
-
     </div>
   </section>
 
@@ -664,7 +647,7 @@
     <div class="xp">
       <div class="xp-item reveal">
         <span class="xp-when">Jul 2025 – present · Rotterdam, NL</span>
-        <p class="xp-role">Founder · Sustainable Finance Advisory</p>
+        <p class="xp-role">Founder · Sustainability &amp; Impact Advisory</p>
         <p class="xp-org">Impact Root</p>
         <ul>
           <li>Advise public-benefit organisations (ANBI) on sustainable-finance architecture, funding resilience, and donor diversification.</li>
@@ -730,15 +713,6 @@
         </div>
       </div>
       <div class="skill-group reveal">
-        <h3>Finance &amp; modelling</h3>
-        <div class="chips">
-          <span class="chip">LBO modelling</span><span class="chip">PE underwriting</span>
-          <span class="chip">DCF valuation</span><span class="chip">Value-creation bridge</span>
-          <span class="chip">Sensitivity analysis</span><span class="chip">NL tax (Art. 15b CITA)</span>
-          <span class="chip">Financial due diligence</span>
-        </div>
-      </div>
-      <div class="skill-group reveal">
         <h3>Programming &amp; data</h3>
         <div class="chips">
           <span class="chip">Python</span><span class="chip">pandas</span><span class="chip">NumPy</span>
@@ -754,11 +728,12 @@
         </div>
       </div>
       <div class="skill-group reveal">
-        <h3>Qualitative research &amp; languages</h3>
+        <h3>Communication &amp; engagement</h3>
         <div class="chips">
-          <span class="chip">Gioia methodology</span><span class="chip">Atlas.ti</span>
-          <span class="chip">Stakeholder interviews</span>
-          <span class="chip">English (C2, bilingual)</span><span class="chip">Hindi (C2, bilingual)</span><span class="chip">Dutch (B1, improving)</span>
+          <span class="chip">ESG workshops</span><span class="chip">Executive briefings</span>
+          <span class="chip">Data storytelling</span><span class="chip">Newsletters</span>
+          <span class="chip">Stakeholder interviews</span><span class="chip">Gioia methodology</span><span class="chip">Atlas.ti</span>
+          <span class="chip">English (C2)</span><span class="chip">Hindi (C2)</span><span class="chip">Dutch (B1)</span>
         </div>
       </div>
     </div>
@@ -806,10 +781,10 @@
   <section id="contact" style="padding-top:0">
     <div class="contact reveal">
       <p class="sec-label" style="margin-bottom:16px">Contact</p>
-      <h2>Working on emissions data, disclosure, deal modelling, or impact funding?</h2>
-      <p>I'm based in Rotterdam and open to roles across sustainability analytics and finance — from
-      ESG and emissions analysis to PE / investment modelling — plus project work with NGOs and
-      public-benefit organisations. The fastest way to reach me is email.</p>
+      <h2>Working on emissions data, ESG disclosure, or impact communication?</h2>
+      <p>I'm based in Rotterdam and open to roles across sustainability analytics and communication —
+      from ESG and emissions analysis to disclosure, workshops, and impact storytelling — plus project
+      work with NGOs and public-benefit organisations. The fastest way to reach me is email.</p>
       <div class="contact-links">
         <a class="btn btn-solid" href="mailto:musharraf@impactofy.org">musharraf@impactofy.org</a>
         <a class="btn btn-ghost" href="https://github.com/mushaha97-droid" target="_blank" rel="noopener">GitHub ↗</a>

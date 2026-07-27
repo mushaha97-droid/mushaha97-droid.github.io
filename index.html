@@ -1,942 +1,2594 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Musharraf Hassan — Sustainability, Data &amp; Communication</title>
-<meta name="description" content="Sustainability analyst who turns ESG and emissions data into decisions and communication: GHG accounting, CBAM, carbon markets, geospatial analysis, and disclosure under ESRS/GRI/BRSR — plus ESG workshops, executive briefings, and impact storytelling. Python, SQL, Power BI. Rotterdam, NL.">
-<meta name="theme-color" content="#0B1512">
-<script>
-  /* set theme before paint to avoid flash; default dark */
-  (function(){
-    try{
-      var t = localStorage.getItem('theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', t);
-      var m = document.querySelector('meta[name="theme-color"]');
-      if(m) m.setAttribute('content', t === 'dark' ? '#0B1512' : '#F3F6F2');
-    }catch(e){}
-  })();
-</script>
-<meta property="og:title" content="Musharraf Hassan — Sustainability, Data &amp; Communication">
-<meta property="og:description" content="Turning sustainability and impact data into decisions people act on. ESG & emissions analytics, geospatial modelling, and impact communication. Rotterdam, NL.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Musharraf Hassan — Strategy · Data · Impact</title>
+<meta name="description" content="Strategy and client-insights consultant for the impact-investing and NGO sector. I combine quantitative modelling with structured qualitative research and turn it into strategies clients adopt. Founder of Impact Root, Rotterdam.">
+<meta name="author" content="Musharraf Hassan">
+<meta name="theme-color" content="#07120D">
+<meta name="color-scheme" content="dark light">
 <meta property="og:type" content="website">
+<meta property="og:title" content="Musharraf Hassan — Strategy · Data · Impact">
+<meta property="og:description" content="Strategy and client-insights consultant for impact investing and NGOs. Quantitative modelling plus structured qualitative research, turned into strategies clients adopt. Founder of Impact Root.">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Musharraf Hassan — Strategy · Data · Impact">
+<meta name="twitter:description" content="Strategy and client-insights consultant for impact investing and NGOs. Founder of Impact Root, Rotterdam.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-  /* ============ TOKENS ============ */
-  :root{
-    --mist:#F3F6F2;
-    --panel:#E7EEE7;
-    --surface:#ffffff;
-    --surface-2:#FBFDFB;
-    --ink:#10271F;
-    --ink-soft:#3C5247;
-    --green:#2C7A57;
-    --green-deep:#1C5A40;
-    --green-faint:#dcebe2;
-    --line:#C9D6CC;
-    --mono-slate:#5B6B62;
-    --ochre:#A8731F;
-    --contact-bg:#10271F;
-    --shadow:0 1px 2px rgba(16,39,31,.04);
-    --shadow-lg:0 18px 44px -22px rgba(16,39,31,.45);
-    --radius:10px;
-    --maxw:1080px;
-  }
-  [data-theme="dark"]{
-    --mist:#0B1512;
-    --panel:#13211B;
-    --surface:#14241D;
-    --surface-2:#172a22;
-    --ink:#EAF3EE;
-    --ink-soft:#AAC4B6;
-    --green:#56BC8E;
-    --green-deep:#79D2A8;
-    --green-faint:#1d3a2d;
-    --line:#264035;
-    --mono-slate:#8AA396;
-    --ochre:#E0B061;
-    --contact-bg:#0E2019;
-    --shadow:0 1px 2px rgba(0,0,0,.3);
-    --shadow-lg:0 22px 50px -24px rgba(0,0,0,.7);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;scroll-padding-top:78px}
-  body{
-    background:var(--mist);
-    color:var(--ink);
-    font-family:'IBM Plex Sans',system-ui,sans-serif;
-    font-size:17px;
-    line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-    transition:background .4s ease,color .4s ease;
-  }
-  ::selection{background:var(--green);color:#fff}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
-  a{color:var(--green-deep)}
-  a:focus-visible, button:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:4px}
+/* ============================================================
+   MUSHARRAF HASSAN — PORTFOLIO
+   Concept: "Dark → Light journey". Raw data (dark, technical)
+   resolves into clear advice (light, editorial).
+   One file. No frameworks, no chart libraries.
+   ------------------------------------------------------------
+   00 TOKENS
+   01 RESET + BASE
+   02 LAYOUT PRIMITIVES
+   03 CHROME (skip link, scroll progress, nav)
+   04 HERO (dark)
+   05 DASHBOARD (dark)
+   06 TRANSITION BAND (dark -> light)
+   07 WORK / CASE STORIES (light)
+   08 EXPERIENCE · SKILLS · EDUCATION (light)
+   09 CONTACT (dark bookend) + FOOTER
+   10 RESPONSIVE
+   11 REDUCED MOTION
+   ============================================================ */
 
-  /* ============ NAV ============ */
-  nav{
-    position:sticky;top:0;z-index:50;
-    background:color-mix(in srgb, var(--mist) 86%, transparent);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--line);
-    transition:background .4s ease,border-color .4s ease;
-  }
-  .nav-inner{
-    max-width:var(--maxw);margin:0 auto;padding:13px 28px;
-    display:flex;align-items:center;justify-content:space-between;gap:16px;
-  }
-  .nav-name{
-    font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;
-    letter-spacing:.02em;text-decoration:none;color:var(--ink);white-space:nowrap;
-  }
-  .nav-right{display:flex;align-items:center;gap:20px}
-  .nav-links{display:flex;gap:22px;flex-wrap:wrap}
-  .nav-links a{
-    font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.04em;
-    text-decoration:none;color:var(--mono-slate);position:relative;padding:2px 0;
-    transition:color .2s;
-  }
-  .nav-links a::after{
-    content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;
-    background:var(--green);border-radius:2px;transform:scaleX(0);transform-origin:left;
-    transition:transform .25s ease;
-  }
-  .nav-links a:hover{color:var(--green-deep)}
-  .nav-links a.active{color:var(--green-deep)}
-  .nav-links a.active::after{transform:scaleX(1)}
+/* ---------- 00 TOKENS ---------- */
+:root{
+  /* dark half */
+  --d-bg:#07120D;
+  --d-bg-2:#0A1811;
+  --d-panel:#0E2118;
+  --d-line:rgba(140,190,160,.22);
+  --d-line-soft:rgba(140,190,160,.12);
+  --d-text:#EAF3ED;
+  --d-muted:#A9C4B3;
 
-  .theme-toggle{
-    width:38px;height:38px;flex:none;display:grid;place-items:center;
-    border:1px solid var(--line);border-radius:9px;background:var(--surface);
-    color:var(--ink-soft);cursor:pointer;transition:border-color .2s,color .2s,background .2s,transform .2s;
-  }
-  .theme-toggle:hover{border-color:var(--green);color:var(--green-deep);transform:translateY(-1px)}
-  .theme-toggle svg{width:18px;height:18px}
-  .theme-toggle .moon{display:none}
-  [data-theme="dark"] .theme-toggle .sun{display:none}
-  [data-theme="dark"] .theme-toggle .moon{display:block}
+  /* light half */
+  --l-bg:#F7F5EF;
+  --l-bg-2:#EFEDE3;
+  --l-surface:#FFFDF7;
+  --l-ink:#0F2A1E;
+  --l-muted:#455C4E;
+  --l-line:#DCD7C8;
+  --l-line-soft:#E7E3D7;
 
-  /* scroll progress bar */
-  .scroll-progress{
-    position:fixed;top:0;left:0;height:3px;width:100%;z-index:60;
-    background:linear-gradient(90deg,var(--green),var(--green-deep));
-    transform:scaleX(0);transform-origin:0 50%;will-change:transform;
-    box-shadow:0 0 10px color-mix(in srgb,var(--green) 60%,transparent);
-  }
+  /* the green thread: luminous in the dark, deep in the light */
+  --accent:#4ADE80;
+  --accent-2:#2FB765;
+  --accent-ink:#12683A;
+  --amber:#F5B54A;
+  --amber-ink:#8A5A05;
 
-  /* ============ HERO ============ */
-  header{padding:84px 0 0;position:relative;overflow:hidden}
-  .hero-glow{
-    position:absolute;inset:-20% 30% auto -10%;height:520px;pointer-events:none;
-    background:radial-gradient(60% 60% at 20% 10%, color-mix(in srgb,var(--green) 22%, transparent), transparent 70%);
-    opacity:.7;filter:blur(6px);z-index:0;
-  }
-  header .wrap{position:relative;z-index:1}
-  .eyebrow{
-    font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;
-    text-transform:uppercase;color:var(--green-deep);margin-bottom:18px;
-    display:inline-flex;align-items:center;gap:9px;
-  }
-  .pulse{width:8px;height:8px;border-radius:50%;background:var(--green);position:relative;flex:none}
-  @media (prefers-reduced-motion: no-preference){
-    .pulse::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--green);
-      animation:ping 2.4s cubic-bezier(0,0,.2,1) infinite}
-    @keyframes ping{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(3);opacity:0}}
-  }
-  h1{
-    font-family:'Archivo',sans-serif;font-weight:800;
-    font-size:clamp(34px,5.4vw,58px);line-height:1.06;letter-spacing:-.022em;
-    max-width:18ch;
-  }
-  h1 em{font-style:normal;color:var(--green)}
-  .hero-sub{
-    margin-top:24px;max-width:62ch;font-size:18px;color:var(--ink-soft);
-  }
-  .hero-meta{
-    margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;
-  }
-  .btn{
-    font-family:'IBM Plex Mono',monospace;font-size:13.5px;letter-spacing:.03em;
-    text-decoration:none;padding:11px 20px;border-radius:7px;
-    border:1px solid var(--green-deep);transition:background .18s,color .18s,transform .18s,box-shadow .18s;
-    display:inline-flex;align-items:center;gap:8px;
-  }
-  .btn-solid{background:var(--green-deep);color:#fff}
-  .btn-solid:hover{background:var(--ink);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
-  [data-theme="dark"] .btn-solid{color:#08130E}
-  [data-theme="dark"] .btn-solid:hover{background:var(--green)}
-  .btn-ghost{color:var(--green-deep)}
-  .btn-ghost:hover{background:var(--panel);transform:translateY(-2px)}
-  .hero-loc{
-    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--mono-slate);
-  }
+  /* type */
+  --f-display:"Space Grotesk","Segoe UI",system-ui,sans-serif;
+  --f-body:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 
-  /* signature: emissions flow */
-  .flow{margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel);transition:background .4s,border-color .4s}
-  .flow svg{display:block;width:100%;height:auto}
-  .flow .flow-band{transition:stroke .4s}
-  .flow .flow-label{fill:var(--ink-soft);transition:fill .4s}
-  .flow .flow-out{fill:var(--green-deep);transition:fill .4s}
-  .flow-caption{
-    max-width:var(--maxw);margin:0 auto;padding:10px 28px 14px;
-    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--mono-slate);
-    letter-spacing:.04em;
-  }
-  @media (prefers-reduced-motion: no-preference){
-    .band{stroke-dasharray:6 10;animation:drift 26s linear infinite}
-    .band.b2{animation-duration:34s}
-    .band.b3{animation-duration:44s}
-    @keyframes drift{to{stroke-dashoffset:-640}}
-    .orbit{transform-box:fill-box;transform-origin:center;animation:spin 22s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .node{animation:nodepulse 3.2s ease-in-out infinite}
-    @keyframes nodepulse{0%,100%{opacity:.35}50%{opacity:1}}
-  }
+  /* metrics */
+  --max:1100px;
+  --gut:clamp(20px,5vw,40px);
+  --nav-h:64px;
+  --ease:cubic-bezier(.22,.7,.24,1);
+}
 
-  /* ============ STATS STRIP ============ */
-  .stats{margin-top:0;border-bottom:1px solid var(--line);background:var(--surface-2);transition:background .4s,border-color .4s}
-  .stats-inner{
-    max-width:var(--maxw);margin:0 auto;padding:30px 28px;
-    display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
-  }
-  .stat{text-align:left;border-left:2px solid var(--green-faint);padding-left:16px}
-  .stat-num{
-    font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,3.2vw,34px);
-    color:var(--ink);letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums;
-  }
-  .stat-num .unit{color:var(--green)}
-  .stat-label{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--mono-slate);
-    letter-spacing:.03em;margin-top:8px;line-height:1.4}
+/* Section-scoped theme variables. Components read the generic names
+   (--bg/--fg/--muted/--line/--acc/--card) so the same component renders
+   correctly in both halves of the journey. */
+.t-dark{
+  --bg:var(--d-bg);
+  --fg:var(--d-text);
+  --muted:var(--d-muted);
+  --line:var(--d-line);
+  --line-soft:var(--d-line-soft);
+  --acc:var(--accent);
+  --acc-2:var(--accent-2);
+  --amb:var(--amber);
+  --card:rgba(255,255,255,.035);
+  --card-2:rgba(255,255,255,.07);
+  --card-line:rgba(255,255,255,.10);
+  --shadow:0 18px 44px -24px rgba(0,0,0,.9);
+  color:var(--fg);
+  background:var(--bg);
+}
+.t-light{
+  --bg:var(--l-bg);
+  --fg:var(--l-ink);
+  --muted:var(--l-muted);
+  --line:var(--l-line);
+  --line-soft:var(--l-line-soft);
+  --acc:var(--accent-ink);
+  --acc-2:var(--accent-2);
+  --amb:var(--amber-ink);
+  --card:var(--l-surface);
+  --card-2:#fff;
+  --card-line:var(--l-line);
+  --shadow:0 22px 48px -30px rgba(15,42,30,.42);
+  color:var(--fg);
+  background:var(--bg);
+}
 
-  /* ============ SECTIONS ============ */
-  section{padding:78px 0 6px}
-  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:34px}
-  .sec-label{
-    font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.08em;
-    text-transform:uppercase;color:var(--green-deep);white-space:nowrap;
-  }
-  .sec-rule{flex:1;height:1px;background:var(--line)}
-  h2{
-    font-family:'Archivo',sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);
-    letter-spacing:-.015em;margin-bottom:26px;
-  }
+/* ---------- 01 RESET + BASE ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{
+  -webkit-text-size-adjust:100%;
+  scroll-behavior:smooth;
+  background:var(--d-bg);
+}
+body{
+  margin:0;
+  font-family:var(--f-body);
+  font-size:clamp(15.5px,.42vw + 14.6px,17px);
+  line-height:1.62;
+  color:var(--d-text);
+  background:var(--d-bg);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%}
+h1,h2,h3,h4{
+  font-family:var(--f-display);
+  font-weight:600;
+  line-height:1.1;
+  letter-spacing:-.02em;
+  margin:0;
+  text-wrap:balance;
+}
+p{margin:0}
+a{color:inherit}
+ul,ol{margin:0;padding:0;list-style:none}
+button,input{font:inherit;color:inherit}
+::selection{background:var(--accent);color:#06110C}
+:focus-visible{
+  outline:2.5px solid var(--acc,var(--accent));
+  outline-offset:3px;
+  border-radius:6px;
+}
+.sr-only{
+  position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;
+}
 
-  /* what i do */
-  .domains{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .domain{
-    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-    padding:24px 22px;box-shadow:var(--shadow);transition:border-color .2s,transform .2s,box-shadow .2s,background .4s;
-  }
-  .domain:hover{border-color:var(--green);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
-  .domain h3{font-family:'Archivo',sans-serif;font-size:17px;font-weight:700;margin-bottom:10px}
-  .domain p{font-size:15px;color:var(--ink-soft)}
-  .domain .tag{
-    display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;
-    color:var(--green-deep);background:var(--green-faint);border-radius:4px;
-    padding:2px 8px;margin-bottom:14px;letter-spacing:.05em;
-  }
+/* ---------- 02 LAYOUT PRIMITIVES ---------- */
+.wrap{
+  width:100%;
+  max-width:var(--max);
+  margin-inline:auto;
+  padding-inline:var(--gut);
+}
+section{scroll-margin-top:calc(var(--nav-h) + 8px)}
+.band{padding-block:clamp(72px,10vw,132px)}
 
-  /* ============ PROJECTS ============ */
-  .proj-intro{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:24px}
-  .proj-intro h2{margin-bottom:0}
-  .filters{display:flex;gap:8px;flex-wrap:wrap}
-  .filter{
-    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.03em;
-    padding:7px 14px;border-radius:20px;border:1px solid var(--line);background:var(--surface);
-    color:var(--mono-slate);cursor:pointer;transition:all .2s;
-  }
-  .filter:hover{border-color:var(--green);color:var(--green-deep)}
-  .filter.active{background:var(--green-deep);border-color:var(--green-deep);color:#fff}
-  [data-theme="dark"] .filter.active{color:#08130E}
+.eyebrow{
+  font-family:var(--f-mono);
+  font-size:.72rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--acc);
+  margin:0 0 18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow::before{
+  content:"";
+  width:26px;height:1px;
+  background:currentColor;
+  flex:none;opacity:.85;
+}
+.h2{font-size:clamp(1.95rem,4.4vw,3.15rem)}
+.lede{
+  font-size:clamp(1.02rem,1.1vw + .8rem,1.2rem);
+  color:var(--muted);
+  max-width:62ch;
+  margin-top:18px;
+}
+.mono{font-family:var(--f-mono)}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
 
-  .projects{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  .proj{
-    display:flex;flex-direction:column;text-decoration:none;color:inherit;position:relative;
-    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-    padding:26px 24px;box-shadow:var(--shadow);
-    transition:border-color .2s, transform .15s, box-shadow .2s, opacity .35s, background .4s;
-    transform-style:preserve-3d;will-change:transform;
-  }
-  .proj:hover{border-color:var(--green);box-shadow:var(--shadow-lg)}
-  .proj.hide{display:none}
-  .proj-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px}
-  .proj-lang{
-    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.05em;
-    color:var(--mono-slate);display:inline-flex;align-items:center;gap:7px;
-  }
-  .lang-dot{width:9px;height:9px;border-radius:50%;flex:none;background:var(--green)}
-  .badges{display:flex;gap:6px;align-items:center}
-  .badge{
-    font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;
-    padding:3px 7px;border-radius:5px;font-weight:500;
-  }
-  .badge-new{background:var(--ochre);color:#fff}
-  [data-theme="dark"] .badge-new{color:#1a1206}
-  .badge-live{background:var(--green-faint);color:var(--green-deep);border:1px solid color-mix(in srgb,var(--green) 40%,transparent)}
-  .proj h3{font-family:'Archivo',sans-serif;font-size:18px;font-weight:700;margin-bottom:9px;letter-spacing:-.01em}
-  .proj p{font-size:14.5px;color:var(--ink-soft)}
-  .proj-stack{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
-  .chip{
-    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--mono-slate);
-    border:1px solid var(--line);border-radius:4px;padding:2px 8px;
-  }
-  .proj-foot{
-    margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
-    display:flex;align-items:center;justify-content:space-between;
-    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--mono-slate);
-  }
-  .proj-foot .go{color:var(--green-deep);display:inline-flex;align-items:center;gap:6px;transition:gap .2s}
-  .proj:hover .proj-foot .go{gap:11px}
-  .proj-foot-links{justify-content:flex-start;gap:10px}
-  .mini-btn{
-    font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.02em;text-decoration:none;
-    padding:7px 13px;border-radius:7px;border:1px solid var(--line);color:var(--green-deep);
-    display:inline-flex;align-items:center;gap:6px;transition:all .18s;
-  }
-  .mini-btn:hover{border-color:var(--green);transform:translateY(-1px)}
-  .mini-solid{background:var(--green-deep);color:#fff;border-color:var(--green-deep)}
-  .mini-solid:hover{background:var(--ink)}
-  [data-theme="dark"] .mini-solid{color:#08130E}
-  [data-theme="dark"] .mini-solid:hover{background:var(--green)}
-  .proj-static{cursor:default}
+/* grain texture, dark half only */
+.grain::after{
+  content:"";
+  position:absolute;inset:0;
+  pointer-events:none;
+  opacity:.05;
+  mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
-  /* per-project outcome metric (large-number key finding) */
-  .proj-result{
-    margin-top:16px;display:flex;align-items:baseline;gap:9px;
-    border-top:1px dashed var(--line);padding-top:14px;
-  }
-  .proj-result b{
-    font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;line-height:1;
-    color:var(--green-deep);letter-spacing:-.02em;white-space:nowrap;font-variant-numeric:tabular-nums;
-  }
-  .proj-result span{font-size:13.5px;color:var(--ink-soft);line-height:1.35}
+/* reveal-on-scroll */
+.reveal{
+  opacity:0;
+  transform:translate3d(0,18px,0);
+  transition:opacity .7s var(--ease),transform .7s var(--ease);
+}
+.reveal.is-in{opacity:1;transform:none}
 
-  /* featured project (full-width split) */
-  .proj-featured{
-    grid-column:1 / -1;display:grid;grid-template-columns:.82fr 1.18fr;gap:0;
-    padding:0;overflow:hidden;
-  }
-  .feat-viz{
-    background:linear-gradient(155deg,var(--panel),var(--surface-2));
-    border-right:1px solid var(--line);
-    display:flex;align-items:center;justify-content:center;padding:26px;min-height:230px;
-  }
-  [data-theme="dark"] .feat-viz{background:linear-gradient(155deg,#10211a,var(--surface))}
-  .feat-viz svg{width:100%;height:auto;max-width:340px}
-  .vbar{transform-box:fill-box;transform-origin:50% 100%}
-  @media (prefers-reduced-motion: no-preference){
-    .proj-featured.in .vbar{animation:grow .8s cubic-bezier(.2,.85,.25,1) both}
-    @keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
-    .proj-featured .virr{stroke-dasharray:320;stroke-dashoffset:320}
-    .proj-featured.in .virr{animation:draw 1.1s ease .5s forwards}
-    @keyframes draw{to{stroke-dashoffset:0}}
-  }
-  .feat-body{padding:30px 30px;display:flex;flex-direction:column}
-  .feat-body .proj-foot{margin-top:auto}
-  @media (max-width:760px){
-    .proj-featured{grid-template-columns:1fr}
-    .feat-viz{border-right:none;border-bottom:1px solid var(--line);min-height:180px}
-  }
+/* ---------- 03 CHROME ---------- */
+.skip{
+  position:fixed;top:8px;left:8px;z-index:200;
+  transform:translateY(-180%);
+  background:var(--accent);color:#06110C;
+  font-weight:600;padding:12px 18px;border-radius:10px;
+  text-decoration:none;
+  transition:transform .2s var(--ease);
+}
+.skip:focus-visible{transform:none}
 
-  /* ============ EXPERIENCE ============ */
-  .xp{border-left:2px solid var(--line);margin-left:6px;padding-left:30px;display:flex;flex-direction:column;gap:40px}
-  .xp-item{position:relative}
-  .xp-item::before{
-    content:"";position:absolute;left:-37px;top:7px;width:11px;height:11px;border-radius:50%;
-    background:var(--mist);border:2.5px solid var(--green);transition:background .4s;
-  }
-  .xp-when{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--mono-slate);letter-spacing:.04em}
-  .xp-role{font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;margin:5px 0 2px}
-  .xp-org{font-size:15px;color:var(--green-deep);font-weight:600;margin-bottom:10px}
-  .xp ul{list-style:none;display:flex;flex-direction:column;gap:7px}
-  .xp li{font-size:15px;color:var(--ink-soft);padding-left:18px;position:relative}
-  .xp li::before{content:"–";position:absolute;left:0;color:var(--green)}
-  .xp-metric{color:var(--ochre);font-weight:600}
+#progress{
+  position:fixed;top:0;left:0;right:0;height:3px;z-index:120;
+  background:transparent;pointer-events:none;
+}
+#progress i{
+  display:block;height:100%;
+  transform:scaleX(0);transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--accent-2),var(--accent) 60%,var(--amber));
+}
 
-  /* ============ SKILLS ============ */
-  .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-  .skill-group{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);transition:background .4s,border-color .2s,transform .2s}
-  .skill-group:hover{transform:translateY(-2px);border-color:var(--green)}
-  .skill-group h3{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.07em;
-    text-transform:uppercase;color:var(--green-deep);margin-bottom:14px}
-  .skill-group .chips{display:flex;gap:8px;flex-wrap:wrap}
-  .skill-group .chip{font-size:12px;padding:4px 10px;color:var(--ink-soft)}
+/* nav — transparent over the dark hero, solid paper once the page resolves */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:110;
+  height:var(--nav-h);
+  display:flex;align-items:center;
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:background .45s var(--ease),border-color .45s var(--ease);
+}
+.nav-in{
+  width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gut);
+  display:flex;align-items:center;gap:14px;
+}
+.brand{
+  display:inline-flex;align-items:center;gap:10px;
+  text-decoration:none;font-family:var(--f-display);font-weight:600;
+  letter-spacing:-.02em;font-size:1.02rem;
+  color:var(--d-text);
+  transition:color .45s var(--ease);
+  margin-right:auto;
+  padding:6px 2px;
+}
+.brand .dot{
+  width:9px;height:9px;border-radius:50%;
+  background:var(--accent);flex:none;
+}
+.brand .sub{
+  font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;
+  text-transform:uppercase;opacity:.6;font-weight:400;
+}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links a{
+  position:relative;display:inline-block;
+  padding:10px 12px;
+  text-decoration:none;
+  font-size:.87rem;font-weight:500;
+  color:var(--d-muted);
+  border-radius:8px;
+  transition:color .25s var(--ease);
+}
+.nav-links a::after{
+  content:"";position:absolute;left:12px;right:12px;bottom:5px;height:1.5px;
+  background:var(--accent);
+  transform:scaleX(0);transform-origin:0 50%;
+  transition:transform .3s var(--ease);
+}
+.nav-links a:hover,.nav-links a[aria-current="true"]{color:var(--d-text)}
+.nav-links a:hover::after,.nav-links a[aria-current="true"]::after{transform:scaleX(1)}
+.nav-cta{
+  margin-left:8px;
+  padding:9px 16px!important;
+  border:1px solid var(--d-line);
+  border-radius:999px;
+  color:var(--d-text)!important;
+}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:rgba(74,222,128,.12);border-color:var(--accent)}
 
-  /* ============ EDUCATION ============ */
-  .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
-  .edu-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);transition:background .4s,border-color .2s,transform .2s}
-  .edu-card:hover{transform:translateY(-2px);border-color:var(--green)}
-  .edu-card .xp-when{display:block;margin-bottom:6px}
-  .edu-card h3{font-family:'Archivo',sans-serif;font-size:16.5px;font-weight:700;margin-bottom:3px}
-  .edu-card .org{font-size:14.5px;color:var(--green-deep);font-weight:600}
-  .edu-card .thesis{font-size:13.5px;color:var(--mono-slate);margin-top:10px;font-style:italic}
-  .cert-empty{
-    border:1.5px dashed var(--line);border-radius:var(--radius);padding:22px;
-    font-size:14.5px;color:var(--mono-slate);background:transparent;
-  }
+/* nav in "light" mode */
+body[data-nav="light"] .nav{
+  background:rgba(247,245,239,.88);
+  backdrop-filter:saturate(1.4) blur(12px);
+  -webkit-backdrop-filter:saturate(1.4) blur(12px);
+  border-bottom-color:var(--l-line);
+}
+body[data-nav="light"] .brand{color:var(--l-ink)}
+body[data-nav="light"] .brand .dot{background:var(--accent-ink)}
+body[data-nav="light"] .nav-links a{color:var(--l-muted)}
+body[data-nav="light"] .nav-links a:hover,
+body[data-nav="light"] .nav-links a[aria-current="true"]{color:var(--l-ink)}
+body[data-nav="light"] .nav-links a::after{background:var(--accent-ink)}
+body[data-nav="light"] .nav-cta{border-color:var(--l-line);color:var(--l-ink)!important}
+body[data-nav="light"] .nav-cta:hover{background:rgba(18,104,58,.09);border-color:var(--accent-ink)}
+body[data-nav="light"] .nav-toggle{color:var(--l-ink);border-color:var(--l-line)}
+body[data-nav="light"] .nav-links.is-open{background:var(--l-surface);border-color:var(--l-line)}
 
-  /* ============ CONTACT ============ */
-  .contact{
-    margin:84px 0 0;background:var(--contact-bg);color:#E9F1EB;border-radius:14px;
-    padding:54px 48px;border:1px solid transparent;transition:background .4s;
-  }
-  [data-theme="dark"] .contact{border-color:var(--line)}
-  .contact .sec-label{color:#7FC9A4}
-  .contact h2{color:#fff;max-width:22ch}
-  .contact p{color:#B9CCC0;max-width:56ch;margin-bottom:28px}
-  .contact-links{display:flex;gap:14px;flex-wrap:wrap}
-  .contact .btn{border-color:#7FC9A4;color:#CFE8DA}
-  .contact .btn-solid{background:#2C7A57;color:#fff;border-color:#2C7A57}
-  .contact .btn-solid:hover{background:#3a9069}
-  .contact .btn-ghost:hover{background:rgba(255,255,255,.07)}
+.nav-toggle{
+  display:none;
+  align-items:center;justify-content:center;
+  width:46px;height:46px;
+  background:transparent;border:1px solid var(--d-line);border-radius:12px;
+  color:var(--d-text);cursor:pointer;
+  transition:background .2s var(--ease),border-color .45s var(--ease),color .45s var(--ease);
+}
+.nav-toggle:hover{background:rgba(255,255,255,.07)}
+.nav-toggle svg{width:20px;height:20px;display:block}
+.nav-toggle .x{display:none}
+.nav-toggle[aria-expanded="true"] .x{display:block}
+.nav-toggle[aria-expanded="true"] .bars{display:none}
 
-  footer{
-    padding:30px 0 40px;text-align:center;
-    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--mono-slate);
-  }
+/* ---------- 04 HERO ---------- */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;align-items:center;
+  padding-block:calc(var(--nav-h) + 44px) 84px;
+  overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 78% 6%,rgba(74,222,128,.11),transparent 58%),
+    radial-gradient(90% 70% at 6% 96%,rgba(245,181,74,.07),transparent 60%),
+    var(--d-bg);
+}
+#field{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  display:block;z-index:0;
+}
+.hero-in{position:relative;z-index:2;width:100%}
 
-  /* ============ REVEAL ============ */
-  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
-  .reveal.in{opacity:1;transform:none}
-  @media (prefers-reduced-motion: reduce){
-    .reveal{opacity:1;transform:none;transition:none}
-    html{scroll-behavior:auto}
-    .pulse::after{display:none}
-  }
+.hero-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--d-muted);
+  border:1px solid var(--d-line);
+  background:rgba(7,18,13,.55);
+  padding:8px 14px;border-radius:999px;
+}
+.hero-tag .live{
+  width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;
+  animation:pulse 2.6s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.78)}}
 
-  /* ============ RESPONSIVE ============ */
-  @media (max-width:860px){
-    .domains{grid-template-columns:1fr}
-    .projects,.skills,.edu-grid{grid-template-columns:1fr}
-    .stats-inner{grid-template-columns:1fr 1fr;gap:22px 18px}
-    .contact{padding:40px 26px}
-    header{padding-top:56px}
+h1.triad{
+  margin:26px 0 0;
+  font-size:clamp(2.9rem,11.5vw,7.4rem);
+  font-weight:700;
+  line-height:.94;
+  letter-spacing:-.045em;
+}
+h1.triad .w{
+  display:block;
+  opacity:0;
+  transform:translate3d(0,.26em,0);
+  animation:riseIn .95s var(--ease) forwards;
+}
+h1.triad .w:nth-child(2){animation-delay:.11s}
+h1.triad .w:nth-child(3){animation-delay:.22s}
+.w-3{color:var(--accent)}
+@keyframes riseIn{to{opacity:1;transform:none}}
+.triad-rule{
+  width:min(420px,80%);height:1px;border:0;margin:30px 0 0;
+  background:linear-gradient(90deg,var(--accent),rgba(74,222,128,0));
+  transform-origin:0 50%;
+  animation:wipe 1.1s var(--ease) .3s backwards;
+}
+@keyframes wipe{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+.hero-sub{
+  margin-top:28px;
+  font-family:var(--f-display);
+  font-size:clamp(1.12rem,1.4vw + .85rem,1.55rem);
+  font-weight:500;line-height:1.34;letter-spacing:-.015em;
+  max-width:26ch;
+  color:var(--d-text);
+}
+.hero-body{margin-top:20px;color:var(--d-muted);max-width:54ch}
+.hero-body strong{color:var(--d-text);font-weight:500}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+
+/* buttons — tactile micro-feedback */
+.btn{
+  position:relative;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:48px;
+  padding:13px 24px;
+  border-radius:999px;
+  border:1px solid transparent;
+  font-family:var(--f-display);
+  font-size:.94rem;font-weight:600;letter-spacing:-.01em;
+  text-decoration:none;cursor:pointer;
+  overflow:hidden;isolation:isolate;
+  transition:transform .18s var(--ease),background .22s var(--ease),border-color .22s var(--ease),color .22s var(--ease),box-shadow .22s var(--ease);
+}
+.btn svg{width:17px;height:17px;flex:none}
+.btn:active{transform:translateY(1px) scale(.985)}
+.btn .ripple{
+  position:absolute;z-index:-1;border-radius:50%;
+  background:currentColor;opacity:.22;
+  transform:translate(-50%,-50%) scale(0);
+  animation:rip .62s var(--ease) forwards;
+  pointer-events:none;
+}
+@keyframes rip{to{transform:translate(-50%,-50%) scale(1);opacity:0}}
+.btn-primary{
+  background:var(--accent);color:#06110C;
+  box-shadow:0 12px 30px -14px rgba(74,222,128,.75);
+}
+.btn-primary:hover{background:#69E999}
+.btn-ghost{background:rgba(255,255,255,.04);border-color:var(--d-line);color:var(--d-text)}
+.btn-ghost:hover{background:rgba(255,255,255,.09);border-color:var(--accent)}
+.t-light .btn-primary{
+  background:var(--accent-ink);color:#F9F8F3;
+  box-shadow:0 14px 30px -16px rgba(18,104,58,.75);
+}
+.t-light .btn-primary:hover{background:#0E5A31}
+.t-light .btn-ghost{background:transparent;border-color:var(--l-line);color:var(--l-ink)}
+.t-light .btn-ghost:hover{background:rgba(18,104,58,.07);border-color:var(--accent-ink)}
+
+/* hero ticker strip */
+.hero-strip{
+  margin-top:clamp(38px,6vw,64px);
+  border-top:1px solid var(--d-line-soft);
+  padding-top:22px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:18px;
+}
+.hero-strip li{min-width:0}
+.hero-strip b{
+  display:block;
+  font-family:var(--f-display);
+  font-size:clamp(1.3rem,2.4vw,1.9rem);
+  font-weight:600;letter-spacing:-.03em;
+  color:var(--d-text);
+}
+.hero-strip span{
+  display:block;margin-top:4px;
+  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--d-muted);line-height:1.45;
+}
+
+.scroll-cue{
+  position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:7px;
+  font-family:var(--f-mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--d-muted);text-decoration:none;
+  padding:8px 12px;border-radius:10px;
+}
+.scroll-cue i{
+  display:block;width:1px;height:32px;
+  background:linear-gradient(180deg,var(--accent),rgba(74,222,128,0));
+  animation:cue 2.2s var(--ease) infinite;
+}
+@keyframes cue{
+  0%{transform:scaleY(.15);transform-origin:50% 0}
+  45%{transform:scaleY(1);transform-origin:50% 0}
+  46%{transform:scaleY(1);transform-origin:50% 100%}
+  100%{transform:scaleY(0);transform-origin:50% 100%}
+}
+/* ---------- 05 DASHBOARD (dark) ---------- */
+.dash{position:relative;overflow:hidden;background:var(--d-bg-2)}
+.dash::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(140,190,160,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(140,190,160,.05) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(90% 70% at 50% 20%,#000,transparent 78%);
+  -webkit-mask-image:radial-gradient(90% 70% at 50% 20%,#000,transparent 78%);
+}
+.dash .wrap{position:relative;z-index:1}
+
+.dash-head{
+  display:flex;flex-wrap:wrap;align-items:flex-end;
+  justify-content:space-between;gap:24px;
+}
+.dash-head .lede{margin-top:14px}
+
+/* segmented lens control */
+.lens{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:5px;border-radius:999px;
+  border:1px solid var(--card-line);
+  background:rgba(0,0,0,.28);
+  position:relative;
+  flex-wrap:wrap;
+}
+.lens button{
+  position:relative;z-index:1;
+  min-height:40px;
+  padding:8px 17px;
+  border:0;border-radius:999px;background:transparent;
+  font-family:var(--f-mono);font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);cursor:pointer;
+  transition:color .28s var(--ease);
+  white-space:nowrap;
+}
+.lens button:hover{color:var(--fg)}
+.lens button[aria-selected="true"]{color:#06110C}
+.lens .thumb{
+  position:absolute;z-index:0;top:5px;left:0;height:calc(100% - 10px);
+  border-radius:999px;background:var(--accent);
+  transition:transform .42s var(--ease),width .42s var(--ease);
+  pointer-events:none;
+}
+
+/* metric grid */
+.metrics{
+  margin-top:clamp(30px,4vw,46px);
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:14px;
+}
+.metric{
+  position:relative;
+  padding:22px 20px 20px;
+  border-radius:16px;
+  border:1px solid var(--card-line);
+  background:var(--card);
+  overflow:hidden;
+  transition:opacity .38s var(--ease),transform .38s var(--ease),background .28s var(--ease),border-color .28s var(--ease);
+}
+.metric::after{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:var(--accent);
+  transform:scaleY(0);transform-origin:50% 100%;
+  transition:transform .45s var(--ease);
+}
+.metric:hover{background:var(--card-2);border-color:rgba(74,222,128,.4);transform:translateY(-3px)}
+.metric:hover::after{transform:scaleY(1)}
+.metric.is-dim{opacity:.2;transform:scale(.985);pointer-events:none}
+.metric .v{
+  display:flex;align-items:baseline;gap:2px;
+  font-family:var(--f-display);
+  font-size:clamp(2.1rem,4.6vw,2.9rem);
+  font-weight:700;letter-spacing:-.045em;line-height:1;
+  color:var(--fg);
+}
+.metric .v .unit{font-size:.5em;letter-spacing:-.02em;color:var(--accent)}
+.metric .l{
+  margin-top:12px;
+  font-family:var(--f-display);font-size:.98rem;font-weight:500;
+  color:var(--fg);letter-spacing:-.01em;line-height:1.3;
+}
+.metric .n{
+  margin-top:7px;
+  font-family:var(--f-mono);font-size:.72rem;line-height:1.55;
+  color:var(--muted);
+}
+.metric .tags{
+  margin-top:14px;display:flex;gap:6px;flex-wrap:wrap;
+}
+.metric .tags i{
+  font-style:normal;
+  font-family:var(--f-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);
+  border:1px solid var(--line-soft);border-radius:5px;
+  padding:3px 7px;
+}
+
+/* dashboard panels */
+.panels{
+  margin-top:16px;
+  display:grid;gap:14px;
+  grid-template-columns:1.08fr .92fr;
+  align-items:start;
+}
+.panel{
+  padding:24px 22px;
+  border-radius:18px;
+  border:1px solid var(--card-line);
+  background:var(--card);
+  min-width:0;
+}
+.panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.panel h3{
+  font-size:1.08rem;font-weight:600;letter-spacing:-.02em;
+}
+.panel .cap{
+  margin-top:6px;
+  font-family:var(--f-mono);font-size:.7rem;line-height:1.55;color:var(--muted);
+}
+.badge{
+  font-family:var(--f-mono);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--acc);border:1px solid var(--line);border-radius:6px;padding:4px 8px;
+  white-space:nowrap;
+}
+
+/* SVG evidence chart */
+.chart-host{margin-top:18px;width:100%}
+.chart-host svg{display:block;width:100%;height:auto;overflow:visible}
+.chart-host .row{cursor:pointer;outline:none}
+.chart-host .bar{
+  transform:scaleX(0);
+  transform-origin:left center;
+  transform-box:fill-box;
+  transition:transform .85s var(--ease),opacity .25s var(--ease);
+}
+.chart-host.is-drawn .bar{transform:scaleX(1)}
+.chart-host.instant .bar{transition:none}
+.chart-host .row:hover .bar,
+.chart-host .row:focus-visible .bar{opacity:1}
+.chart-host .row .bar{opacity:.82}
+.chart-host .row-label{font-family:var(--f-body);font-weight:500;fill:var(--fg)}
+.chart-host .row-val{font-family:var(--f-mono);fill:var(--acc);font-variant-numeric:tabular-nums}
+.chart-host .row:hover .row-label,
+.chart-host .row:focus-visible .row-label{fill:var(--acc)}
+.chart-host .row:focus-visible .hit{
+  stroke:var(--acc);stroke-width:1.5;stroke-dasharray:3 3;rx:8;
+}
+.chart-readout{
+  margin-top:14px;padding-top:14px;border-top:1px solid var(--line-soft);
+  font-family:var(--f-mono);font-size:.73rem;line-height:1.6;color:var(--muted);
+  min-height:3.2em;
+}
+.chart-readout b{color:var(--fg);font-weight:500}
+
+/* timeline scrubber */
+.scrub{margin-top:20px}
+.scrub-readouts{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;
+  margin-bottom:18px;
+}
+.scrub-readouts div{
+  border:1px solid var(--line-soft);border-radius:11px;padding:11px 12px;min-width:0;
+  background:rgba(0,0,0,.16);
+}
+.scrub-readouts b{
+  display:block;font-family:var(--f-display);font-size:1.5rem;font-weight:600;
+  letter-spacing:-.03em;line-height:1.05;color:var(--fg);
+}
+.scrub-readouts span{
+  display:block;margin-top:5px;
+  font-family:var(--f-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);line-height:1.4;
+}
+.gantt{position:relative;margin-top:6px}
+.gantt-row{
+  position:relative;
+  display:grid;grid-template-columns:1fr;
+  padding:7px 0;
+}
+.gantt-name{
+  font-family:var(--f-mono);font-size:.68rem;line-height:1.4;
+  color:var(--muted);
+  transition:color .25s var(--ease);
+  display:flex;gap:8px;align-items:baseline;
+}
+.gantt-name em{font-style:normal;opacity:.6}
+.gantt-track{
+  position:relative;height:11px;margin-top:6px;
+  background:rgba(255,255,255,.05);border-radius:999px;
+}
+.gantt-bar{
+  position:absolute;top:0;bottom:0;border-radius:999px;
+  background:linear-gradient(90deg,var(--accent-2),var(--accent));
+  opacity:.28;
+  transition:opacity .3s var(--ease),box-shadow .3s var(--ease);
+}
+.gantt-row.is-active .gantt-bar{opacity:1;box-shadow:0 0 18px -2px rgba(74,222,128,.55)}
+.gantt-row.is-active .gantt-name{color:var(--fg)}
+.gantt-row.is-past .gantt-bar{opacity:.4}
+.playhead{
+  position:absolute;top:0;bottom:0;width:1px;
+  background:var(--amber);
+  pointer-events:none;
+  transition:left .12s linear;
+}
+.playhead::before{
+  content:"";position:absolute;top:-5px;left:50%;transform:translateX(-50%);
+  width:9px;height:9px;border-radius:50%;background:var(--amber);
+}
+.spark{margin-top:16px;width:100%}
+.spark svg{display:block;width:100%;height:auto;overflow:visible}
+.scrub-slider{
+  margin-top:16px;
+  display:flex;align-items:center;gap:14px;
+}
+input[type="range"]{
+  -webkit-appearance:none;appearance:none;
+  flex:1;min-width:0;
+  height:44px;background:transparent;cursor:pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track{
+  height:4px;border-radius:999px;
+  background:linear-gradient(90deg,var(--accent) var(--pct,50%),rgba(255,255,255,.14) var(--pct,50%));
+}
+input[type="range"]::-moz-range-track{height:4px;border-radius:999px;background:rgba(255,255,255,.14)}
+input[type="range"]::-moz-range-progress{height:4px;border-radius:999px;background:var(--accent)}
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:22px;height:22px;border-radius:50%;
+  background:var(--amber);border:3px solid var(--d-bg-2);
+  margin-top:-9px;
+  box-shadow:0 0 0 0 rgba(245,181,74,.35);
+  transition:box-shadow .2s var(--ease),transform .15s var(--ease);
+}
+input[type="range"]:hover::-webkit-slider-thumb{box-shadow:0 0 0 7px rgba(245,181,74,.18)}
+input[type="range"]:active::-webkit-slider-thumb{transform:scale(1.12)}
+input[type="range"]::-moz-range-thumb{
+  width:18px;height:18px;border-radius:50%;
+  background:var(--amber);border:3px solid var(--d-bg-2);
+}
+.scrub-date{
+  font-family:var(--f-mono);font-size:.78rem;letter-spacing:.06em;
+  color:var(--amb);white-space:nowrap;min-width:8.5ch;text-align:right;
+  font-variant-numeric:tabular-nums;
+}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chips i{
+  font-style:normal;font-family:var(--f-mono);font-size:.64rem;letter-spacing:.08em;
+  border:1px solid var(--line-soft);border-radius:999px;padding:5px 10px;color:var(--muted);
+}
+.chips i.on{color:var(--acc);border-color:rgba(74,222,128,.45);background:rgba(74,222,128,.08)}
+.foot-note{
+  margin-top:14px;font-family:var(--f-mono);font-size:.65rem;line-height:1.6;
+  color:var(--muted);opacity:.85;
+}
+
+/* ---------- 06 TRANSITION BAND (dark -> light) ---------- */
+.handoff{
+  position:relative;
+  padding-block:clamp(90px,14vw,190px);
+  text-align:center;
+  background:linear-gradient(180deg,
+    #0A1811 0%,
+    #0C1E15 18%,
+    #16301F 38%,
+    #35492F 56%,
+    #7C8770 72%,
+    #C3BFAE 86%,
+    #F7F5EF 100%);
+}
+.handoff::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.22) 1px,transparent 1px);
+  background-size:22px 22px;
+  mask-image:linear-gradient(180deg,rgba(0,0,0,.5),transparent 62%);
+  -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.5),transparent 62%);
+}
+.handoff .wrap{position:relative;z-index:1}
+.handoff .thread{
+  width:1px;height:clamp(48px,8vw,84px);margin:0 auto 26px;
+  background:linear-gradient(180deg,rgba(74,222,128,0),var(--accent));
+}
+.handoff h2{
+  font-size:clamp(1.7rem,4.6vw,3rem);
+  color:#EAF3ED;
+  max-width:16ch;margin-inline:auto;
+}
+.handoff h2 em{font-style:normal;color:var(--accent)}
+.handoff p{
+  margin:20px auto 0;max-width:44ch;
+  color:#BCCFC0;font-size:1rem;
+}
+.handoff .thread-2{
+  width:1px;height:clamp(48px,8vw,84px);margin:30px auto 0;
+  background:linear-gradient(180deg,var(--accent),rgba(18,104,58,.15));
+}
+/* ---------- 07 WORK / CASE STORIES (light) ---------- */
+.work{background:var(--l-bg)}
+.cases{margin-top:clamp(38px,5vw,60px);display:grid;gap:clamp(20px,3vw,32px)}
+
+.case{
+  position:relative;
+  border:1px solid var(--l-line);
+  border-radius:22px;
+  background:var(--l-surface);
+  padding:clamp(24px,3.4vw,42px);
+  transform-style:preserve-3d;
+  transition:box-shadow .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease);
+  will-change:transform;
+}
+.case:hover{
+  box-shadow:var(--shadow);
+  border-color:rgba(18,104,58,.32);
+}
+.case-top{
+  display:flex;flex-wrap:wrap;gap:16px 24px;
+  align-items:flex-start;justify-content:space-between;
+  padding-bottom:22px;border-bottom:1px solid var(--l-line-soft);
+}
+.case-idx{
+  font-family:var(--f-mono);font-size:.72rem;letter-spacing:.16em;
+  color:var(--accent-ink);
+}
+.case h3{
+  margin-top:10px;
+  font-size:clamp(1.4rem,2.5vw,2.05rem);
+  letter-spacing:-.03em;line-height:1.14;
+  max-width:22ch;
+}
+.case h3 small{
+  display:block;margin-top:8px;
+  font-family:var(--f-body);font-size:.95rem;font-weight:400;
+  letter-spacing:0;color:var(--l-muted);
+  max-width:44ch;line-height:1.5;
+}
+.case-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start}
+.case-meta i{
+  font-style:normal;font-family:var(--f-mono);font-size:.64rem;letter-spacing:.09em;
+  text-transform:uppercase;
+  border:1px solid var(--l-line);border-radius:999px;padding:5px 11px;color:var(--l-muted);
+  white-space:nowrap;background:var(--l-bg-2);
+}
+.case-body{
+  margin-top:26px;
+  display:grid;
+  grid-template-columns:1.55fr .95fr;
+  gap:clamp(24px,3vw,40px);
+  align-items:start;
+}
+.pmo{display:grid;gap:20px}
+.pmo > div{position:relative;padding-left:24px}
+.pmo > div::before{
+  content:"";position:absolute;left:0;top:9px;
+  width:9px;height:9px;border-radius:50%;
+  border:2px solid var(--accent-ink);
+}
+.pmo > div:nth-child(2)::before{background:rgba(18,104,58,.35)}
+.pmo > div:nth-child(3)::before{background:var(--accent-ink)}
+.pmo h4{
+  font-family:var(--f-mono);font-size:.66rem;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent-ink);
+}
+.pmo p{margin-top:8px;color:var(--l-muted);font-size:.97rem}
+.pmo p strong{color:var(--l-ink);font-weight:600}
+.pmo .outcome p{color:var(--l-ink)}
+
+.case-viz{
+  border:1px solid var(--l-line-soft);
+  border-radius:16px;
+  background:var(--l-bg-2);
+  padding:20px 18px;
+  min-width:0;
+}
+.case-viz svg{display:block;width:100%;height:auto}
+.viz-cap{
+  margin-top:12px;
+  font-family:var(--f-mono);font-size:.64rem;line-height:1.6;color:var(--l-muted);
+}
+.case-actions{
+  margin-top:26px;padding-top:22px;border-top:1px solid var(--l-line-soft);
+  display:flex;flex-wrap:wrap;gap:12px;align-items:center;
+}
+.link-inline{
+  display:inline-flex;align-items:center;gap:8px;
+  min-height:44px;padding:10px 0;
+  font-family:var(--f-display);font-weight:600;font-size:.92rem;
+  color:var(--accent-ink);text-decoration:none;
+  border-bottom:1.5px solid rgba(18,104,58,.3);
+  transition:border-color .25s var(--ease),gap .25s var(--ease);
+}
+.link-inline:hover{border-color:var(--accent-ink);gap:12px}
+.link-inline svg{width:15px;height:15px;flex:none}
+.no-link{
+  font-family:var(--f-mono);font-size:.68rem;color:var(--l-muted);letter-spacing:.05em;
+}
+
+/* more on github */
+.repos{
+  margin-top:clamp(34px,4vw,52px);
+  padding-top:clamp(30px,4vw,44px);
+  border-top:1px solid var(--l-line);
+}
+.repos h3{
+  font-family:var(--f-mono);font-size:.72rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);
+}
+.repo-grid{
+  margin-top:20px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;
+}
+.repo{
+  display:flex;flex-direction:column;gap:8px;
+  min-height:44px;
+  padding:20px;
+  border:1px solid var(--l-line);border-radius:14px;
+  background:var(--l-surface);
+  text-decoration:none;
+  transition:transform .25s var(--ease),border-color .25s var(--ease),box-shadow .25s var(--ease);
+}
+.repo:hover{transform:translateY(-3px);border-color:rgba(18,104,58,.4);box-shadow:var(--shadow)}
+.repo b{
+  font-family:var(--f-display);font-size:1rem;font-weight:600;letter-spacing:-.02em;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.repo b svg{width:15px;height:15px;flex:none;color:var(--accent-ink);transition:transform .25s var(--ease)}
+.repo:hover b svg{transform:translate(2px,-2px)}
+.repo span{font-family:var(--f-mono);font-size:.68rem;line-height:1.6;color:var(--l-muted)}
+
+/* ---------- 08 EXPERIENCE · SKILLS · EDUCATION (light) ---------- */
+.exp{background:var(--l-bg-2)}
+.timeline{margin-top:clamp(36px,4.5vw,56px);position:relative;padding-left:26px}
+.timeline::before{
+  content:"";position:absolute;left:4px;top:8px;bottom:8px;width:1px;
+  background:linear-gradient(180deg,var(--accent-ink),rgba(18,104,58,.12));
+}
+.job{
+  position:relative;
+  padding:22px 22px 24px;
+  border-radius:16px;
+  transition:background .3s var(--ease),transform .3s var(--ease);
+}
+.job + .job{margin-top:8px}
+.job::before{
+  content:"";position:absolute;left:-26px;top:30px;
+  width:9px;height:9px;border-radius:50%;
+  background:var(--l-bg-2);border:2px solid var(--accent-ink);
+  transition:background .3s var(--ease),transform .3s var(--ease);
+}
+.job:hover{background:var(--l-surface);transform:translateX(3px)}
+.job:hover::before{background:var(--accent-ink);transform:scale(1.25)}
+.job-head{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;justify-content:space-between}
+.job h3{font-size:1.14rem;letter-spacing:-.02em;font-weight:600}
+.job .org{
+  display:block;margin-top:5px;
+  font-family:var(--f-body);font-size:.94rem;color:var(--l-muted);
+}
+.job .when{
+  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent-ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.job ul{margin-top:14px;display:grid;gap:8px}
+.job li{
+  position:relative;padding-left:18px;
+  font-size:.95rem;color:var(--l-muted);
+}
+.job li::before{
+  content:"";position:absolute;left:0;top:.62em;
+  width:6px;height:1.5px;background:var(--accent-ink);opacity:.7;
+}
+.job li strong{color:var(--l-ink);font-weight:600;font-variant-numeric:tabular-nums}
+
+.skills{background:var(--l-bg)}
+.skill-groups{margin-top:clamp(34px,4vw,52px);display:grid;gap:14px;grid-template-columns:repeat(3,minmax(0,1fr))}
+.skill-group{
+  padding:24px 22px;
+  border:1px solid var(--l-line);border-radius:18px;
+  background:var(--l-surface);
+  min-width:0;
+}
+.skill-group h3{
+  font-family:var(--f-mono);font-size:.68rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);
+  display:flex;align-items:center;gap:9px;
+}
+.skill-group h3 svg{width:15px;height:15px;flex:none}
+.skill-group ul{margin-top:16px;display:flex;flex-wrap:wrap;gap:7px}
+.skill-group li{
+  font-size:.86rem;
+  padding:7px 12px;border-radius:9px;
+  background:var(--l-bg-2);
+  border:1px solid transparent;
+  color:var(--l-ink);
+  transition:border-color .2s var(--ease),background .2s var(--ease),transform .2s var(--ease);
+}
+.skill-group li:hover{
+  border-color:rgba(18,104,58,.35);background:rgba(74,222,128,.13);transform:translateY(-2px);
+}
+
+.edu{background:var(--l-bg-2)}
+.edu-grid{margin-top:clamp(32px,4vw,48px);display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(20px,3vw,40px);align-items:start}
+.edu-list{display:grid;gap:4px}
+.edu-item{
+  padding:20px 0;
+  border-bottom:1px solid var(--l-line);
+  display:grid;grid-template-columns:auto 1fr;gap:6px 22px;align-items:baseline;
+}
+.edu-item:last-child{border-bottom:0}
+.edu-item .yr{
+  font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent-ink);
+  font-variant-numeric:tabular-nums;
+}
+.edu-item h3{font-size:1.06rem;font-weight:600;letter-spacing:-.02em}
+.edu-item p{margin-top:5px;font-size:.93rem;color:var(--l-muted)}
+.edu-item .where{
+  grid-column:2;font-family:var(--f-mono);font-size:.68rem;color:var(--l-muted);margin-top:6px;
+}
+.lang{
+  padding:24px 22px;border:1px solid var(--l-line);border-radius:18px;background:var(--l-surface);
+}
+.lang h3{
+  font-family:var(--f-mono);font-size:.68rem;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent-ink);
+}
+.lang ul{margin-top:18px;display:grid;gap:16px}
+.lang li{display:grid;gap:7px}
+.lang .lg-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.lang b{font-family:var(--f-display);font-weight:600;font-size:1rem}
+.lang em{font-style:normal;font-family:var(--f-mono);font-size:.7rem;color:var(--l-muted)}
+.meter{height:5px;border-radius:999px;background:var(--l-bg-2);overflow:hidden}
+.meter i{
+  display:block;height:100%;border-radius:999px;
+  background:linear-gradient(90deg,var(--accent-ink),var(--accent-2));
+  transform:scaleX(0);transform-origin:0 50%;
+  transition:transform 1s var(--ease);
+}
+.is-in .meter i{transform:scaleX(1)}
+
+/* ---------- 09 CONTACT (dark bookend) + FOOTER ---------- */
+.contact{position:relative;overflow:hidden;background:var(--d-bg)}
+.contact::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(80% 60% at 20% 0%,rgba(74,222,128,.14),transparent 62%),
+    radial-gradient(70% 60% at 92% 100%,rgba(245,181,74,.08),transparent 60%);
+}
+.contact .wrap{position:relative;z-index:1}
+.contact h2{
+  font-size:clamp(2.1rem,5.6vw,3.9rem);
+  letter-spacing:-.04em;max-width:17ch;
+}
+.contact h2 em{font-style:normal;color:var(--accent)}
+.contact-actions{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.copy-btn{
+  position:relative;
+  display:inline-flex;align-items:center;gap:9px;
+  min-height:48px;padding:13px 20px;
+  border-radius:999px;border:1px solid var(--d-line);
+  background:transparent;color:var(--d-muted);
+  font-family:var(--f-mono);font-size:.76rem;letter-spacing:.04em;
+  cursor:pointer;
+  transition:color .2s var(--ease),border-color .2s var(--ease),background .2s var(--ease);
+}
+.copy-btn:hover{color:var(--d-text);border-color:var(--accent);background:rgba(74,222,128,.08)}
+.copy-btn svg{width:15px;height:15px;flex:none}
+.copy-btn .ok{display:none;color:var(--accent)}
+.copy-btn.done .ok{display:inline-flex}
+.copy-btn.done .idle{display:none}
+.copy-btn.done{color:var(--accent);border-color:var(--accent)}
+
+.contact-grid{
+  margin-top:clamp(44px,6vw,72px);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:1px;background:var(--d-line-soft);
+  border:1px solid var(--d-line-soft);border-radius:16px;overflow:hidden;
+}
+.contact-grid a,.contact-grid div{
+  display:flex;flex-direction:column;gap:7px;
+  min-height:44px;padding:22px 20px;
+  background:var(--d-bg);
+  text-decoration:none;
+  transition:background .25s var(--ease);
+}
+.contact-grid a:hover{background:rgba(74,222,128,.07)}
+.contact-grid .k{
+  font-family:var(--f-mono);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--d-muted);
+}
+.contact-grid .v{
+  font-family:var(--f-display);font-size:.98rem;font-weight:500;letter-spacing:-.01em;
+  color:var(--d-text);display:flex;align-items:center;gap:8px;
+}
+.contact-grid a:hover .v{color:var(--accent)}
+.contact-grid .v svg{width:14px;height:14px;flex:none;opacity:.7}
+
+.foot{
+  margin-top:clamp(40px,5vw,64px);padding-top:26px;
+  border-top:1px solid var(--d-line-soft);
+  display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;
+  font-family:var(--f-mono);font-size:.66rem;letter-spacing:.05em;color:var(--d-muted);
+}
+.foot p{max-width:52ch;line-height:1.7}
+
+/* ---------- 10 RESPONSIVE ---------- */
+@media (max-width:1000px){
+  .panels{grid-template-columns:1fr}
+  .case-body{grid-template-columns:1fr}
+  .case-viz{max-width:420px}
+  .skill-groups{grid-template-columns:1fr}
+  .edu-grid{grid-template-columns:1fr}
+}
+@media (max-width:820px){
+  .hero-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 18px}
+  .dash-head{flex-direction:column;align-items:stretch}
+  .scrub-readouts{grid-template-columns:1fr}
+  .scrub-readouts div{display:flex;align-items:baseline;gap:12px}
+  .scrub-readouts b{font-size:1.32rem}
+  .scrub-readouts span{margin-top:0}
+}
+@media (max-width:760px){
+  :root{--nav-h:60px}
+  .nav-toggle{display:inline-flex}
+  .brand .sub{display:none}
+  .nav-links{
+    position:absolute;top:calc(var(--nav-h) + 8px);right:var(--gut);left:var(--gut);
+    flex-direction:column;align-items:stretch;gap:2px;
+    padding:10px;
+    border:1px solid var(--d-line);border-radius:16px;
+    background:rgba(10,24,17,.97);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    box-shadow:0 24px 50px -26px rgba(0,0,0,.85);
+    opacity:0;visibility:hidden;transform:translateY(-8px) scale(.985);
+    transition:opacity .24s var(--ease),transform .24s var(--ease),visibility .24s;
   }
-  @media (max-width:620px){
-    .nav-links{gap:14px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;max-width:54vw}
-    .nav-links a{flex:none}
-    .nav-links::-webkit-scrollbar{display:none}
+  .nav-links.is-open{opacity:1;visibility:visible;transform:none}
+  .nav-links a{padding:13px 14px;font-size:.95rem;min-height:46px;display:flex;align-items:center}
+  .nav-links a::after{display:none}
+  .nav-cta{
+    margin-left:0!important;margin-top:6px;
+    justify-content:center;text-align:center;
   }
-  @media (max-width:480px){
-    .nav-links{display:none}
+  .hero{padding-block:calc(var(--nav-h) + 30px) 96px}
+  .scroll-cue{display:none}
+  .metrics{grid-template-columns:1fr}
+  .case-top{flex-direction:column}
+  .job{padding-inline:16px}
+  .timeline{padding-left:22px}
+  .job::before{left:-22px}
+}
+@media (max-width:420px){
+  .hero-strip{grid-template-columns:1fr;gap:16px}
+  .hero-strip li{display:flex;align-items:baseline;gap:12px}
+  .hero-strip b{font-size:1.3rem}
+  .hero-strip span{margin-top:0}
+  .lens{width:100%}
+  .lens button{flex:1 1 auto;padding-inline:12px}
+  .edu-item{grid-template-columns:1fr}
+  .edu-item .where{grid-column:1}
+}
+
+/* ---------- 11 REDUCED MOTION ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+    scroll-behavior:auto!important;
   }
-  @media (max-width:560px){
-    body{font-size:16px}
-    .proj-intro{flex-direction:column;align-items:flex-start}
-  }
+  .reveal{opacity:1;transform:none}
+  h1.triad .w{opacity:1;transform:none}
+  .chart-host .bar{transform:scaleX(1)}
+  .meter i{transform:scaleX(1)}
+  .case:hover{transform:none}
+  .metric:hover,.repo:hover,.job:hover,.skill-group li:hover{transform:none}
+  .triad-rule{transform:none}
+}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="progress" aria-hidden="true"><i></i></div>
 
-<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-
-<nav>
-  <div class="nav-inner">
-    <a class="nav-name" href="#top">Musharraf Hassan</a>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a href="#work">work</a>
-        <a href="#projects">projects</a>
-        <a href="#experience">experience</a>
-        <a href="#skills">skills</a>
-        <a href="#contact">contact</a>
-      </div>
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
-        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      </button>
-    </div>
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">
+      <span class="dot" aria-hidden="true"></span>
+      Musharraf Hassan
+      <span class="sub" aria-hidden="true">Impact Root</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+      <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="nav-links" id="navLinks" aria-label="Sections">
+      <a href="#impact">Impact</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a class="nav-cta" href="#contact">Get in touch</a>
+    </nav>
   </div>
-</nav>
-
-<header id="top">
-  <div class="hero-glow" aria-hidden="true"></div>
-  <div class="wrap">
-    <p class="eyebrow"><span class="pulse" aria-hidden="true"></span>Sustainability · Data · Communication — Rotterdam, NL</p>
-    <h1>Turning sustainability and impact data into <em>decisions people act on</em>.</h1>
-    <p class="hero-sub">
-      I'm Musharraf — I turn sustainability data into decisions and communication. On the data side:
-      GHG accounting (Scope 1–3), CBAM compliance, carbon-market analysis, and geospatial modelling
-      in Python, SQL, and Power BI. On the communication side: disclosure under ESRS, GRI, and BRSR,
-      ESG workshops and executive briefings, stakeholder interviews, and a recurring newsletter that
-      turns sector data into insight people act on.
-    </p>
-    <div class="hero-meta">
-      <a class="btn btn-solid" href="#projects">View projects</a>
-      <a class="btn btn-ghost" href="https://github.com/mushaha97-droid" target="_blank" rel="noopener">GitHub ↗</a>
-      <span class="hero-loc">MSc Global Business &amp; Sustainability, Erasmus University Rotterdam</span>
-    </div>
-  </div>
-
-  <!-- signature: scope 1/2/3 data streams converging into a live "data command center" -->
-  <div class="flow" aria-hidden="true">
-    <svg viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <radialGradient id="sphereGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%"  stop-color="var(--green)" stop-opacity=".5"/>
-          <stop offset="45%" stop-color="var(--green)" stop-opacity=".13"/>
-          <stop offset="100%" stop-color="var(--green)" stop-opacity="0"/>
-        </radialGradient>
-        <radialGradient id="sphereBody" cx="40%" cy="36%" r="70%">
-          <stop offset="0%"  stop-color="var(--green)" stop-opacity=".22"/>
-          <stop offset="100%" stop-color="var(--green-deep)" stop-opacity=".05"/>
-        </radialGradient>
-      </defs>
-
-      <!-- three data streams flowing in from the left, converging on the core -->
-      <path class="band b1 flow-band" d="M0,70  C 260,70  400,140 560,140" fill="none" stroke="var(--green)"      stroke-width="12" opacity=".5"/>
-      <path class="band b2 flow-band" d="M0,140 C 240,140 400,140 560,140" fill="none" stroke="var(--green-deep)" stroke-width="16" opacity=".72"/>
-      <path class="band b3 flow-band" d="M0,210 C 260,210 400,140 560,140" fill="none" stroke="var(--green)"      stroke-width="12" opacity=".38"/>
-      <!-- output stream to the right -->
-      <path class="flow-band" d="M640,140 C 820,140 980,140 1200,140" fill="none" stroke="var(--green-deep)" stroke-width="14" opacity=".55"/>
-
-      <!-- the core: a live data sphere -->
-      <circle cx="600" cy="140" r="128" fill="url(#sphereGlow)"/>
-      <circle cx="600" cy="140" r="74" fill="url(#sphereBody)" stroke="var(--green)" stroke-opacity=".45" stroke-width="1.5"/>
-      <g stroke="var(--green)" stroke-opacity=".32" fill="none" stroke-width="1">
-        <ellipse cx="600" cy="140" rx="74" ry="26"/>
-        <ellipse cx="600" cy="140" rx="74" ry="52"/>
-        <ellipse cx="600" cy="140" rx="26" ry="74"/>
-        <ellipse cx="600" cy="140" rx="52" ry="74"/>
-        <line x1="526" y1="140" x2="674" y2="140"/>
-        <line x1="600" y1="66"  x2="600" y2="214"/>
-      </g>
-      <ellipse class="orbit" cx="600" cy="140" rx="100" ry="36" fill="none"
-               stroke="var(--green-deep)" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="3 9"/>
-      <g fill="var(--green-deep)">
-        <circle class="node" cx="600" cy="66"  r="3.5" style="animation-delay:0s"/>
-        <circle class="node" cx="674" cy="140" r="3"   style="animation-delay:.6s"/>
-        <circle class="node" cx="600" cy="214" r="3"   style="animation-delay:1.2s"/>
-        <circle class="node" cx="548" cy="98"  r="2.5" style="animation-delay:.9s"/>
-        <circle class="node" cx="652" cy="182" r="2.5" style="animation-delay:.3s"/>
-      </g>
-
-      <g font-family="IBM Plex Mono, monospace" font-size="13">
-        <text class="flow-label" x="16" y="62">scope 1 · direct</text>
-        <text class="flow-label" x="16" y="146">scope 2 · energy</text>
-        <text class="flow-label" x="16" y="230">scope 3 · value chain</text>
-        <text class="flow-out"   x="978" y="132">→ decisions people act on</text>
-      </g>
-    </svg>
-  </div>
-  <p class="flow-caption">fig. 01 — measure · model · communicate</p>
 </header>
 
-<!-- STATS -->
-<div class="stats">
-  <div class="stats-inner">
-    <div class="stat reveal"><div class="stat-num" data-count="9">0</div><div class="stat-label">client organisations<br>advised at Impact Root</div></div>
-    <div class="stat reveal"><div class="stat-num" data-count="38">0</div><div class="stat-label">EU companies analysed<br>in CSRD / ESRS thesis</div></div>
-    <div class="stat reveal"><div class="stat-num" data-count="14">0</div><div class="stat-label">NGOs benchmarked<br>for funding strategy</div></div>
-    <div class="stat reveal"><div class="stat-num"><span class="unit">$</span><span data-count="50">0</span><span class="unit">K</span></div><div class="stat-label">CSR funding raised<br>via targeting model</div></div>
+<main id="main">
+<span id="top"></span>
+
+<!-- ============ 01 HERO (dark) ============ -->
+<section class="hero t-dark grain" id="hero" data-zone="dark" aria-labelledby="heroTitle">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="hero-in wrap">
+    <p class="hero-tag"><span class="live" aria-hidden="true"></span> Rotterdam, NL · Founder of Impact Root</p>
+
+    <h1 class="triad" id="heroTitle">
+      <span class="w">Strategy.</span>
+      <span class="w">Data.</span>
+      <span class="w w-3">Impact.</span>
+    </h1>
+    <hr class="triad-rule" aria-hidden="true">
+
+    <p class="hero-sub">I turn field research and quantitative models into strategies clients actually adopt.</p>
+    <p class="hero-body">
+      Strategy and client-insights consultant for the <strong>impact-investing and NGO sector</strong>.
+      I pair quantitative modelling — scraped financials, targeting models, scoring rubrics —
+      with <strong>structured qualitative research</strong>, so the recommendation arrives with its evidence attached.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#impact" data-magnetic>
+        See the numbers
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="#work" data-magnetic>Read the case stories</a>
+    </div>
+
+    <ul class="hero-strip">
+      <li><b class="num">9</b><span>organisations advised</span></li>
+      <li><b class="num">$50K</b><span>CSR funding contributed to</span></li>
+      <li><b class="num">1,000</b><span>corporates ranked</span></li>
+      <li><b class="num">3</b><span>countries worked</span></li>
+    </ul>
   </div>
-</div>
+  <a class="scroll-cue" href="#impact" aria-label="Scroll to the impact dashboard">
+    <span>Scroll</span><i aria-hidden="true"></i>
+  </a>
+</section>
 
-<main class="wrap">
-
-  <!-- WHAT I DO -->
-  <section id="work">
-    <div class="sec-head"><span class="sec-label">What I do</span><span class="sec-rule"></span></div>
-    <h2>Three lenses, one method: measure first.</h2>
-    <div class="domains">
-      <div class="domain reveal">
-        <span class="tag">sustainability</span>
-        <h3>Carbon &amp; emissions accounting</h3>
-        <p>Scope 1–3 GHG inventories under the GHG Protocol and ISO 14064, CBAM embedded-emissions
-        modelling for EU importers, and automated emission-factor pipelines that cut reporting turnaround.</p>
+<!-- ============ 02 IMPACT DASHBOARD (dark) ============ -->
+<section class="dash band t-dark grain" id="impact" data-zone="dark" aria-labelledby="impactTitle">
+  <div class="wrap">
+    <div class="dash-head reveal">
+      <div>
+        <p class="eyebrow">01 — The evidence</p>
+        <h2 class="h2" id="impactTitle">A consultant's work,<br>in numbers you can touch.</h2>
+        <p class="lede">Every figure below comes from delivered work. Switch the lens to see the same
+          portfolio through an advisory, research, or data view.</p>
       </div>
-      <div class="domain reveal">
-        <span class="tag">data</span>
-        <h3>Data &amp; analytics</h3>
-        <p>Python, SQL, and Power BI pipelines end to end — scraping and cleaning raw data, geospatial
-        modelling, carbon-market and material-flow analysis, and dashboards that make the numbers legible.</p>
-      </div>
-      <div class="domain reveal">
-        <span class="tag">communication</span>
-        <h3>Communication &amp; impact</h3>
-        <p>Disclosure under ESRS, GRI, and BRSR, ESG workshops and executive briefings, stakeholder
-        interviews, and a recurring newsletter — turning analysis into decisions people act on.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="sec-head"><span class="sec-label">Selected projects</span><span class="sec-rule"></span></div>
-    <div class="proj-intro">
-      <h2>Open work on GitHub</h2>
-      <div class="filters" role="tablist" aria-label="Filter projects">
-        <button class="filter active" data-filter="all">All</button>
-        <button class="filter" data-filter="sustainability">Sustainability</button>
-        <button class="filter" data-filter="data">Data &amp; Research</button>
+      <div class="lens" id="lens" role="tablist" aria-label="Filter metrics by lens">
+        <span class="thumb" aria-hidden="true"></span>
+        <button type="button" role="tab" id="lens-all" aria-selected="true" aria-controls="metricGrid" data-lens="all" tabindex="0">All</button>
+        <button type="button" role="tab" id="lens-advisory" aria-selected="false" aria-controls="metricGrid" data-lens="advisory" tabindex="-1">Advisory</button>
+        <button type="button" role="tab" id="lens-research" aria-selected="false" aria-controls="metricGrid" data-lens="research" tabindex="-1">Research</button>
+        <button type="button" role="tab" id="lens-data" aria-selected="false" aria-controls="metricGrid" data-lens="data" tabindex="-1">Data</button>
       </div>
     </div>
 
-    <div class="projects" id="projGrid">
+    <ul class="metrics reveal" id="metricGrid" role="tabpanel" aria-labelledby="lens-all" tabindex="0">
+      <li class="metric" data-lens="advisory">
+        <div class="v num"><span data-count="9">9</span></div>
+        <p class="l">organisations advised</p>
+        <p class="n">3 paid · 6 pro bono — 4 Dutch ANBI partners, 5 international NGOs</p>
+        <p class="tags"><i>advisory</i></p>
+      </li>
+      <li class="metric" data-lens="advisory data">
+        <div class="v num"><span class="unit">$</span><span data-count="50">50</span><span class="unit">K</span></div>
+        <p class="l">CSR funding contributed to</p>
+        <p class="n">Delhi-NCR donor pipeline → USD 50,000 raised</p>
+        <p class="tags"><i>advisory</i><i>data</i></p>
+      </li>
+      <li class="metric" data-lens="data advisory">
+        <div class="v num"><span data-count="1000">1,000</span></div>
+        <p class="l">corporates ranked</p>
+        <p class="n">donation-readiness targeting model, Delhi-NCR</p>
+        <p class="tags"><i>data</i><i>advisory</i></p>
+      </li>
+      <li class="metric" data-lens="research data">
+        <div class="v num"><span data-count="38">38</span></div>
+        <p class="l">EU companies scored</p>
+        <p class="n">19 AI-platform users vs 19 matched peers</p>
+        <p class="tags"><i>research</i><i>data</i></p>
+      </li>
+      <li class="metric" data-lens="research">
+        <div class="v num"><span data-count="28">28</span></div>
+        <p class="l">stakeholder interviews coded</p>
+        <p class="n">20 investor + 8 field · Atlas.ti, Gioia methodology</p>
+        <p class="tags"><i>research</i></p>
+      </li>
+      <li class="metric" data-lens="research">
+        <div class="v num"><span data-count="12">12</span></div>
+        <p class="l">ESRS standards applied</p>
+        <p class="n">0–3 rubric · 456 scored data points · κ ≈ 0.92</p>
+        <p class="tags"><i>research</i></p>
+      </li>
+      <li class="metric" data-lens="data">
+        <div class="v num"><span data-count="5">5</span></div>
+        <p class="l">years of carbon-market data</p>
+        <p class="n">Verra &amp; Gold Standard screening in Python and Power BI</p>
+        <p class="tags"><i>data</i></p>
+      </li>
+      <li class="metric" data-lens="advisory">
+        <div class="v num"><span data-count="10">10</span></div>
+        <p class="l">biomass products structured</p>
+        <p class="n">into a five-year roadmap and go-to-market plan</p>
+        <p class="tags"><i>advisory</i></p>
+      </li>
+      <li class="metric" data-lens="advisory research data">
+        <div class="v num"><span data-count="3">3</span></div>
+        <p class="l">countries worked</p>
+        <p class="n">China · India · Netherlands</p>
+        <p class="tags"><i>advisory</i><i>research</i><i>data</i></p>
+      </li>
+    </ul>
 
-      <!-- NEW: NL Grid Congestion × Solar Curtailment -->
-      <a class="proj reveal" data-cat="sustainability" href="https://github.com/mushaha97-droid/dutch-electric-grid-" target="_blank" rel="noopener">
-        <div class="proj-top">
-          <span class="proj-lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-          <span class="badges"><span class="badge badge-new">New</span><span class="badge badge-live">Interactive map</span></span>
+    <div class="panels">
+      <!-- evidence chart -->
+      <section class="panel reveal" aria-labelledby="evTitle">
+        <div class="panel-head">
+          <div>
+            <h3 id="evTitle">The evidence base</h3>
+            <p class="cap">Primary units of evidence produced or analysed, by engagement.</p>
+          </div>
+          <span class="badge">√ scale</span>
         </div>
-        <h3>NL Grid Congestion × Solar Curtailment</h3>
-        <p>Connects Dutch grid-congestion status to the cost of residential solar curtailment, framed around the
-        NL grid rules taking effect 1 July 2026. A spatial layer classifies every area by feed-in congestion from
-        the ACM register; a temporal layer models hourly rooftop-PV generation (pvlib + PVGIS) to compute lost kWh
-        and euro loss. Ships as an interactive choropleth map plus a Streamlit dashboard.</p>
-        <div class="proj-result"><b>€/yr</b><span>residential solar-curtailment loss modelled for every congested NL area</span></div>
-        <div class="proj-stack"><span class="chip">pvlib</span><span class="chip">Folium</span><span class="chip">Streamlit</span><span class="chip">geospatial</span></div>
-        <div class="proj-foot"><span>Choropleth map + dashboard</span><span class="go">View on GitHub →</span></div>
-      </a>
+        <div class="chart-host" id="evidenceChart"></div>
+        <p class="chart-readout" id="evidenceReadout" aria-live="polite">
+          Hover, tap or tab through a bar to see where each figure comes from.
+        </p>
+        <table class="sr-only" id="evidenceTable">
+          <caption>Evidence base: units of primary evidence produced or analysed, by engagement</caption>
+          <thead><tr><th scope="col">Measure</th><th scope="col">Count</th><th scope="col">Source</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </section>
 
-      <!-- Carbon Market Analysis -->
-      <a class="proj reveal" data-cat="sustainability" href="https://github.com/mushaha97-droid/carbon-market-analysis-india-" target="_blank" rel="noopener">
-        <div class="proj-top">
-          <span class="proj-lang"><span class="lang-dot" style="background:#3572A5"></span>Python · Power BI</span>
+      <!-- timeline scrubber -->
+      <section class="panel reveal" aria-labelledby="tlTitle">
+        <div class="panel-head">
+          <div>
+            <h3 id="tlTitle">Engagements over time</h3>
+            <p class="cap">Drag the scrubber to move through the portfolio, month by month.</p>
+          </div>
+          <span class="badge" id="scrubDate">Jul 2026</span>
         </div>
-        <h3>Carbon Market Analysis — India</h3>
-        <p>Five-year analysis of Verra and Gold Standard carbon credits, mapping credit volume against
-        long-run price by project type. The output shortlisted projects for a four-year investment horizon.</p>
-        <div class="proj-result"><b>5-yr</b><span>of Verra &amp; Gold Standard credit data distilled into a 4-year project shortlist</span></div>
-        <div class="proj-stack"><span class="chip">pandas</span><span class="chip">carbon credits</span><span class="chip">market analysis</span></div>
-        <div class="proj-foot"><span>Verra · Gold Standard · 5-yr</span><span class="go">View on GitHub →</span></div>
-      </a>
 
-      <!-- CSRD / ESRS thesis -->
-      <a class="proj reveal" data-cat="data" href="https://github.com/mushaha97-droid/CSRD-compliance-" target="_blank" rel="noopener">
-        <div class="proj-top">
-          <span class="proj-lang"><span class="lang-dot" style="background:#3572A5"></span>Python · SQL · Power BI</span>
+        <div class="scrub">
+          <div class="scrub-readouts">
+            <div><b class="num" id="roActive">1</b><span>active engagements</span></div>
+            <div><b class="num" id="roOrgs">13</b><span>organisations engaged, cumulative</span></div>
+            <div><b class="num" id="roYears">2.6</b><span>years elapsed</span></div>
+          </div>
+
+          <div class="gantt" id="gantt">
+            <div class="playhead" id="playhead" aria-hidden="true"></div>
+          </div>
+
+          <div class="spark" id="spark" aria-hidden="true"></div>
+
+          <div class="scrub-slider">
+            <label class="sr-only" for="scrubber">Timeline month, January 2024 to July 2026</label>
+            <input type="range" id="scrubber" min="0" max="30" step="1" value="30"
+                   aria-valuetext="July 2026 — 1 active engagement, 13 organisations engaged">
+            <span class="scrub-date num" id="scrubDate2">Jul 2026</span>
+          </div>
+
+          <p class="chips" id="scrubChips" aria-live="polite"></p>
+          <p class="foot-note">
+            Cumulative count of distinct organisations engaged. Impact Root's 9 advised organisations
+            are counted from its founding month (Jul 2025); paid and pro bono engagements ramped across the period.
+          </p>
         </div>
-        <h3>CSRD / ESRS Compliance — Master Thesis</h3>
-        <p>The compliance-scoring component of my MSc thesis: do AI-assisted ESG reporting tools improve ESRS
-        compliance? 38 EU companies (19 AI-platform users vs 19 matched peers) scored against the 12 ESRS standards
-        on a 0–3 rubric, then statistically re-analysed. Finding: the AI group scores marginally higher, but the gap
-        is not statistically significant — a careful, honest null result with full power analysis.</p>
-        <div class="proj-result"><b>38</b><span>EU companies scored across 12 ESRS standards — a statistically honest null result</span></div>
-        <div class="proj-stack"><span class="chip">ESRS</span><span class="chip">statistics</span><span class="chip">t-test / Wilcoxon</span><span class="chip">reproducible</span></div>
-        <div class="proj-foot"><span>Erasmus RSM · 2025</span><span class="go">View on GitHub →</span></div>
-      </a>
-
-      <!-- ANBI Funding Structures -->
-      <a class="proj reveal" data-cat="data" href="https://github.com/mushaha97-droid/ANBI-funding-structure-" target="_blank" rel="noopener">
-        <div class="proj-top">
-          <span class="proj-lang"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
-        </div>
-        <h3>ANBI Funding Structures</h3>
-        <p>Scraped anbi.nl for the financial statements of Dutch public-benefit organisations and mapped revenue
-        mix, cost structure, and donor concentration — the notebook-driven exploration behind the RAAP! funding
-        strategy, with the visualisations that show how concentrated most peer NGOs really are.</p>
-        <div class="proj-result"><b>14</b><span>Dutch ANBIs benchmarked — over half lean on a single income source</span></div>
-        <div class="proj-stack"><span class="chip">web scraping</span><span class="chip">pandas</span><span class="chip">visualisation</span></div>
-        <div class="proj-foot"><span>anbi.nl · donor concentration</span><span class="go">View on GitHub →</span></div>
-      </a>
-
+      </section>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="sec-head"><span class="sec-label">Experience</span><span class="sec-rule"></span></div>
-    <h2>Where I've done it</h2>
-    <div class="xp">
-      <div class="xp-item reveal">
-        <span class="xp-when">Jul 2025 – present · Rotterdam, NL</span>
-        <p class="xp-role">Founder · Impact Consulting</p>
-        <p class="xp-org">Impact Root</p>
+<!-- ============ 03 HANDOFF: dark → light ============ -->
+<section class="handoff" id="handoff" data-zone="dark" aria-label="Transition">
+  <div class="wrap">
+    <div class="thread" aria-hidden="true"></div>
+    <h2>Raw data becomes <em>clear advice.</em></h2>
+    <p>Everything above is measurement. Everything below is what clients did with it.</p>
+    <div class="thread-2" aria-hidden="true"></div>
+  </div>
+</section>
+<!-- ============ 04 WORK / CASE STORIES (light) ============ -->
+<section class="work band t-light" id="work" data-zone="light" aria-labelledby="workTitle">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">02 — Case stories</p>
+      <h2 class="h2" id="workTitle">Three problems, three methods,<br>three things that got adopted.</h2>
+      <p class="lede">Each one starts with a decision someone had to make, and ends with what they did differently.
+        Method included — even for the study where the honest answer was "no effect".</p>
+    </div>
+
+    <div class="cases">
+
+      <!-- CASE 01 — RAAP! -->
+      <article class="case reveal" data-tilt aria-labelledby="case1">
+        <div class="case-top">
+          <div>
+            <p class="case-idx">CASE 01 / FUNDING STRATEGY</p>
+            <h3 id="case1">RAAP! — Revenue diversification strategy
+              <small>A funding base built from what investors said they would actually fund.</small>
+            </h3>
+          </div>
+          <p class="case-meta"><i>Rotterdam</i><i>Jan–Apr 2025</i><i>Regenerative agriculture</i></p>
+        </div>
+
+        <div class="case-body">
+          <div class="pmo">
+            <div>
+              <h4>Problem</h4>
+              <p>A Dutch regenerative-agriculture venture needed a <strong>resilient funding base</strong> —
+                not one more grant cycle, but a revenue structure that could survive donor churn.</p>
+            </div>
+            <div>
+              <h4>Method</h4>
+              <p>Scraped <strong>anbi.nl</strong> financial statements of Dutch public-benefit organisations and
+                mapped revenue mix, cost structure and donor concentration across <strong>14 peer NGOs</strong>.
+                In parallel, ran <strong>20 impact-investor interviews</strong>, coded in Atlas.ti using the
+                <strong>Gioia methodology</strong>.</p>
+            </div>
+            <div class="outcome">
+              <h4>Adopted outcome</h4>
+              <p>A funding strategy the client <strong>adopted</strong> — pairing willingness-to-fund evidence
+                from investors with market data from peers, so every recommended revenue stream arrived with
+                proof that someone would pay for it.</p>
+            </div>
+          </div>
+
+          <figure class="case-viz">
+            <svg viewBox="0 0 280 186" role="img" aria-label="Diagram: 14 peer NGO financial statements and 20 investor interviews combine into one adopted funding strategy.">
+              <g fill="currentColor" opacity=".55" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing=".08em">
+                <text x="0" y="9">14 PEER NGOs · REVENUE MIX</text>
+                <text x="0" y="80">20 INVESTOR INTERVIEWS</text>
+                <text x="0" y="150">ADOPTED STRATEGY</text>
+              </g>
+              <!-- 14 peer statements -->
+              <g fill="#12683A">
+                <rect x="0" y="18" width="16" height="22" rx="2" opacity=".85"/>
+                <rect x="20" y="22" width="16" height="18" rx="2" opacity=".55"/>
+                <rect x="40" y="14" width="16" height="26" rx="2" opacity=".95"/>
+                <rect x="60" y="26" width="16" height="14" rx="2" opacity=".4"/>
+                <rect x="80" y="20" width="16" height="20" rx="2" opacity=".7"/>
+                <rect x="100" y="24" width="16" height="16" rx="2" opacity=".5"/>
+                <rect x="120" y="16" width="16" height="24" rx="2" opacity=".9"/>
+                <rect x="140" y="28" width="16" height="12" rx="2" opacity=".35"/>
+                <rect x="160" y="21" width="16" height="19" rx="2" opacity=".65"/>
+                <rect x="180" y="17" width="16" height="23" rx="2" opacity=".8"/>
+                <rect x="200" y="27" width="16" height="13" rx="2" opacity=".38"/>
+                <rect x="220" y="23" width="16" height="17" rx="2" opacity=".55"/>
+                <rect x="240" y="19" width="16" height="21" rx="2" opacity=".72"/>
+                <rect x="260" y="25" width="16" height="15" rx="2" opacity=".45"/>
+              </g>
+              <text x="0" y="52" fill="currentColor" opacity=".45" font-family="IBM Plex Mono, monospace" font-size="7.5">donor concentration mapped per organisation</text>
+              <!-- 20 interviews -->
+              <g fill="#0F2A1E" opacity=".8">
+                <circle cx="4" cy="92" r="3.4"/><circle cx="18" cy="92" r="3.4"/><circle cx="32" cy="92" r="3.4"/><circle cx="46" cy="92" r="3.4"/><circle cx="60" cy="92" r="3.4"/>
+                <circle cx="74" cy="92" r="3.4"/><circle cx="88" cy="92" r="3.4"/><circle cx="102" cy="92" r="3.4"/><circle cx="116" cy="92" r="3.4"/><circle cx="130" cy="92" r="3.4"/>
+                <circle cx="144" cy="92" r="3.4"/><circle cx="158" cy="92" r="3.4"/><circle cx="172" cy="92" r="3.4"/><circle cx="186" cy="92" r="3.4"/><circle cx="200" cy="92" r="3.4"/>
+                <circle cx="214" cy="92" r="3.4"/><circle cx="228" cy="92" r="3.4"/><circle cx="242" cy="92" r="3.4"/><circle cx="256" cy="92" r="3.4"/><circle cx="270" cy="92" r="3.4"/>
+              </g>
+              <text x="0" y="110" fill="currentColor" opacity=".45" font-family="IBM Plex Mono, monospace" font-size="7.5">coded in Atlas.ti · Gioia 1st order → 2nd order → dimensions</text>
+              <!-- convergence -->
+              <path d="M4 118 C 90 128, 120 128, 140 134" stroke="#12683A" stroke-width="1.2" fill="none" opacity=".5"/>
+              <path d="M276 118 C 190 128, 160 128, 140 134" stroke="#12683A" stroke-width="1.2" fill="none" opacity=".5"/>
+              <rect x="52" y="156" width="176" height="24" rx="12" fill="#12683A"/>
+              <text x="140" y="171.5" text-anchor="middle" fill="#F7F5EF" font-family="IBM Plex Mono, monospace" font-size="8.5" letter-spacing=".1em">FUNDING STRATEGY · ADOPTED</text>
+            </svg>
+            <figcaption class="viz-cap">Quant peer benchmark × qualitative willingness-to-fund → one strategy.</figcaption>
+          </figure>
+        </div>
+
+        <div class="case-actions">
+          <a class="link-inline" href="https://github.com/mushaha97-droid/ANBI-funding-structure-" target="_blank" rel="noopener noreferrer">
+            ANBI funding-structure analysis on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- CASE 02 — Development Alternatives -->
+      <article class="case reveal" data-tilt aria-labelledby="case2">
+        <div class="case-top">
+          <div>
+            <p class="case-idx">CASE 02 / GO-TO-MARKET</p>
+            <h3 id="case2">Development Alternatives — Biomass go-to-market strategy
+              <small>A district biomass roadmap built from five blocks of field evidence.</small>
+            </h3>
+          </div>
+          <p class="case-meta"><i>Delhi</i><i>Dec 2025–May 2026</i><i>Biomass enterprise</i></p>
+        </div>
+
+        <div class="case-body">
+          <div class="pmo">
+            <div>
+              <h4>Problem</h4>
+              <p>A district biomass strategy needed <strong>evidence, not assumptions</strong> — real adoption
+                barriers and real supply-chain constraints, before anyone committed to a product portfolio.</p>
+            </div>
+            <div>
+              <h4>Method</h4>
+              <p>Field study across <strong>5 administrative blocks</strong> on supply-chain bottlenecks and
+                adoption barriers, with <strong>8 interviews</strong> coded in Atlas.ti. Enterprise packages
+                standardised for <strong>2 business types</strong> — business plan, cost-benefit analysis and
+                financial projections for each. Technology pipeline screened on
+                <strong>technological and commercial readiness</strong>.</p>
+            </div>
+            <div class="outcome">
+              <h4>Adopted outcome</h4>
+              <p><strong>10 biomass-linked products</strong> structured into a <strong>five-year roadmap</strong>
+                and go-to-market plan, with a modelled base case of <strong>25% sales growth</strong>.</p>
+            </div>
+          </div>
+
+          <figure class="case-viz">
+            <svg viewBox="0 0 280 200" role="img" aria-label="Pipeline diagram: 5 administrative blocks and 8 interviews feed 2 standardised enterprise packages, screening into 10 products and a five-year roadmap with a 25 percent modelled growth base case.">
+              <g font-family="IBM Plex Mono, monospace" font-size="8.5" letter-spacing=".04em">
+                <g fill="#12683A">
+                  <rect x="0" y="6" width="280" height="26" rx="6" opacity=".14"/>
+                  <rect x="14" y="42" width="252" height="26" rx="6" opacity=".22"/>
+                  <rect x="28" y="78" width="224" height="26" rx="6" opacity=".34"/>
+                  <rect x="42" y="114" width="196" height="26" rx="6" opacity=".5"/>
+                  <rect x="56" y="150" width="168" height="30" rx="8"/>
+                </g>
+                <g fill="#0F2A1E">
+                  <text x="140" y="23" text-anchor="middle">5 BLOCKS · FIELD STUDY</text>
+                  <text x="140" y="59" text-anchor="middle">8 INTERVIEWS · ATLAS.TI</text>
+                  <text x="140" y="95" text-anchor="middle">2 ENTERPRISE PACKAGES</text>
+                  <text x="140" y="131" text-anchor="middle">TECH + COMMERCIAL READINESS</text>
+                </g>
+                <text x="140" y="164" text-anchor="middle" fill="#F7F5EF">10 PRODUCTS · 5-YR ROADMAP</text>
+                <text x="140" y="175" text-anchor="middle" fill="#4ADE80" font-size="7.5">BASE CASE +25% SALES GROWTH</text>
+              </g>
+              <g stroke="#12683A" stroke-width="1" opacity=".45">
+                <path d="M140 32v10M140 68v10M140 104v10M140 140v10"/>
+              </g>
+              <g fill="#12683A" opacity=".45"><path d="M137 40l3 4 3-4zM137 76l3 4 3-4zM137 112l3 4 3-4zM137 148l3 4 3-4z"/></g>
+            </svg>
+            <figcaption class="viz-cap">Field evidence narrows into a portfolio decision — each stage screened.</figcaption>
+          </figure>
+        </div>
+
+        <div class="case-actions">
+          <span class="no-link">Client engagement · deliverables not public</span>
+        </div>
+      </article>
+
+      <!-- CASE 03 — CSRD / ESRS thesis -->
+      <article class="case reveal" data-tilt aria-labelledby="case3">
+        <div class="case-top">
+          <div>
+            <p class="case-idx">CASE 03 / APPLIED RESEARCH</p>
+            <h3 id="case3">Does AI actually improve ESG compliance?
+              <small>CSRD / ESRS master thesis — and the discipline to report a null result.</small>
+            </h3>
+          </div>
+          <p class="case-meta"><i>Erasmus RSM</i><i>2025–26</i><i>MSc thesis</i></p>
+        </div>
+
+        <div class="case-body">
+          <div class="pmo">
+            <div>
+              <h4>Problem</h4>
+              <p>AI ESG-reporting platforms claim they produce better compliance.
+                <strong>Is the claim true?</strong> Nobody had tested it against the standards themselves.</p>
+            </div>
+            <div>
+              <h4>Method</h4>
+              <p><strong>38 EU companies</strong> — 19 AI-platform users against 19 matched peers. Their 2024
+                reports scored against the <strong>12 ESRS standards</strong> on a 0–3 rubric: human-led scoring
+                with AI verification (<strong>≈95% agreement, Cohen's κ ≈ 0.92</strong>), then parametric and
+                non-parametric re-analysis with a power analysis.</p>
+            </div>
+            <div class="outcome">
+              <h4>Adopted outcome</h4>
+              <p>An <strong>honest null result</strong>. The AI group scores marginally higher, but the difference
+                is <strong>not statistically significant</strong> — and the data cannot rule out small effects.
+                Reported exactly that way, because a clean "no" is a finding.</p>
+            </div>
+          </div>
+
+          <figure class="case-viz">
+            <svg viewBox="0 0 280 176" role="img" aria-label="Dot matrix: 19 AI-platform users and 19 matched peers, 38 companies scored across 12 ESRS standards, agreement 95 percent, Cohen's kappa 0.92, difference not statistically significant.">
+              <g font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing=".08em" fill="currentColor" opacity=".6">
+                <text x="0" y="9">19 AI-PLATFORM USERS</text>
+                <text x="0" y="72">19 MATCHED PEERS</text>
+              </g>
+              <g fill="#12683A">
+                <circle cx="20.6" cy="30" r="4.2"/><circle cx="33.9" cy="30" r="4.2"/><circle cx="47.1" cy="30" r="4.2"/><circle cx="60.4" cy="30" r="4.2"/><circle cx="73.7" cy="30" r="4.2"/>
+                <circle cx="86.9" cy="30" r="4.2"/><circle cx="100.2" cy="30" r="4.2"/><circle cx="113.4" cy="30" r="4.2"/><circle cx="126.7" cy="30" r="4.2"/><circle cx="140" cy="30" r="4.2"/>
+                <circle cx="153.2" cy="30" r="4.2"/><circle cx="166.5" cy="30" r="4.2"/><circle cx="179.7" cy="30" r="4.2"/><circle cx="193" cy="30" r="4.2"/><circle cx="206.3" cy="30" r="4.2"/>
+                <circle cx="219.5" cy="30" r="4.2"/><circle cx="232.8" cy="30" r="4.2"/><circle cx="246" cy="30" r="4.2"/><circle cx="259.3" cy="30" r="4.2"/>
+              </g>
+              <g fill="none" stroke="#0F2A1E" stroke-width="1.4" opacity=".55">
+                <circle cx="20.6" cy="93" r="4.2"/><circle cx="33.9" cy="93" r="4.2"/><circle cx="47.1" cy="93" r="4.2"/><circle cx="60.4" cy="93" r="4.2"/><circle cx="73.7" cy="93" r="4.2"/>
+                <circle cx="86.9" cy="93" r="4.2"/><circle cx="100.2" cy="93" r="4.2"/><circle cx="113.4" cy="93" r="4.2"/><circle cx="126.7" cy="93" r="4.2"/><circle cx="140" cy="93" r="4.2"/>
+                <circle cx="153.2" cy="93" r="4.2"/><circle cx="166.5" cy="93" r="4.2"/><circle cx="179.7" cy="93" r="4.2"/><circle cx="193" cy="93" r="4.2"/><circle cx="206.3" cy="93" r="4.2"/>
+                <circle cx="219.5" cy="93" r="4.2"/><circle cx="232.8" cy="93" r="4.2"/><circle cx="246" cy="93" r="4.2"/><circle cx="259.3" cy="93" r="4.2"/>
+              </g>
+              <text x="0" y="50" fill="currentColor" opacity=".45" font-family="IBM Plex Mono, monospace" font-size="7.5">scored 0–3 against 12 ESRS standards · 456 data points</text>
+              <line x1="0" y1="118" x2="280" y2="118" stroke="#DCD7C8" stroke-width="1"/>
+              <g font-family="IBM Plex Mono, monospace" font-size="8" fill="currentColor">
+                <text x="0" y="134" opacity=".6">AGREEMENT</text><text x="0" y="146" font-size="11" fill="#12683A">≈95%</text>
+                <text x="96" y="134" opacity=".6">COHEN'S κ</text><text x="96" y="146" font-size="11" fill="#12683A">0.92</text>
+                <text x="192" y="134" opacity=".6">DIFFERENCE</text><text x="192" y="146" font-size="11" fill="#8A5A05">n.s.</text>
+              </g>
+              <text x="0" y="168" fill="currentColor" opacity=".45" font-family="IBM Plex Mono, monospace" font-size="7.5">null result reported · small effects not excluded</text>
+            </svg>
+            <figcaption class="viz-cap">38 companies, 12 standards, one honest answer.</figcaption>
+          </figure>
+        </div>
+
+        <div class="case-actions">
+          <a class="link-inline" href="https://github.com/mushaha97-droid/CSRD-compliance-" target="_blank" rel="noopener noreferrer">
+            CSRD compliance study on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <!-- more on github -->
+    <div class="repos reveal">
+      <h3>More on GitHub</h3>
+      <div class="repo-grid">
+        <a class="repo" href="https://github.com/mushaha97-droid/dutch-electric-grid-" target="_blank" rel="noopener noreferrer">
+          <b>NL Grid Congestion × Solar Curtailment
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </b>
+          <span>Python · grid congestion → solar curtailment cost, with a choropleth map</span>
+        </a>
+        <a class="repo" href="https://github.com/mushaha97-droid/carbon-market-analysis-india-" target="_blank" rel="noopener noreferrer">
+          <b>Carbon Market Analysis — India
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </b>
+          <span>Five-year Verra and Gold Standard market analysis</span>
+        </a>
+        <a class="repo" href="https://github.com/mushaha97-droid" target="_blank" rel="noopener noreferrer">
+          <b>All repositories
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </b>
+          <span>github.com/mushaha97-droid — profile and full project list</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============ 05 EXPERIENCE (light) ============ -->
+<section class="exp band t-light" id="experience" data-zone="light" aria-labelledby="expTitle">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">03 — Experience</p>
+      <h2 class="h2" id="expTitle">Where the numbers came from.</h2>
+      <p class="lede">Five roles across the Netherlands and India — consulting, corporate sustainability
+        and the NGO sector.</p>
+    </div>
+
+    <div class="timeline reveal">
+      <article class="job">
+        <div class="job-head">
+          <div>
+            <h3>Founder · Impact Consulting</h3>
+            <span class="org">Impact Root — Rotterdam, NL</span>
+          </div>
+          <span class="when">Jul 2025 — present</span>
+        </div>
         <ul>
-          <li>Advise public-benefit organisations (ANBI) on impact strategy, funding resilience, and donor diversification.</li>
-          <li>Grew the client base to <span class="xp-metric">9 organisations</span> in the first year — 4 Dutch ANBI partnerships and 5 international NGOs — across three service lines.</li>
-          <li>Design and produce a recurring data-driven newsletter for 5 ANBI clients, turning sector funding data into actionable insight.</li>
+          <li>Advises <strong>9 organisations</strong> on funding resilience and donor diversification.</li>
+          <li><strong>3 paid</strong> engagements and <strong>6 pro bono</strong>, spanning <strong>4</strong> Dutch ANBI partners and <strong>5</strong> international NGOs.</li>
+          <li>Combines scraped financial benchmarks with stakeholder interviews so every funding recommendation carries its own evidence.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <div>
+            <h3>Sustainability Analyst</h3>
+            <span class="org">Development Alternatives — Delhi, India</span>
+          </div>
+          <span class="when">Dec 2025 — May 2026</span>
+        </div>
+        <ul>
+          <li>Adoption-barrier field research across <strong>5 administrative blocks</strong>, with <strong>8 interviews</strong> coded in Atlas.ti.</li>
+          <li>Enterprise-package standardisation for <strong>2 business types</strong> — business plan, cost-benefit analysis and financial projections each.</li>
+          <li>Technology pipeline screening and market validation across MSME and startup ecosystems.</li>
+          <li><strong>10 products</strong> structured into a <strong>five-year roadmap</strong> and go-to-market plan; modelled base case of <strong>25%</strong> sales growth.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <div>
+            <h3>Sustainability Analyst (Intern)</h3>
+            <span class="org">Enen Green — Delhi, India</span>
+          </div>
+          <span class="when">May — Nov 2025</span>
+        </div>
+        <ul>
+          <li>ESG workshops and executive briefings for steel-sector leadership.</li>
+          <li><strong>Scope 1–3</strong> GHG inventories with automated emission-factor lookups in Python.</li>
+          <li>Reusable <strong>CBAM</strong> template for the EU transitional regime.</li>
+          <li><strong>Five-year</strong> carbon-market screening in Python and Power BI, shortlisting projects for a four-year horizon.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <div>
+            <h3>Sustainability Data Researcher</h3>
+            <span class="org">RAAP! — Rotterdam, NL</span>
+          </div>
+          <span class="when">Jan — Apr 2025</span>
+        </div>
+        <ul>
+          <li>Scraped anbi.nl financial statements; mapped revenue mix, cost structure and donor concentration across <strong>14 peer NGOs</strong>.</li>
+          <li><strong>20 impact-investor interviews</strong> coded in Atlas.ti using the Gioia methodology.</li>
+          <li>Delivered a revenue-diversification strategy the client adopted.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <div>
+            <h3>Data &amp; Operations Intern</h3>
+            <span class="org">Pehchaan The Street School — Delhi, India</span>
+          </div>
+          <span class="when">Jan — Aug 2024</span>
+        </div>
+        <ul>
+          <li>Ranked <strong>1,000</strong> Delhi-NCR corporates on donation readiness into a prioritised outreach pipeline.</li>
+          <li>Contributed to <strong>USD 50,000</strong> raised.</li>
+          <li>Scraped the Government of India CSR portal into an analysis-ready dataset.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 SKILLS (light) ============ -->
+<section class="skills band t-light" id="skills" data-zone="light" aria-labelledby="skillsTitle">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">04 — Capabilities</p>
+      <h2 class="h2" id="skillsTitle">Strategy on one side,<br>the data stack on the other.</h2>
+    </div>
+
+    <div class="skill-groups reveal">
+      <div class="skill-group">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 8h18M5 21h14"/></svg>
+          Strategy &amp; research
+        </h3>
+        <ul>
+          <li>Funding strategy design</li>
+          <li>Go-to-market roadmapping</li>
+          <li>Stakeholder interviews</li>
+          <li>Workshop design &amp; delivery</li>
+          <li>Adoption-barrier studies</li>
+          <li>Targeting models</li>
         </ul>
       </div>
-      <div class="xp-item reveal">
-        <span class="xp-when">Dec 2025 – Apr 2026 · Delhi, IN</span>
-        <p class="xp-role">Sustainability Analyst</p>
-        <p class="xp-org">Development Alternatives</p>
+
+      <div class="skill-group">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V9M10 19V4M16 19v-7M22 19H2"/></svg>
+          Data &amp; analytics
+        </h3>
         <ul>
-          <li>Built a district-level agri-waste Material Flow Analysis in Python across 5 administrative blocks, consolidating crop-residue, animal-waste, and infrastructure data into one analysis-ready dataset.</li>
-          <li>Led a field survey on biomass supply-chain bottlenecks and adoption barriers; coded responses in Atlas.ti into the evidence base underpinning the Mirzapur biomass strategy.</li>
-          <li>Developed a 5-year biomass roadmap and go-to-market strategy for 10 biomass-linked agri-products, driving a <span class="xp-metric">25% increase in sales</span>.</li>
+          <li>Python</li>
+          <li>SQL</li>
+          <li>Power BI</li>
+          <li>Qualitative coding (Atlas.ti, Gioia)</li>
+          <li>Advanced Excel</li>
+          <li>Web scraping</li>
         </ul>
       </div>
-      <div class="xp-item reveal">
-        <span class="xp-when">May 2025 – Nov 2025 · Delhi, IN</span>
-        <p class="xp-role">Sustainability Analyst Intern</p>
-        <p class="xp-org">Enen Green</p>
+
+      <div class="skill-group">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v6c0 4.5-3.2 7.3-8 8-4.8-.7-8-3.5-8-8V7z"/></svg>
+          Domain depth
+        </h3>
         <ul>
-          <li>Ran a 5-year Verra / Gold Standard carbon-credit analysis in Python and Power BI used to shortlist projects for the next 4 years.</li>
-          <li>Modelled CBAM embedded emissions for a steel importer and built a reusable template covering all EU transitional-regime data fields.</li>
-          <li>Conducted Scope 1–3 GHG accounting for two industrial clients and automated emission-factor lookups.</li>
-          <li>Delivered ESG workshops and executive briefings for a major steel-sector client.</li>
-        </ul>
-      </div>
-      <div class="xp-item reveal">
-        <span class="xp-when">Jan 2025 – Apr 2025 · Rotterdam, NL</span>
-        <p class="xp-role">Sustainability Data Researcher</p>
-        <p class="xp-org">RAAP! (Regenerative Agriculture as Project)</p>
-        <ul>
-          <li>Scraped anbi.nl in Python to map revenue mix, cost structure, and donor concentration of agriculture-sector ANBIs.</li>
-          <li>Conducted 20 impact-investor interviews, coded in Atlas.ti using the Gioia methodology.</li>
-          <li>Combined both into a funding strategy the client adopted to diversify revenue.</li>
-        </ul>
-      </div>
-      <div class="xp-item reveal">
-        <span class="xp-when">Jan 2024 – Aug 2024 · Delhi, IN</span>
-        <p class="xp-role">Data &amp; Operations Intern</p>
-        <p class="xp-org">Pehchaan The Street School</p>
-        <ul>
-          <li>Scraped the Government of India CSR portal (BeautifulSoup, requests) into an analysis-ready dataset of CSR spend.</li>
-          <li>Built a targeting model ranking Delhi-NCR corporates that fed the NGO's outreach pipeline.</li>
-          <li>Contributed to <span class="xp-metric">USD 50,000 raised</span> in CSR funding.</li>
+          <li>ESG &amp; sustainability strategy</li>
+          <li>GHG accounting (Scope 1–3, GHG Protocol, ISO 14064)</li>
+          <li>CBAM</li>
+          <li>Carbon markets (Verra, Gold Standard)</li>
+          <li>CSRD / ESRS</li>
+          <li>GRI</li>
+          <li>BRSR</li>
         </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="sec-head"><span class="sec-label">Toolkit</span><span class="sec-rule"></span></div>
-    <h2>Skills</h2>
-    <div class="skills">
-      <div class="skill-group reveal">
-        <h3>Sustainability &amp; reporting</h3>
-        <div class="chips">
-          <span class="chip">GHG accounting (Scope 1–3)</span><span class="chip">GHG Protocol</span>
-          <span class="chip">ISO 14064</span><span class="chip">CBAM</span><span class="chip">Carbon markets</span>
-          <span class="chip">Material Flow Analysis</span><span class="chip">ESRS</span><span class="chip">GRI</span><span class="chip">BRSR (SEBI)</span><span class="chip">ESG data management</span>
-        </div>
-      </div>
-      <div class="skill-group reveal">
-        <h3>Programming &amp; data</h3>
-        <div class="chips">
-          <span class="chip">Python</span><span class="chip">pandas</span><span class="chip">NumPy</span>
-          <span class="chip">matplotlib</span><span class="chip">seaborn</span><span class="chip">BeautifulSoup</span>
-          <span class="chip">SQL (joins, window functions, CTEs)</span><span class="chip">ETL &amp; web scraping</span><span class="chip">automation</span>
-        </div>
-      </div>
-      <div class="skill-group reveal">
-        <h3>Visualisation &amp; tools</h3>
-        <div class="chips">
-          <span class="chip">Power BI</span><span class="chip">Tableau</span>
-          <span class="chip">Advanced Excel</span><span class="chip">KPI dashboards</span><span class="chip">Reporting automation</span>
-        </div>
-      </div>
-      <div class="skill-group reveal">
-        <h3>Communication &amp; engagement</h3>
-        <div class="chips">
-          <span class="chip">ESG workshops</span><span class="chip">Executive briefings</span>
-          <span class="chip">Data storytelling</span><span class="chip">Newsletters</span>
-          <span class="chip">Stakeholder interviews</span><span class="chip">Gioia methodology</span><span class="chip">Atlas.ti</span>
-          <span class="chip">English (C2)</span><span class="chip">Hindi (C2)</span><span class="chip">Dutch (B1)</span>
-        </div>
-      </div>
+<!-- ============ 07 EDUCATION + LANGUAGES (light) ============ -->
+<section class="edu band t-light" id="education" data-zone="light" aria-labelledby="eduTitle">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">05 — Education</p>
+      <h2 class="h2" id="eduTitle">Three countries,<br>one through-line.</h2>
     </div>
-  </section>
 
-  <!-- EDUCATION & CERTIFICATIONS -->
-  <section id="education">
-    <div class="sec-head"><span class="sec-label">Education &amp; certifications</span><span class="sec-rule"></span></div>
-    <h2>Background</h2>
     <div class="edu-grid">
-      <div class="edu-card reveal">
-        <span class="xp-when">May 2026 · Rotterdam, NL</span>
-        <h3>MSc, Global Business &amp; Sustainability</h3>
-        <p class="org">Erasmus University Rotterdam</p>
-        <p class="thesis">Thesis: The Sustainability Paradox — How AI is Revolutionising Sustainability Reporting While Creating New Challenges</p>
-      </div>
-      <div class="edu-card reveal">
-        <span class="xp-when">2024 · Indore, IN</span>
-        <h3>Pre-Master, Business Analytics</h3>
-        <p class="org">Indian Institute of Management (IIM) Indore</p>
-      </div>
-      <div class="edu-card reveal">
-        <span class="xp-when">Aug 2023 · Beijing, CN</span>
-        <h3>BSc, International Business Economics (International Trade)</h3>
-        <p class="org">University of International Business and Economics</p>
-        <p class="thesis">Thesis: Revisiting Protectionism in Developing Countries — An Economic Analysis of Trade, Industrialization, and Growth</p>
+      <div class="edu-list reveal">
+        <article class="edu-item">
+          <span class="yr num">2026</span>
+          <div>
+            <h3>MSc Global Business &amp; Sustainability</h3>
+            <p>Thesis: how AI is reshaping sustainability reporting — CSRD / ESRS compliance across 38 EU companies.</p>
+          </div>
+          <span class="where">Erasmus University Rotterdam · Netherlands</span>
+        </article>
+        <article class="edu-item">
+          <span class="yr num">2024</span>
+          <div>
+            <h3>Pre-Master, Business Analytics</h3>
+            <p>Quantitative methods and analytics foundation.</p>
+          </div>
+          <span class="where">IIM Indore · India</span>
+        </article>
+        <article class="edu-item">
+          <span class="yr num">2023</span>
+          <div>
+            <h3>BSc International Business Economics</h3>
+            <p>Specialisation in international trade.</p>
+          </div>
+          <span class="where">University of International Business and Economics (UIBE), Beijing · China</span>
+        </article>
       </div>
 
-      <!-- CERTIFICATIONS — duplicate the block below for each new certification -->
-      <div class="cert-empty reveal" id="certifications">
-        <strong style="color:var(--ink)">Certifications</strong><br>
-        New certifications are added here as they're completed.
-        <!-- Template — copy, fill in, and place above this card:
-        <div class="edu-card">
-          <span class="xp-when">2026</span>
-          <h3>Certification name</h3>
-          <p class="org">Issuing organisation</p>
-        </div>
-        -->
-      </div>
+      <aside class="lang reveal" aria-labelledby="langTitle">
+        <h3 id="langTitle">Languages</h3>
+        <ul>
+          <li>
+            <span class="lg-top"><b>English</b><em>C2</em></span>
+            <span class="meter" role="img" aria-label="English: C2, near-native"><i style="width:100%"></i></span>
+          </li>
+          <li>
+            <span class="lg-top"><b>Hindi</b><em>C2</em></span>
+            <span class="meter" role="img" aria-label="Hindi: C2, near-native"><i style="width:100%"></i></span>
+          </li>
+          <li>
+            <span class="lg-top"><b>Dutch</b><em>B1</em></span>
+            <span class="meter" role="img" aria-label="Dutch: B1, intermediate"><i style="width:52%"></i></span>
+          </li>
+        </ul>
+      </aside>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact" style="padding-top:0">
-    <div class="contact reveal">
-      <p class="sec-label" style="margin-bottom:16px">Contact</p>
-      <h2>Working on emissions data, ESG disclosure, or impact communication?</h2>
-      <p>I'm based in Rotterdam and open to roles across sustainability analytics and communication —
-      from ESG and emissions analysis to disclosure, workshops, and impact storytelling — plus project
-      work with NGOs and public-benefit organisations. The fastest way to reach me is email.</p>
-      <div class="contact-links">
-        <a class="btn btn-solid" href="mailto:musharraf@impactofy.org">musharraf@impactofy.org</a>
-        <a class="btn btn-ghost" href="https://github.com/mushaha97-droid" target="_blank" rel="noopener">GitHub ↗</a>
-        <a class="btn btn-ghost" href="tel:+31685670414">+31 6 85670414</a>
+<!-- ============ 08 CONTACT (dark bookend) ============ -->
+<section class="contact band t-dark grain" id="contact" data-zone="dark" aria-labelledby="contactTitle">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">06 — Contact</p>
+      <h2 id="contactTitle">Let's build the evidence base for your <em>next decision.</em></h2>
+      <p class="lede">Funding strategy, go-to-market research, ESG and carbon analytics — for impact investors,
+        NGOs and the companies working with them. Open to consulting engagements and full-time roles.</p>
+
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:musharraf@impactofy.org" data-magnetic>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>
+          musharraf@impactofy.org
+        </a>
+        <button class="copy-btn" id="copyEmail" type="button" data-email="musharraf@impactofy.org">
+          <span class="idle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:15px;height:15px;vertical-align:-2px"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            Copy address
+          </span>
+          <span class="ok">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:15px;height:15px;vertical-align:-2px"><path d="M20 6L9 17l-5-5"/></svg>
+            Copied
+          </span>
+        </button>
       </div>
     </div>
-  </section>
+
+    <div class="contact-grid reveal">
+      <a href="https://www.linkedin.com/in/musharrafhassan" target="_blank" rel="noopener noreferrer">
+        <span class="k">LinkedIn</span>
+        <span class="v">/in/musharrafhassan
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </span>
+      </a>
+      <a href="https://github.com/mushaha97-droid" target="_blank" rel="noopener noreferrer">
+        <span class="k">GitHub</span>
+        <span class="v">mushaha97-droid
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </span>
+      </a>
+      <a href="tel:+31685670414">
+        <span class="k">Phone</span>
+        <span class="v num">+31 6 85670414</span>
+      </a>
+      <div>
+        <span class="k">Location</span>
+        <span class="v">Rotterdam, NL</span>
+      </div>
+    </div>
+
+    <div class="foot">
+      <p>© <span class="num" id="year">2026</span> Musharraf Hassan · Strategy · Data · Impact</p>
+      <p>Designed and hand-coded in one file — no frameworks, no chart libraries.</p>
+    </div>
+  </div>
+</section>
 
 </main>
 
-<footer>
-  © 2026 Musharraf Hassan · Rotterdam, Netherlands
-</footer>
-
 <script>
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* ============================================================
+   INTERACTION LAYER
+   All widgets are guarded by existence checks and degrade to a
+   static, readable page if JS is unavailable.
+   ------------------------------------------------------------
+   A  helpers
+   B  scroll progress · nav theme · active link · mobile menu
+   C  reveal on scroll
+   D  animated counters + lens control
+   E  evidence chart (inline SVG, rendered 1:1 for crisp text)
+   F  timeline scrubber (gantt + sparkline)
+   G  hero node field (cursor-reactive canvas)
+   H  tactile details: tilt, magnetic buttons, ripples, copy
+   ============================================================ */
+(function(){
+"use strict";
+/* ---------- A · helpers ---------- */
+var $  = function(s,c){ return (c||document).querySelector(s); };
+var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
+var RM = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : {matches:false};
+var COARSE = window.matchMedia ? window.matchMedia('(pointer: coarse)').matches : false;
+var reduced = function(){ return !!RM.matches; };
+var clamp = function(v,a,b){ return v<a?a:(v>b?b:v); };
+var easeOutCubic = function(t){ return 1 - Math.pow(1-t,3); };
+var fmt = function(n){ return Math.round(n).toLocaleString('en-US'); };
+var raf = window.requestAnimationFrame ? window.requestAnimationFrame.bind(window) : function(f){ return setTimeout(f,16); };
+var PASSIVE = {passive:true};
+function debounce(fn,ms){
+  var t; return function(){ var a=arguments,c=this; clearTimeout(t); t=setTimeout(function(){ fn.apply(c,a); },ms); };
+}
 
-  /* ---------- theme toggle ---------- */
-  (function(){
-    const root = document.documentElement;
-    const initial = root.getAttribute('data-theme') || 'dark';
-    root.setAttribute('data-theme', initial);
-    const meta = document.querySelector('meta[name="theme-color"]');
-    const setMeta = t => meta && meta.setAttribute('content', t === 'dark' ? '#0B1512' : '#F3F6F2');
-    setMeta(initial);
-    document.getElementById('themeToggle').addEventListener('click', () => {
-      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      setMeta(next);
-    });
-  })();
+var yearEl = $('#year');
+if(yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  /* ---------- staggered reveal delays (cards cascade in) ---------- */
-  if (!reduce) {
-    document.querySelectorAll('.stats-inner, .domains, .projects, .skills, .edu-grid').forEach(group=>{
-      [...group.children].filter(c=>c.classList.contains('reveal')).forEach((c,i)=>{
-        c.style.transitionDelay = Math.min(i,6) * 75 + 'ms';
-      });
+/* ---------- B · scroll progress · nav theme · active link · menu ---------- */
+(function(){
+  var bar    = $('#progress i');
+  var zones  = $$('[data-zone]');
+  var links  = $$('#navLinks a[href^="#"]');
+  var navH   = 64;
+  var targets = [];
+  var zoneOffsets = [];
+  var ticking = false;
+
+  function measure(){
+    var navEl = $('#nav');
+    navH = navEl ? navEl.offsetHeight : 64;
+    zoneOffsets = zones.map(function(el){
+      return { top: el.getBoundingClientRect().top + window.pageYOffset, zone: el.getAttribute('data-zone') };
     });
+    targets = links.map(function(a){
+      var id = a.getAttribute('href').slice(1);
+      var el = id ? document.getElementById(id) : null;
+      return el ? { link:a, top: el.getBoundingClientRect().top + window.pageYOffset } : null;
+    }).filter(Boolean);
   }
 
-  /* ---------- scroll reveal ---------- */
-  if (!reduce && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-    },{threshold:.12});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  } else {
-    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
-  }
+  function update(){
+    ticking = false;
+    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    var max = Math.max(1, (document.documentElement.scrollHeight - window.innerHeight));
+    if(bar) bar.style.transform = 'scaleX(' + clamp(y/max,0,1).toFixed(4) + ')';
 
-  /* ---------- scroll progress bar ---------- */
-  (function(){
-    const bar = document.getElementById('scrollProgress');
-    if (!bar) return;
-    let ticking = false;
-    const update = () => {
-      const h = document.documentElement;
-      const max = h.scrollHeight - h.clientHeight;
-      bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-      ticking = false;
-    };
-    window.addEventListener('scroll', ()=>{ if(!ticking){ requestAnimationFrame(update); ticking = true; } }, {passive:true});
-    window.addEventListener('resize', update, {passive:true});
-    update();
-  })();
-
-  /* ---------- subtle hero parallax ---------- */
-  (function(){
-    if (reduce) return;
-    const glow = document.querySelector('.hero-glow');
-    if (!glow) return;
-    let ticking = false;
-    const update = () => { glow.style.transform = 'translateY(' + (window.scrollY * 0.25) + 'px)'; ticking = false; };
-    window.addEventListener('scroll', ()=>{ if(!ticking){ requestAnimationFrame(update); ticking = true; } }, {passive:true});
-  })();
-
-  /* ---------- animated counters ---------- */
-  (function(){
-    const nums = document.querySelectorAll('[data-count]');
-    if (reduce || !('IntersectionObserver' in window)) {
-      nums.forEach(n => n.textContent = n.getAttribute('data-count'));
-      return;
+    /* which half of the journey is under the nav? */
+    var line = y + navH * 0.6, zone = 'dark';
+    for(var i=0;i<zoneOffsets.length;i++){ if(zoneOffsets[i].top <= line) zone = zoneOffsets[i].zone; }
+    if(document.body.getAttribute('data-nav') !== zone){
+      document.body.setAttribute('data-nav', zone);
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if(meta) meta.setAttribute('content', zone === 'light' ? '#F7F5EF' : '#07120D');
     }
-    const run = el => {
-      const target = +el.getAttribute('data-count');
-      const dur = 1100; const start = performance.now();
-      const tick = now => {
-        const p = Math.min((now - start) / dur, 1);
-        const eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(eased * target);
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
+
+    /* active nav link */
+    var active = null, mark = y + navH + 24;
+    for(var j=0;j<targets.length;j++){ if(targets[j].top <= mark) active = targets[j].link; }
+    for(var k=0;k<links.length;k++){
+      if(links[k] === active) links[k].setAttribute('aria-current','true');
+      else links[k].removeAttribute('aria-current');
+    }
+  }
+
+  function onScroll(){ if(!ticking){ ticking = true; raf(update); } }
+
+  measure();
+  update();
+  window.addEventListener('scroll', onScroll, PASSIVE);
+  window.addEventListener('resize', debounce(function(){ measure(); update(); },150), PASSIVE);
+  window.addEventListener('load', function(){ measure(); update(); });
+
+  /* mobile menu */
+  var toggle = $('#navToggle'), menu = $('#navLinks');
+  if(toggle && menu){
+    var setOpen = function(open){
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      menu.classList.toggle('is-open', open);
     };
-    const co = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ run(e.target); co.unobserve(e.target);} });
-    },{threshold:.6});
-    nums.forEach(n=>co.observe(n));
-  })();
+    toggle.addEventListener('click', function(){
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+    menu.addEventListener('click', function(e){
+      if(e.target.closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true'){ setOpen(false); toggle.focus(); }
+    });
+    document.addEventListener('click', function(e){
+      if(toggle.getAttribute('aria-expanded') !== 'true') return;
+      if(!menu.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+    });
+  }
+})();
 
-  /* ---------- scrollspy ---------- */
-  (function(){
-    const links = [...document.querySelectorAll('.nav-links a')];
-    const map = {};
-    links.forEach(l => { const id = l.getAttribute('href').slice(1); const s = document.getElementById(id); if (s) map[id] = l; });
-    const sections = Object.keys(map).map(id => document.getElementById(id));
-    if (!('IntersectionObserver' in window)) return;
-    const so = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if (e.isIntersecting){
-          links.forEach(l=>l.classList.remove('active'));
-          const active = map[e.target.id];
-          if (active) active.classList.add('active');
+/* ---------- C · reveal on scroll ---------- */
+(function(){
+  var items = $$('.reveal');
+  if(!items.length) return;
+  if(!('IntersectionObserver' in window) || reduced()){
+    items.forEach(function(el){ el.classList.add('is-in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); }
+    });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
+  items.forEach(function(el){ io.observe(el); });
+})();
+
+/* ---------- D · animated counters + lens control ---------- */
+(function(){
+  var grid = $('#metricGrid');
+  var lens = $('#lens');
+  if(!grid) return;
+
+  var counters = $$('[data-count]', grid);
+  var cards = $$('.metric', grid);
+
+  function run(el){
+    var to = parseFloat(el.getAttribute('data-count'));
+    if(isNaN(to)) return;
+    if(reduced()){ el.textContent = fmt(to); return; }
+    var dur = 950, t0 = null;
+    el.textContent = '0';
+    function step(ts){
+      if(t0 === null) t0 = ts;
+      var p = clamp((ts - t0)/dur, 0, 1);
+      el.textContent = fmt(to * easeOutCubic(p));
+      if(p < 1) raf(step);
+    }
+    raf(step);
+  }
+  function runVisible(){
+    counters.forEach(function(el){
+      var card = el.closest('.metric');
+      if(!card || !card.classList.contains('is-dim')) run(el);
+    });
+  }
+
+  /* first run when the grid scrolls into view */
+  var started = false;
+  var start = function(){ if(started) return; started = true; runVisible(); };
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(en){
+      if(en[0] && en[0].isIntersecting){ start(); io.disconnect(); }
+    }, {threshold:0.2});
+    io.observe(grid);
+  } else { start(); }
+
+  if(!lens) return;
+  var tabs  = $$('button[data-lens]', lens);
+  var thumb = $('.thumb', lens);
+
+  function moveThumb(btn){
+    if(!thumb || !btn) return;
+    thumb.style.width = btn.offsetWidth + 'px';
+    thumb.style.transform = 'translateX(' + btn.offsetLeft + 'px)';
+  }
+
+  function select(btn, focus){
+    if(!btn) return;
+    tabs.forEach(function(t){
+      var on = (t === btn);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    grid.setAttribute('aria-labelledby', btn.id);
+    var key = btn.getAttribute('data-lens');
+    cards.forEach(function(c){
+      var list = (c.getAttribute('data-lens') || '').split(/\s+/);
+      var show = (key === 'all') || list.indexOf(key) > -1;
+      c.classList.toggle('is-dim', !show);
+      c.setAttribute('aria-hidden', show ? 'false' : 'true');
+    });
+    moveThumb(btn);
+    if(started) runVisible();
+    if(focus) btn.focus();
+  }
+
+  lens.addEventListener('click', function(e){
+    var b = e.target.closest('button[data-lens]');
+    if(b) select(b, false);
+  });
+  lens.addEventListener('keydown', function(e){
+    var i = tabs.indexOf(document.activeElement);
+    if(i < 0) return;
+    var n = null;
+    if(e.key === 'ArrowRight' || e.key === 'ArrowDown') n = tabs[(i+1) % tabs.length];
+    else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = tabs[(i-1+tabs.length) % tabs.length];
+    else if(e.key === 'Home') n = tabs[0];
+    else if(e.key === 'End') n = tabs[tabs.length-1];
+    if(n){ e.preventDefault(); select(n, true); }
+  });
+
+  var initial = tabs.filter(function(t){ return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0];
+  raf(function(){ moveThumb(initial); });
+  window.addEventListener('resize', debounce(function(){
+    moveThumb(tabs.filter(function(t){ return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0]);
+  },120), PASSIVE);
+  if(document.fonts && document.fonts.ready && document.fonts.ready.then){
+    document.fonts.ready.then(function(){ moveThumb(tabs.filter(function(t){ return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0]); });
+  }
+})();
+/* ---------- E · evidence chart (inline SVG, rendered 1:1) ----------
+   The SVG is rebuilt at the container's pixel width so label type stays
+   at a constant, legible size instead of being scaled by a viewBox. */
+(function(){
+  var host = $('#evidenceChart');
+  var out  = $('#evidenceReadout');
+  if(!host) return;
+
+  var DATA = [
+    {v:1000, label:'Delhi-NCR corporates ranked',    src:'Pehchaan The Street School — donation-readiness targeting model'},
+    {v:456,  label:'ESRS data points scored',        src:'MSc thesis — 38 companies × 12 ESRS standards on a 0–3 rubric'},
+    {v:38,   label:'EU company reports scored',      src:'MSc thesis — 19 AI-platform users vs 19 matched peers'},
+    {v:28,   label:'stakeholder interviews coded',   src:'RAAP! (20 investors) + Development Alternatives (8 field) — Atlas.ti'},
+    {v:14,   label:'peer NGO financials mapped',     src:'RAAP! — anbi.nl statements: revenue mix, cost structure, donor concentration'},
+    {v:10,   label:'biomass products structured',    src:'Development Alternatives — five-year roadmap and go-to-market plan'},
+    {v:5,    label:'years of carbon-market data',    src:'Enen Green — Verra and Gold Standard screening in Python and Power BI'},
+    {v:5,    label:'administrative blocks studied',  src:'Development Alternatives — supply-chain and adoption-barrier field study'}
+  ];
+  var MAX = 1000, drawn = false;
+  var DEFAULT_TEXT = out ? out.innerHTML : '';
+
+  /* screen-reader table */
+  var tbody = $('#evidenceTable tbody');
+  if(tbody){
+    tbody.innerHTML = DATA.map(function(d){
+      return '<tr><td>' + d.label + '</td><td>' + fmt(d.v) + '</td><td>' + d.src + '</td></tr>';
+    }).join('');
+  }
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  function render(){
+    var W = Math.max(250, Math.round(host.clientWidth || 320));
+    var rowH = 50, H = DATA.length * rowH + 8;
+    var valW = 84;
+    var maxBar = Math.max(50, W - valW);
+    var s = ['<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H +
+             '" role="group" aria-labelledby="evTitle" xmlns="http://www.w3.org/2000/svg">'];
+
+    DATA.forEach(function(d,i){
+      var top = i * rowH + 4;
+      var bw  = Math.max(8, Math.sqrt(d.v / MAX) * maxBar);
+      var lab = fmt(d.v) + ' ' + d.label + '. ' + d.src;
+      s.push('<g class="row" data-i="' + i + '" tabindex="0" role="img" aria-label="' + esc(lab) + '">');
+      s.push('<rect class="hit" x="0" y="' + (top + 1) + '" width="' + W + '" height="' + (rowH - 8) + '" fill="none" pointer-events="all"/>');
+      s.push('<text class="row-label" x="0" y="' + (top + 13) + '" font-size="13">' + esc(d.label) + '</text>');
+      s.push('<rect class="bar" x="0" y="' + (top + 23) + '" width="' + bw.toFixed(1) + '" height="12" rx="6" fill="url(#evg)" style="transition-delay:' + (i * 65) + 'ms"/>');
+      s.push('<text class="row-val" x="' + (bw + 10).toFixed(1) + '" y="' + (top + 33) + '" font-size="12">' + fmt(d.v) + '</text>');
+      s.push('</g>');
+    });
+
+    s.push('<defs><linearGradient id="evg" x1="0" y1="0" x2="1" y2="0">' +
+           '<stop offset="0" stop-color="#2FB765"/><stop offset="1" stop-color="#4ADE80"/>' +
+           '</linearGradient></defs>');
+    s.push('</svg>');
+    host.innerHTML = s.join('');
+    if(drawn || reduced()){ host.classList.add('instant','is-drawn'); }
+  }
+
+  function show(i){
+    if(!out) return;
+    var d = DATA[i];
+    if(!d) return;
+    out.innerHTML = '<b>' + fmt(d.v) + ' ' + esc(d.label) + '</b><br>' + esc(d.src);
+  }
+  function reset(){ if(out) out.innerHTML = DEFAULT_TEXT; }
+
+  host.addEventListener('pointerover', function(e){
+    var g = e.target.closest ? e.target.closest('.row') : null;
+    if(g) show(parseInt(g.getAttribute('data-i'),10));
+  });
+  host.addEventListener('pointerleave', reset);
+  host.addEventListener('focusin', function(e){
+    var g = e.target.closest ? e.target.closest('.row') : null;
+    if(g) show(parseInt(g.getAttribute('data-i'),10));
+  });
+  host.addEventListener('focusout', function(e){
+    if(!host.contains(e.relatedTarget)) reset();
+  });
+
+  render();
+
+  if('IntersectionObserver' in window && !reduced()){
+    var io = new IntersectionObserver(function(en){
+      if(en[0] && en[0].isIntersecting){
+        host.classList.add('is-drawn');
+        drawn = true;
+        io.disconnect();
+      }
+    }, {threshold:0.25});
+    io.observe(host);
+  } else {
+    host.classList.add('instant','is-drawn');
+    drawn = true;
+  }
+
+  window.addEventListener('resize', debounce(render, 160), PASSIVE);
+})();
+
+/* ---------- F · timeline scrubber (gantt + sparkline) ---------- */
+(function(){
+  var slider = $('#scrubber');
+  var gantt  = $('#gantt');
+  if(!slider || !gantt) return;
+
+  var MAXM = 30; /* Jan 2024 (0) → Jul 2026 (30) */
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function label(m){ return MONTHS[m % 12] + ' ' + (2024 + Math.floor(m / 12)); }
+
+  /* exact CV dates, expressed as months from Jan 2024 */
+  var ROLES = [
+    {n:'Impact Root — Founder, Impact Consulting', p:'Rotterdam', s:18, e:30, on:true},
+    {n:'Development Alternatives — Sustainability Analyst', p:'Delhi', s:23, e:28},
+    {n:'Enen Green — Sustainability Analyst (Intern)', p:'Delhi', s:16, e:22},
+    {n:'RAAP! — Sustainability Data Researcher', p:'Rotterdam', s:12, e:15},
+    {n:'Pehchaan The Street School — Data & Operations Intern', p:'Delhi', s:0, e:7}
+  ];
+  /* cumulative distinct organisations engaged */
+  var STEPS = [{m:0,v:1},{m:12,v:2},{m:16,v:3},{m:18,v:12},{m:23,v:13}];
+  function cumOrgs(m){
+    var v = 0;
+    for(var i=0;i<STEPS.length;i++){ if(m >= STEPS[i].m) v = STEPS[i].v; }
+    return v;
+  }
+
+  /* build gantt rows ahead of the playhead element */
+  var playhead = $('#playhead');
+  var rows = ROLES.map(function(r){
+    var row = document.createElement('div');
+    row.className = 'gantt-row';
+    var left = (r.s / MAXM) * 100;
+    var width = Math.max(2.2, ((r.e - r.s) / MAXM) * 100);
+    row.innerHTML =
+      '<span class="gantt-name">' + r.n + ' <em>' + r.p + '</em></span>' +
+      '<span class="gantt-track"><span class="gantt-bar" style="left:' + left.toFixed(2) + '%;width:' + width.toFixed(2) + '%"></span></span>';
+    gantt.insertBefore(row, playhead);
+    return {el:row, r:r};
+  });
+
+  /* sparkline: cumulative organisations engaged */
+  var sparkHost = $('#spark');
+  function renderSpark(m){
+    if(!sparkHost) return;
+    var W = Math.max(200, Math.round(sparkHost.clientWidth || 300)), H = 58, pad = 6;
+    var maxV = 13, pts = [];
+    for(var i=0;i<=MAXM;i++){
+      var x = (i / MAXM) * W;
+      var y = H - pad - (cumOrgs(i) / maxV) * (H - pad * 2);
+      pts.push([x,y]);
+    }
+    var d = '';
+    for(var j=0;j<pts.length;j++){
+      if(j === 0) d += 'M' + pts[j][0].toFixed(1) + ' ' + pts[j][1].toFixed(1);
+      else d += 'H' + pts[j][0].toFixed(1) + 'V' + pts[j][1].toFixed(1);
+    }
+    var area = d + 'V' + H + 'H0Z';
+    var cx = (m / MAXM) * W, cy = H - pad - (cumOrgs(m) / maxV) * (H - pad * 2);
+    sparkHost.innerHTML =
+      '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg">' +
+      '<defs><linearGradient id="spg" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0" stop-color="#4ADE80" stop-opacity=".30"/><stop offset="1" stop-color="#4ADE80" stop-opacity="0"/>' +
+      '</linearGradient></defs>' +
+      '<path d="' + area + '" fill="url(#spg)"/>' +
+      '<path d="' + d + '" fill="none" stroke="#4ADE80" stroke-width="1.6" stroke-linejoin="round"/>' +
+      '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="4" fill="#F5B54A"/>' +
+      '</svg>';
+  }
+
+  var roActive = $('#roActive'), roOrgs = $('#roOrgs'), roYears = $('#roYears');
+  var dateA = $('#scrubDate'), dateB = $('#scrubDate2'), chips = $('#scrubChips');
+
+  function update(){
+    var m = clamp(parseInt(slider.value,10) || 0, 0, MAXM);
+    var active = 0, places = {};
+    rows.forEach(function(row){
+      var isActive = (m >= row.r.s && m <= row.r.e);
+      var isPast = (m > row.r.e);
+      row.el.classList.toggle('is-active', isActive);
+      row.el.classList.toggle('is-past', isPast);
+      if(isActive){ active++; places[row.r.p] = true; }
+    });
+
+    var orgs = cumOrgs(m);
+    if(roActive) roActive.textContent = String(active);
+    if(roOrgs)   roOrgs.textContent   = fmt(orgs);
+    if(roYears)  roYears.textContent  = (m / 12).toFixed(1);
+    if(dateA) dateA.textContent = label(m);
+    if(dateB) dateB.textContent = label(m);
+
+    if(playhead) playhead.style.left = ((m / MAXM) * 100).toFixed(2) + '%';
+    slider.style.setProperty('--pct', ((m / MAXM) * 100).toFixed(2) + '%');
+    slider.setAttribute('aria-valuetext',
+      label(m) + ' — ' + active + ' active engagement' + (active === 1 ? '' : 's') +
+      ', ' + orgs + ' organisation' + (orgs === 1 ? '' : 's') + ' engaged cumulatively');
+
+    if(chips){
+      chips.innerHTML =
+        ['Rotterdam, NL','Delhi, India'].map(function(p){
+          var key = p.indexOf('Rotterdam') === 0 ? 'Rotterdam' : 'Delhi';
+          return '<i class="' + (places[key] ? 'on' : '') + '">' + p + '</i>';
+        }).join('') +
+        '<i class="' + (active ? 'on' : '') + '">' + (active ? 'engaged' : 'between engagements') + '</i>';
+    }
+    renderSpark(m);
+  }
+
+  slider.addEventListener('input', update);
+  slider.addEventListener('change', update);
+  window.addEventListener('resize', debounce(update, 160), PASSIVE);
+  if(document.fonts && document.fonts.ready && document.fonts.ready.then){
+    document.fonts.ready.then(update);
+  }
+  update();
+})();
+/* ---------- G · hero node field (cursor-reactive canvas) ---------- */
+(function(){
+  var cv = $('#field');
+  var hero = $('#hero');
+  if(!cv || !hero || !cv.getContext) return;
+  var ctx = cv.getContext('2d');
+  if(!ctx) return;
+
+  var w = 0, h = 0, dpr = 1, nodes = [], running = false, frame = 0;
+  var pointer = {x:0, y:0, on:false};
+  var R = 150;          /* cursor influence radius */
+  var LINK = 118;       /* max link distance */
+
+  function build(){
+    var rect = hero.getBoundingClientRect();
+    w = Math.max(1, Math.round(rect.width));
+    h = Math.max(1, Math.round(rect.height));
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width  = Math.round(w * dpr);
+    cv.height = Math.round(h * dpr);
+    cv.style.width = w + 'px';
+    cv.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    var count = clamp(Math.round((w * h) / 17000), 24, 78);
+    nodes = [];
+    for(var i=0;i<count;i++){
+      nodes.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.18,
+        vy: (Math.random() - 0.5) * 0.18,
+        r: 0.9 + Math.random() * 1.7,
+        px: 0, py: 0
+      });
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, w, h);
+    var i, j, n;
+
+    for(i=0;i<nodes.length;i++){
+      n = nodes[i];
+      n.px = n.x; n.py = n.y;
+      if(pointer.on){
+        var dx = n.x - pointer.x, dy = n.y - pointer.y;
+        var d  = Math.sqrt(dx*dx + dy*dy);
+        if(d > 0.001 && d < R){
+          var push = (1 - d / R);
+          var f = push * push * 34;
+          n.px = n.x + (dx / d) * f;
+          n.py = n.y + (dy / d) * f;
         }
-      });
-    },{rootMargin:'-45% 0px -50% 0px'});
-    sections.forEach(s=>so.observe(s));
-  })();
+      }
+    }
 
-  /* ---------- project filters ---------- */
-  (function(){
-    const filters = document.querySelectorAll('.filter');
-    const cards = document.querySelectorAll('#projGrid .proj');
-    filters.forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        filters.forEach(f=>f.classList.remove('active'));
-        btn.classList.add('active');
-        const f = btn.getAttribute('data-filter');
-        cards.forEach(c=>{
-          const show = f === 'all' || c.getAttribute('data-cat') === f;
-          c.classList.toggle('hide', !show);
-        });
-      });
-    });
-  })();
+    /* links */
+    ctx.lineWidth = 1;
+    for(i=0;i<nodes.length;i++){
+      for(j=i+1;j<nodes.length;j++){
+        var ax = nodes[i].px - nodes[j].px, ay = nodes[i].py - nodes[j].py;
+        var dd = Math.sqrt(ax*ax + ay*ay);
+        if(dd < LINK){
+          var a = (1 - dd / LINK) * 0.30;
+          ctx.strokeStyle = 'rgba(74,222,128,' + a.toFixed(3) + ')';
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].px, nodes[i].py);
+          ctx.lineTo(nodes[j].px, nodes[j].py);
+          ctx.stroke();
+        }
+      }
+    }
 
-  /* ---------- subtle card tilt (fine pointer only) ---------- */
-  (function(){
-    if (reduce || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
-    const max = 5;
-    document.querySelectorAll('.proj:not(.proj-featured), .domain').forEach(card=>{
-      card.addEventListener('pointermove', e=>{
-        const r = card.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - .5;
-        const py = (e.clientY - r.top) / r.height - .5;
-        card.style.transform = `perspective(900px) rotateX(${(-py*max).toFixed(2)}deg) rotateY(${(px*max).toFixed(2)}deg) translateY(-3px)`;
-      });
-      card.addEventListener('pointerleave', ()=>{ card.style.transform = ''; });
+    /* nodes — the ones near the cursor pick up the amber accent */
+    for(i=0;i<nodes.length;i++){
+      n = nodes[i];
+      var lit = 0;
+      if(pointer.on){
+        var ex = n.x - pointer.x, ey = n.y - pointer.y;
+        var ed = Math.sqrt(ex*ex + ey*ey);
+        if(ed < R) lit = 1 - ed / R;
+      }
+      ctx.fillStyle = lit > 0.05
+        ? 'rgba(245,181,74,' + (0.35 + lit * 0.6).toFixed(3) + ')'
+        : 'rgba(169,196,179,0.42)';
+      ctx.beginPath();
+      ctx.arc(n.px, n.py, n.r + lit * 1.6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function step(){
+    if(!running) return;
+    for(var i=0;i<nodes.length;i++){
+      var n = nodes[i];
+      n.x += n.vx; n.y += n.vy;
+      if(n.x < -20) n.x = w + 20; else if(n.x > w + 20) n.x = -20;
+      if(n.y < -20) n.y = h + 20; else if(n.y > h + 20) n.y = -20;
+    }
+    draw();
+    frame = raf(step);
+  }
+
+  function start(){ if(!running && !reduced()){ running = true; frame = raf(step); } }
+  function stop(){ running = false; if(window.cancelAnimationFrame) cancelAnimationFrame(frame); }
+
+  build();
+  draw();
+
+  if(!reduced()){
+    hero.addEventListener('pointermove', function(e){
+      var rect = cv.getBoundingClientRect();
+      pointer.x = e.clientX - rect.left;
+      pointer.y = e.clientY - rect.top;
+      pointer.on = true;
+    }, PASSIVE);
+    hero.addEventListener('pointerleave', function(){ pointer.on = false; }, PASSIVE);
+    hero.addEventListener('pointercancel', function(){ pointer.on = false; }, PASSIVE);
+
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(en){
+        if(en[0] && en[0].isIntersecting) start(); else stop();
+      }, {threshold:0});
+      io.observe(hero);
+    } else { start(); }
+
+    document.addEventListener('visibilitychange', function(){
+      if(document.hidden) stop(); else start();
     });
-  })();
+  }
+
+  window.addEventListener('resize', debounce(function(){
+    build();
+    draw();
+  }, 200), PASSIVE);
+
+  if(RM.addEventListener){
+    RM.addEventListener('change', function(){ if(reduced()){ stop(); draw(); } else { start(); } });
+  }
+})();
+
+/* ---------- H · tactile details ---------- */
+
+/* card tilt */
+(function(){
+  var cards = $$('[data-tilt]');
+  if(!cards.length || COARSE) return;
+  cards.forEach(function(card){
+    var raf_id = 0, tx = 0, ty = 0;
+    function apply(){
+      raf_id = 0;
+      card.style.transform = 'perspective(1100px) rotateX(' + ty.toFixed(2) + 'deg) rotateY(' + tx.toFixed(2) + 'deg) translate3d(0,-3px,0)';
+    }
+    card.addEventListener('pointermove', function(e){
+      if(reduced()) return;
+      var r = card.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width  - 0.5;
+      var py = (e.clientY - r.top)  / r.height - 0.5;
+      tx =  px * 3.2;
+      ty = -py * 2.4;
+      if(!raf_id) raf_id = raf(apply);
+    }, PASSIVE);
+    card.addEventListener('pointerleave', function(){
+      if(raf_id && window.cancelAnimationFrame){ cancelAnimationFrame(raf_id); raf_id = 0; }
+      card.style.transform = '';
+    }, PASSIVE);
+  });
+})();
+
+/* magnetic buttons */
+(function(){
+  var els = $$('[data-magnetic]');
+  if(!els.length || COARSE) return;
+  els.forEach(function(el){
+    el.addEventListener('pointermove', function(e){
+      if(reduced()) return;
+      var r = el.getBoundingClientRect();
+      var dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+      var dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+      el.style.transform = 'translate(' + (dx * 7).toFixed(2) + 'px,' + (dy * 5).toFixed(2) + 'px)';
+    }, PASSIVE);
+    el.addEventListener('pointerleave', function(){ el.style.transform = ''; }, PASSIVE);
+  });
+})();
+
+/* button ripple */
+(function(){
+  document.addEventListener('pointerdown', function(e){
+    var b = e.target.closest ? e.target.closest('.btn, .copy-btn') : null;
+    if(!b || reduced()) return;
+    var r = b.getBoundingClientRect();
+    var size = Math.max(r.width, r.height) * 2.1;
+    var i = document.createElement('span');
+    i.className = 'ripple';
+    i.style.width = i.style.height = size + 'px';
+    i.style.left = (e.clientX - r.left) + 'px';
+    i.style.top  = (e.clientY - r.top)  + 'px';
+    b.appendChild(i);
+    setTimeout(function(){ if(i.parentNode) i.parentNode.removeChild(i); }, 650);
+  }, PASSIVE);
+})();
+
+/* copy email */
+(function(){
+  var btn = $('#copyEmail');
+  if(!btn) return;
+  var t = 0;
+  function done(){
+    btn.classList.add('done');
+    clearTimeout(t);
+    t = setTimeout(function(){ btn.classList.remove('done'); }, 2200);
+  }
+  btn.addEventListener('click', function(){
+    var mail = btn.getAttribute('data-email') || '';
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(mail).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      try{
+        var ta = document.createElement('textarea');
+        ta.value = mail;
+        ta.setAttribute('readonly','');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        done();
+      }catch(err){ /* clipboard unavailable — the mailto button still works */ }
+    }
+  });
+})();
+
+/* smooth-scroll anchors keep keyboard focus with the target */
+(function(){
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if(!a) return;
+    var id = a.getAttribute('href');
+    if(!id || id === '#') return;
+    var target = document.getElementById(id.slice(1));
+    if(!target) return;
+    setTimeout(function(){
+      if(!target.hasAttribute('tabindex')) target.setAttribute('tabindex','-1');
+      try{ target.focus({preventScroll:true}); }catch(err){ target.focus(); }
+    }, reduced() ? 0 : 520);
+  });
+})();
+})();
 </script>
-
 </body>
 </html>

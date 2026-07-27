@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Musharraf Hassan — Strategy · Data · Impact</title>
-<meta name="description" content="Strategy and client-insights consultant for the impact-investing and NGO sector. I combine quantitative modelling with structured qualitative research and turn it into strategies clients adopt. Founder of Impact Root, Rotterdam.">
+<meta name="description" content="Sustainability data analyst in Rotterdam. Three public repositories — Dutch grid congestion and solar curtailment modelling, a CSRD/ESRS compliance study, and an NGO income-mix benchmark. Open the code, check the method.">
 <meta name="author" content="Musharraf Hassan">
 <meta name="theme-color" content="#07120D">
 <meta name="color-scheme" content="dark light">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Musharraf Hassan — Strategy · Data · Impact">
-<meta property="og:description" content="Strategy and client-insights consultant for impact investing and NGOs. Quantitative modelling plus structured qualitative research, turned into strategies clients adopt. Founder of Impact Root.">
+<meta property="og:description" content="Three public analysis repositories: NL grid congestion × solar curtailment (Python), CSRD/ESRS compliance (Python · SQL), NGO income-mix benchmark (Jupyter). Every number on this page is traceable to a repo.">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Musharraf Hassan — Strategy · Data · Impact">
-<meta name="twitter:description" content="Strategy and client-insights consultant for impact investing and NGOs. Founder of Impact Root, Rotterdam.">
+<meta name="twitter:description" content="Sustainability data analyst, Rotterdam. Three public repositories — grid modelling, CSRD/ESRS compliance, NGO income-mix benchmark.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -32,7 +32,7 @@
    04 HERO (dark)
    05 DASHBOARD (dark)
    06 TRANSITION BAND (dark -> light)
-   07 WORK / CASE STORIES (light)
+   07 PROJECTS (light)
    08 EXPERIENCE · SKILLS · EDUCATION (light)
    09 CONTACT (dark bookend) + FOOTER
    10 RESPONSIVE
@@ -191,6 +191,17 @@ section{scroll-margin-top:calc(var(--nav-h) + 8px)}
 }
 .mono{font-family:var(--f-mono)}
 .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+code{
+  font-family:var(--f-mono);
+  font-size:.86em;
+  letter-spacing:-.005em;
+  padding:.08em .3em;
+  border-radius:4px;
+  background:rgba(18,104,58,.08);
+  color:var(--acc,var(--accent-ink));
+  word-break:break-word;
+}
+.case-actions .stack code{background:none;padding:0;color:inherit}
 
 /* grain texture, dark half only */
 .grain::after{
@@ -501,7 +512,7 @@ h1.triad .w:nth-child(3){animation-delay:.22s}
 }
 .lens button{
   position:relative;z-index:1;
-  min-height:40px;
+  min-height:44px;
   padding:8px 17px;
   border:0;border-radius:999px;background:transparent;
   font-family:var(--f-mono);font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;
@@ -629,103 +640,6 @@ h1.triad .w:nth-child(3){animation-delay:.22s}
 }
 .chart-readout b{color:var(--fg);font-weight:500}
 
-/* timeline scrubber */
-.scrub{margin-top:20px}
-.scrub-readouts{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;
-  margin-bottom:18px;
-}
-.scrub-readouts div{
-  border:1px solid var(--line-soft);border-radius:11px;padding:11px 12px;min-width:0;
-  background:rgba(0,0,0,.16);
-}
-.scrub-readouts b{
-  display:block;font-family:var(--f-display);font-size:1.5rem;font-weight:600;
-  letter-spacing:-.03em;line-height:1.05;color:var(--fg);
-}
-.scrub-readouts span{
-  display:block;margin-top:5px;
-  font-family:var(--f-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--muted);line-height:1.4;
-}
-.gantt{position:relative;margin-top:6px}
-.gantt-row{
-  position:relative;
-  display:grid;grid-template-columns:1fr;
-  padding:7px 0;
-}
-.gantt-name{
-  font-family:var(--f-mono);font-size:.68rem;line-height:1.4;
-  color:var(--muted);
-  transition:color .25s var(--ease);
-  display:flex;gap:8px;align-items:baseline;
-}
-.gantt-name em{font-style:normal;opacity:.6}
-.gantt-track{
-  position:relative;height:11px;margin-top:6px;
-  background:rgba(255,255,255,.05);border-radius:999px;
-}
-.gantt-bar{
-  position:absolute;top:0;bottom:0;border-radius:999px;
-  background:linear-gradient(90deg,var(--accent-2),var(--accent));
-  opacity:.28;
-  transition:opacity .3s var(--ease),box-shadow .3s var(--ease);
-}
-.gantt-row.is-active .gantt-bar{opacity:1;box-shadow:0 0 18px -2px rgba(74,222,128,.55)}
-.gantt-row.is-active .gantt-name{color:var(--fg)}
-.gantt-row.is-past .gantt-bar{opacity:.4}
-.playhead{
-  position:absolute;top:0;bottom:0;width:1px;
-  background:var(--amber);
-  pointer-events:none;
-  transition:left .12s linear;
-}
-.playhead::before{
-  content:"";position:absolute;top:-5px;left:50%;transform:translateX(-50%);
-  width:9px;height:9px;border-radius:50%;background:var(--amber);
-}
-.spark{margin-top:16px;width:100%}
-.spark svg{display:block;width:100%;height:auto;overflow:visible}
-.scrub-slider{
-  margin-top:16px;
-  display:flex;align-items:center;gap:14px;
-}
-input[type="range"]{
-  -webkit-appearance:none;appearance:none;
-  flex:1;min-width:0;
-  height:44px;background:transparent;cursor:pointer;
-}
-input[type="range"]::-webkit-slider-runnable-track{
-  height:4px;border-radius:999px;
-  background:linear-gradient(90deg,var(--accent) var(--pct,50%),rgba(255,255,255,.14) var(--pct,50%));
-}
-input[type="range"]::-moz-range-track{height:4px;border-radius:999px;background:rgba(255,255,255,.14)}
-input[type="range"]::-moz-range-progress{height:4px;border-radius:999px;background:var(--accent)}
-input[type="range"]::-webkit-slider-thumb{
-  -webkit-appearance:none;appearance:none;
-  width:22px;height:22px;border-radius:50%;
-  background:var(--amber);border:3px solid var(--d-bg-2);
-  margin-top:-9px;
-  box-shadow:0 0 0 0 rgba(245,181,74,.35);
-  transition:box-shadow .2s var(--ease),transform .15s var(--ease);
-}
-input[type="range"]:hover::-webkit-slider-thumb{box-shadow:0 0 0 7px rgba(245,181,74,.18)}
-input[type="range"]:active::-webkit-slider-thumb{transform:scale(1.12)}
-input[type="range"]::-moz-range-thumb{
-  width:18px;height:18px;border-radius:50%;
-  background:var(--amber);border:3px solid var(--d-bg-2);
-}
-.scrub-date{
-  font-family:var(--f-mono);font-size:.78rem;letter-spacing:.06em;
-  color:var(--amb);white-space:nowrap;min-width:8.5ch;text-align:right;
-  font-variant-numeric:tabular-nums;
-}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
-.chips i{
-  font-style:normal;font-family:var(--f-mono);font-size:.64rem;letter-spacing:.08em;
-  border:1px solid var(--line-soft);border-radius:999px;padding:5px 10px;color:var(--muted);
-}
-.chips i.on{color:var(--acc);border-color:rgba(74,222,128,.45);background:rgba(74,222,128,.08)}
 .foot-note{
   margin-top:14px;font-family:var(--f-mono);font-size:.65rem;line-height:1.6;
   color:var(--muted);opacity:.85;
@@ -771,7 +685,7 @@ input[type="range"]::-moz-range-thumb{
   width:1px;height:clamp(48px,8vw,84px);margin:30px auto 0;
   background:linear-gradient(180deg,var(--accent),rgba(18,104,58,.15));
 }
-/* ---------- 07 WORK / CASE STORIES (light) ---------- */
+/* ---------- 07 PROJECTS (light) ---------- */
 .work{background:var(--l-bg)}
 .cases{margin-top:clamp(38px,5vw,60px);display:grid;gap:clamp(20px,3vw,32px)}
 
@@ -868,20 +782,23 @@ input[type="range"]::-moz-range-thumb{
 }
 .link-inline:hover{border-color:var(--accent-ink);gap:12px}
 .link-inline svg{width:15px;height:15px;flex:none}
-.no-link{
-  font-family:var(--f-mono);font-size:.68rem;color:var(--l-muted);letter-spacing:.05em;
+.case-actions .stack{
+  font-family:var(--f-mono);font-size:.66rem;line-height:1.6;
+  color:var(--l-muted);letter-spacing:.04em;margin-left:auto;text-align:right;
 }
 
-/* more on github */
+/* repository cards — theme-generic, so the same component works
+   inside the dark dashboard panel and the light projects section */
 .repos{
   margin-top:clamp(34px,4vw,52px);
   padding-top:clamp(30px,4vw,44px);
-  border-top:1px solid var(--l-line);
+  border-top:1px solid var(--line);
 }
 .repos h3{
   font-family:var(--f-mono);font-size:.72rem;font-weight:500;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);
+  letter-spacing:.16em;text-transform:uppercase;color:var(--acc);
 }
+.repos .lede{font-size:.95rem;margin-top:12px}
 .repo-grid{
   margin-top:20px;
   display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;
@@ -890,19 +807,23 @@ input[type="range"]::-moz-range-thumb{
   display:flex;flex-direction:column;gap:8px;
   min-height:44px;
   padding:20px;
-  border:1px solid var(--l-line);border-radius:14px;
-  background:var(--l-surface);
+  border:1px solid var(--card-line);border-radius:14px;
+  background:var(--card);
   text-decoration:none;
-  transition:transform .25s var(--ease),border-color .25s var(--ease),box-shadow .25s var(--ease);
+  transition:transform .25s var(--ease),border-color .25s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease);
 }
-.repo:hover{transform:translateY(-3px);border-color:rgba(18,104,58,.4);box-shadow:var(--shadow)}
+.repo:hover{transform:translateY(-3px);border-color:var(--acc);background:var(--card-2);box-shadow:var(--shadow)}
 .repo b{
   font-family:var(--f-display);font-size:1rem;font-weight:600;letter-spacing:-.02em;
   display:flex;align-items:center;justify-content:space-between;gap:10px;
+  color:var(--fg);
 }
-.repo b svg{width:15px;height:15px;flex:none;color:var(--accent-ink);transition:transform .25s var(--ease)}
+.repo b svg{width:15px;height:15px;flex:none;color:var(--acc);transition:transform .25s var(--ease)}
 .repo:hover b svg{transform:translate(2px,-2px)}
-.repo span{font-family:var(--f-mono);font-size:.68rem;line-height:1.6;color:var(--l-muted)}
+.repo span{font-family:var(--f-mono);font-size:.68rem;line-height:1.6;color:var(--muted)}
+.panel .repo-grid{margin-top:16px;grid-template-columns:1fr}
+.panel .repo{padding:16px 17px;border-radius:12px}
+.panel .repo b{font-size:.94rem}
 
 /* ---------- 08 EXPERIENCE · SKILLS · EDUCATION (light) ---------- */
 .exp{background:var(--l-bg-2)}
@@ -911,42 +832,37 @@ input[type="range"]::-moz-range-thumb{
   content:"";position:absolute;left:4px;top:8px;bottom:8px;width:1px;
   background:linear-gradient(180deg,var(--accent-ink),rgba(18,104,58,.12));
 }
+/* deliberately quiet: supporting context, not a headline */
 .job{
   position:relative;
-  padding:22px 22px 24px;
-  border-radius:16px;
+  padding:15px 20px 16px;
+  border-radius:14px;
   transition:background .3s var(--ease),transform .3s var(--ease);
 }
-.job + .job{margin-top:8px}
+.job + .job{margin-top:2px}
 .job::before{
-  content:"";position:absolute;left:-26px;top:30px;
-  width:9px;height:9px;border-radius:50%;
+  content:"";position:absolute;left:-26px;top:22px;
+  width:7px;height:7px;border-radius:50%;
   background:var(--l-bg-2);border:2px solid var(--accent-ink);
   transition:background .3s var(--ease),transform .3s var(--ease);
 }
 .job:hover{background:var(--l-surface);transform:translateX(3px)}
 .job:hover::before{background:var(--accent-ink);transform:scale(1.25)}
-.job-head{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;justify-content:space-between}
-.job h3{font-size:1.14rem;letter-spacing:-.02em;font-weight:600}
+.job-head{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;justify-content:space-between}
+.job h3{font-size:1rem;letter-spacing:-.015em;font-weight:600}
 .job .org{
-  display:block;margin-top:5px;
-  font-family:var(--f-body);font-size:.94rem;color:var(--l-muted);
+  display:block;margin-top:3px;
+  font-family:var(--f-body);font-size:.9rem;color:var(--l-muted);
 }
 .job .when{
-  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--accent-ink);white-space:nowrap;
+  font-family:var(--f-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--l-muted);white-space:nowrap;
   font-variant-numeric:tabular-nums;
 }
-.job ul{margin-top:14px;display:grid;gap:8px}
-.job li{
-  position:relative;padding-left:18px;
-  font-size:.95rem;color:var(--l-muted);
+.job .note{
+  margin-top:8px;
+  font-size:.9rem;line-height:1.55;color:var(--l-muted);
 }
-.job li::before{
-  content:"";position:absolute;left:0;top:.62em;
-  width:6px;height:1.5px;background:var(--accent-ink);opacity:.7;
-}
-.job li strong{color:var(--l-ink);font-weight:600;font-variant-numeric:tabular-nums}
 
 .skills{background:var(--l-bg)}
 .skill-groups{margin-top:clamp(34px,4vw,52px);display:grid;gap:14px;grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -1090,10 +1006,6 @@ input[type="range"]::-moz-range-thumb{
 @media (max-width:820px){
   .hero-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 18px}
   .dash-head{flex-direction:column;align-items:stretch}
-  .scrub-readouts{grid-template-columns:1fr}
-  .scrub-readouts div{display:flex;align-items:baseline;gap:12px}
-  .scrub-readouts b{font-size:1.32rem}
-  .scrub-readouts span{margin-top:0}
 }
 @media (max-width:760px){
   :root{--nav-h:60px}
@@ -1121,6 +1033,7 @@ input[type="range"]::-moz-range-thumb{
   .scroll-cue{display:none}
   .metrics{grid-template-columns:1fr}
   .case-top{flex-direction:column}
+  .case-actions .stack{margin-left:0;text-align:left;width:100%}
   .job{padding-inline:16px}
   .timeline{padding-left:22px}
   .job::before{left:-22px}
@@ -1172,9 +1085,9 @@ input[type="range"]::-moz-range-thumb{
       <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
     <nav class="nav-links" id="navLinks" aria-label="Sections">
-      <a href="#impact">Impact</a>
-      <a href="#work">Work</a>
-      <a href="#experience">Experience</a>
+      <a href="#impact">Evidence</a>
+      <a href="#work">Projects</a>
+      <a href="#experience">Background</a>
       <a href="#skills">Skills</a>
       <a class="nav-cta" href="#contact">Get in touch</a>
     </nav>
@@ -1197,29 +1110,32 @@ input[type="range"]::-moz-range-thumb{
     </h1>
     <hr class="triad-rule" aria-hidden="true">
 
-    <p class="hero-sub">I turn field research and quantitative models into strategies clients actually adopt.</p>
+    <p class="hero-sub">I build the analysis. The method and the data are public.</p>
     <p class="hero-body">
-      Strategy and client-insights consultant for the <strong>impact-investing and NGO sector</strong>.
-      I pair quantitative modelling — scraped financials, targeting models, scoring rubrics —
-      with <strong>structured qualitative research</strong>, so the recommendation arrives with its evidence attached.
+      Sustainability and energy analysis in <strong>Python, SQL and notebooks</strong> — grid-congestion
+      and solar-curtailment modelling, CSRD/ESRS compliance scoring, NGO income-mix benchmarking.
+      Three <strong>public repositories</strong>: open the code, read the methodology file, check the numbers yourself.
     </p>
 
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#impact" data-magnetic>
-        See the numbers
+      <a class="btn btn-primary" href="#work" data-magnetic>
+        See the projects
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       </a>
-      <a class="btn btn-ghost" href="#work" data-magnetic>Read the case stories</a>
+      <a class="btn btn-ghost" href="https://github.com/mushaha97-droid" target="_blank" rel="noopener noreferrer" data-magnetic>
+        github.com/mushaha97-droid
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
     </div>
 
     <ul class="hero-strip">
-      <li><b class="num">9</b><span>organisations advised</span></li>
-      <li><b class="num">$50K</b><span>CSR funding contributed to</span></li>
-      <li><b class="num">1,000</b><span>corporates ranked</span></li>
-      <li><b class="num">3</b><span>countries worked</span></li>
+      <li><b class="num">3</b><span>public repositories</span></li>
+      <li><b class="num">38</b><span>EU companies scored</span></li>
+      <li><b class="num">14</b><span>NGOs benchmarked</span></li>
+      <li><b class="num">9</b><span>Python modules in the grid model</span></li>
     </ul>
   </div>
-  <a class="scroll-cue" href="#impact" aria-label="Scroll to the impact dashboard">
+  <a class="scroll-cue" href="#impact" aria-label="Scroll to the evidence dashboard">
     <span>Scroll</span><i aria-hidden="true"></i>
   </a>
 </section>
@@ -1230,73 +1146,80 @@ input[type="range"]::-moz-range-thumb{
     <div class="dash-head reveal">
       <div>
         <p class="eyebrow">01 — The evidence</p>
-        <h2 class="h2" id="impactTitle">A consultant's work,<br>in numbers you can touch.</h2>
-        <p class="lede">Every figure below comes from delivered work. Switch the lens to see the same
-          portfolio through an advisory, research, or data view.</p>
+        <h2 class="h2" id="impactTitle">Every number here comes from<br>a repository you can open.</h2>
+        <p class="lede">No client figures, no rounded-up outcomes. Each metric below is a count you can
+          reproduce from the code and data in one of three public repos. Switch the lens to see them
+          as research, modelling or engineering.</p>
       </div>
       <div class="lens" id="lens" role="tablist" aria-label="Filter metrics by lens">
         <span class="thumb" aria-hidden="true"></span>
         <button type="button" role="tab" id="lens-all" aria-selected="true" aria-controls="metricGrid" data-lens="all" tabindex="0">All</button>
-        <button type="button" role="tab" id="lens-advisory" aria-selected="false" aria-controls="metricGrid" data-lens="advisory" tabindex="-1">Advisory</button>
         <button type="button" role="tab" id="lens-research" aria-selected="false" aria-controls="metricGrid" data-lens="research" tabindex="-1">Research</button>
-        <button type="button" role="tab" id="lens-data" aria-selected="false" aria-controls="metricGrid" data-lens="data" tabindex="-1">Data</button>
+        <button type="button" role="tab" id="lens-modelling" aria-selected="false" aria-controls="metricGrid" data-lens="modelling" tabindex="-1">Modelling</button>
+        <button type="button" role="tab" id="lens-engineering" aria-selected="false" aria-controls="metricGrid" data-lens="engineering" tabindex="-1">Engineering</button>
       </div>
     </div>
 
     <ul class="metrics reveal" id="metricGrid" role="tabpanel" aria-labelledby="lens-all" tabindex="0">
-      <li class="metric" data-lens="advisory">
-        <div class="v num"><span data-count="9">9</span></div>
-        <p class="l">organisations advised</p>
-        <p class="n">3 paid · 6 pro bono — 4 Dutch ANBI partners, 5 international NGOs</p>
-        <p class="tags"><i>advisory</i></p>
-      </li>
-      <li class="metric" data-lens="advisory data">
-        <div class="v num"><span class="unit">$</span><span data-count="50">50</span><span class="unit">K</span></div>
-        <p class="l">CSR funding contributed to</p>
-        <p class="n">Delhi-NCR donor pipeline → USD 50,000 raised</p>
-        <p class="tags"><i>advisory</i><i>data</i></p>
-      </li>
-      <li class="metric" data-lens="data advisory">
-        <div class="v num"><span data-count="1000">1,000</span></div>
-        <p class="l">corporates ranked</p>
-        <p class="n">donation-readiness targeting model, Delhi-NCR</p>
-        <p class="tags"><i>data</i><i>advisory</i></p>
-      </li>
-      <li class="metric" data-lens="research data">
+      <li class="metric" data-lens="research">
         <div class="v num"><span data-count="38">38</span></div>
         <p class="l">EU companies scored</p>
-        <p class="n">19 AI-platform users vs 19 matched peers</p>
-        <p class="tags"><i>research</i><i>data</i></p>
-      </li>
-      <li class="metric" data-lens="research">
-        <div class="v num"><span data-count="28">28</span></div>
-        <p class="l">stakeholder interviews coded</p>
-        <p class="n">20 investor + 8 field · Atlas.ti, Gioia methodology</p>
+        <p class="n">2024 sustainability reports · CSRD-compliance repo</p>
         <p class="tags"><i>research</i></p>
       </li>
       <li class="metric" data-lens="research">
+        <div class="v num"><span data-count="19">19</span><span class="unit">vs</span><span data-count="19">19</span></div>
+        <p class="l">AI-platform users vs matched peers</p>
+        <p class="n">paired sample design · CSRD-compliance repo</p>
+        <p class="tags"><i>research</i></p>
+      </li>
+      <li class="metric" data-lens="research modelling">
         <div class="v num"><span data-count="12">12</span></div>
-        <p class="l">ESRS standards applied</p>
-        <p class="n">0–3 rubric · 456 scored data points · κ ≈ 0.92</p>
+        <p class="l">ESRS standards per report</p>
+        <p class="n">0–3 disclosure-completeness rubric · SCORING_METHODOLOGY.md</p>
+        <p class="tags"><i>research</i><i>modelling</i></p>
+      </li>
+      <li class="metric" data-lens="research modelling">
+        <div class="v num"><span data-count="456">456</span></div>
+        <p class="l">individual scored data points</p>
+        <p class="n">38 companies × 12 standards · compliance_scores.csv</p>
+        <p class="tags"><i>research</i><i>modelling</i></p>
+      </li>
+      <li class="metric" data-lens="research">
+        <div class="v num"><span class="unit">κ</span><span>0.92</span></div>
+        <p class="l">human / AI inter-rater agreement</p>
+        <p class="n">Cohen's κ · human-led, AI-verified, human-reconciled scoring</p>
         <p class="tags"><i>research</i></p>
       </li>
-      <li class="metric" data-lens="data">
-        <div class="v num"><span data-count="5">5</span></div>
-        <p class="l">years of carbon-market data</p>
-        <p class="n">Verra &amp; Gold Standard screening in Python and Power BI</p>
-        <p class="tags"><i>data</i></p>
+      <li class="metric" data-lens="research engineering">
+        <div class="v num"><span data-count="14">14</span></div>
+        <p class="l">NGOs benchmarked on income mix</p>
+        <p class="n">dataset built with build_dataset.py · ANBI repo</p>
+        <p class="tags"><i>research</i><i>engineering</i></p>
       </li>
-      <li class="metric" data-lens="advisory">
-        <div class="v num"><span data-count="10">10</span></div>
-        <p class="l">biomass products structured</p>
-        <p class="n">into a five-year roadmap and go-to-market plan</p>
-        <p class="tags"><i>advisory</i></p>
+      <li class="metric" data-lens="research modelling">
+        <div class="v num"><span data-count="70">70</span><span class="unit">%</span></div>
+        <p class="l">of pooled income from business sources</p>
+        <p class="n">for NGOs above €5M — corporate sponsors and foundation grants</p>
+        <p class="tags"><i>research</i><i>modelling</i></p>
       </li>
-      <li class="metric" data-lens="advisory research data">
+      <li class="metric" data-lens="modelling engineering">
+        <div class="v num"><span data-count="9">9</span></div>
+        <p class="l">Python modules in the NL grid model</p>
+        <p class="n">src/ — boundaries, congestion, pv_model, curtailment, knmi, bridge …</p>
+        <p class="tags"><i>modelling</i><i>engineering</i></p>
+      </li>
+      <li class="metric" data-lens="engineering">
         <div class="v num"><span data-count="3">3</span></div>
-        <p class="l">countries worked</p>
-        <p class="n">China · India · Netherlands</p>
-        <p class="tags"><i>advisory</i><i>research</i><i>data</i></p>
+        <p class="l">test modules covering that model</p>
+        <p class="n">pytest — test_boundaries, test_config, test_congestion · plus conftest.py</p>
+        <p class="tags"><i>engineering</i></p>
+      </li>
+      <li class="metric" data-lens="research modelling engineering">
+        <div class="v num"><span data-count="3">3</span></div>
+        <p class="l">public analysis repositories</p>
+        <p class="n">all open — code, data and methodology notes included</p>
+        <p class="tags"><i>research</i><i>modelling</i><i>engineering</i></p>
       </li>
     </ul>
 
@@ -1305,58 +1228,61 @@ input[type="range"]::-moz-range-thumb{
       <section class="panel reveal" aria-labelledby="evTitle">
         <div class="panel-head">
           <div>
-            <h3 id="evTitle">The evidence base</h3>
-            <p class="cap">Primary units of evidence produced or analysed, by engagement.</p>
+            <h3 id="evTitle">Countable units of analysis</h3>
+            <p class="cap">Things that exist as rows, files or modules in a public repo.</p>
           </div>
           <span class="badge">√ scale</span>
         </div>
         <div class="chart-host" id="evidenceChart"></div>
         <p class="chart-readout" id="evidenceReadout" aria-live="polite">
-          Hover, tap or tab through a bar to see where each figure comes from.
+          Hover, tap or tab through a bar to see which repository the figure comes from.
+        </p>
+        <p class="foot-note">
+          Bars use a square-root scale so the 3s stay visible next to the 456 — bar length is
+          proportional to √value, not to value. The printed number is the real count.
         </p>
         <table class="sr-only" id="evidenceTable">
-          <caption>Evidence base: units of primary evidence produced or analysed, by engagement</caption>
+          <caption>Countable units of analysis, with the repository each figure comes from</caption>
           <thead><tr><th scope="col">Measure</th><th scope="col">Count</th><th scope="col">Source</th></tr></thead>
           <tbody></tbody>
         </table>
       </section>
 
-      <!-- timeline scrubber -->
-      <section class="panel reveal" aria-labelledby="tlTitle">
+      <!-- repository ledger -->
+      <section class="panel reveal" aria-labelledby="srcTitle">
         <div class="panel-head">
           <div>
-            <h3 id="tlTitle">Engagements over time</h3>
-            <p class="cap">Drag the scrubber to move through the portfolio, month by month.</p>
+            <h3 id="srcTitle">Where the numbers live</h3>
+            <p class="cap">Three repositories. Everything above traces back to one of them.</p>
           </div>
-          <span class="badge" id="scrubDate">Jul 2026</span>
+          <span class="badge">public</span>
         </div>
 
-        <div class="scrub">
-          <div class="scrub-readouts">
-            <div><b class="num" id="roActive">1</b><span>active engagements</span></div>
-            <div><b class="num" id="roOrgs">13</b><span>organisations engaged, cumulative</span></div>
-            <div><b class="num" id="roYears">2.6</b><span>years elapsed</span></div>
-          </div>
-
-          <div class="gantt" id="gantt">
-            <div class="playhead" id="playhead" aria-hidden="true"></div>
-          </div>
-
-          <div class="spark" id="spark" aria-hidden="true"></div>
-
-          <div class="scrub-slider">
-            <label class="sr-only" for="scrubber">Timeline month, January 2024 to July 2026</label>
-            <input type="range" id="scrubber" min="0" max="30" step="1" value="30"
-                   aria-valuetext="July 2026 — 1 active engagement, 13 organisations engaged">
-            <span class="scrub-date num" id="scrubDate2">Jul 2026</span>
-          </div>
-
-          <p class="chips" id="scrubChips" aria-live="polite"></p>
-          <p class="foot-note">
-            Cumulative count of distinct organisations engaged. Impact Root's 9 advised organisations
-            are counted from its founding month (Jul 2025); paid and pro bono engagements ramped across the period.
-          </p>
+        <div class="repo-grid">
+          <a class="repo" href="https://github.com/mushaha97-droid/dutch-electric-grid-" target="_blank" rel="noopener noreferrer">
+            <b>dutch-electric-grid-
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </b>
+            <span>Python · 9 modules in src/, 3 pytest modules, environment.yml, Streamlit app</span>
+          </a>
+          <a class="repo" href="https://github.com/mushaha97-droid/CSRD-compliance-" target="_blank" rel="noopener noreferrer">
+            <b>CSRD-compliance-
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </b>
+            <span>Python · SQL · 38 companies, 12 ESRS standards, 456 scores in compliance.db</span>
+          </a>
+          <a class="repo" href="https://github.com/mushaha97-droid/ANBI-funding-structure-" target="_blank" rel="noopener noreferrer">
+            <b>ANBI-funding-structure-
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </b>
+            <span>Jupyter · 14 NGOs' income by source, built and analysed in a notebook</span>
+          </a>
         </div>
+
+        <p class="foot-note">
+          Counts are of artefacts in the repositories — files, modules, rows and scored cells —
+          not of client engagements or delivered outcomes.
+        </p>
       </section>
     </div>
   </div>
@@ -1366,8 +1292,9 @@ input[type="range"]::-moz-range-thumb{
 <section class="handoff" id="handoff" data-zone="dark" aria-label="Transition">
   <div class="wrap">
     <div class="thread" aria-hidden="true"></div>
-    <h2>Raw data becomes <em>clear advice.</em></h2>
-    <p>Everything above is measurement. Everything below is what clients did with it.</p>
+    <h2>Raw data becomes <em>a question answered.</em></h2>
+    <p>Everything above is a count. Everything below is the question it was collected to answer,
+      the method used, and what the data actually said.</p>
     <div class="thread-2" aria-hidden="true"></div>
   </div>
 </section>
@@ -1375,202 +1302,152 @@ input[type="range"]::-moz-range-thumb{
 <section class="work band t-light" id="work" data-zone="light" aria-labelledby="workTitle">
   <div class="wrap">
     <div class="reveal">
-      <p class="eyebrow">02 — Case stories</p>
-      <h2 class="h2" id="workTitle">Three problems, three methods,<br>three things that got adopted.</h2>
-      <p class="lede">Each one starts with a decision someone had to make, and ends with what they did differently.
-        Method included — even for the study where the honest answer was "no effect".</p>
+      <p class="eyebrow">02 — Projects</p>
+      <h2 class="h2" id="workTitle">Three questions, three methods,<br>three repositories you can open.</h2>
+      <p class="lede">Each project starts with a question, states how it was answered, and reports what the
+        data said — including where the answer is "not significant" and where a number is an assumption
+        rather than a measurement.</p>
     </div>
 
     <div class="cases">
 
-      <!-- CASE 01 — RAAP! -->
+      <!-- PROJECT 01 — NL grid congestion × solar curtailment -->
       <article class="case reveal" data-tilt aria-labelledby="case1">
         <div class="case-top">
           <div>
-            <p class="case-idx">CASE 01 / FUNDING STRATEGY</p>
-            <h3 id="case1">RAAP! — Revenue diversification strategy
-              <small>A funding base built from what investors said they would actually fund.</small>
+            <p class="case-idx">PROJECT 01 / ENERGY MODELLING</p>
+            <h3 id="case1">NL grid congestion × solar curtailment
+              <small>What does Dutch grid congestion actually cost a household with rooftop solar?</small>
             </h3>
           </div>
-          <p class="case-meta"><i>Rotterdam</i><i>Jan–Apr 2025</i><i>Regenerative agriculture</i></p>
+          <p class="case-meta"><i>Python</i><i>pvlib · PVGIS</i><i>pytest</i><i>Folium / Leaflet</i><i>Streamlit</i></p>
         </div>
 
         <div class="case-body">
           <div class="pmo">
             <div>
-              <h4>Problem</h4>
-              <p>A Dutch regenerative-agriculture venture needed a <strong>resilient funding base</strong> —
-                not one more grant cycle, but a revenue structure that could survive donor churn.</p>
+              <h4>The question</h4>
+              <p>New Dutch grid rules take effect on <strong>1 July 2026</strong>. Congestion is usually
+                discussed as a network-operator problem. Framed from the other end: for a household that
+                already has panels on the roof, what does it cost — in kWh and in euros?</p>
             </div>
             <div>
-              <h4>Method</h4>
-              <p>Scraped <strong>anbi.nl</strong> financial statements of Dutch public-benefit organisations and
-                mapped revenue mix, cost structure and donor concentration across <strong>14 peer NGOs</strong>.
-                In parallel, ran <strong>20 impact-investor interviews</strong>, coded in Atlas.ti using the
-                <strong>Gioia methodology</strong>.</p>
+              <h4>The method</h4>
+              <p>Two layers and a bridge. The <strong>spatial layer</strong>
+                (<code>boundaries.py</code>, <code>congestion.py</code>) classifies each NL area by
+                <em>afname</em> (offtake) and <em>teruglevering</em> (feed-in) status from the
+                <strong>ACM register</strong>, normalised to <code>available / limited / under_study /
+                congested</code> with a feed-in severity score of 0–3. The <strong>temporal layer</strong>
+                (<code>pv_model.py</code>, <code>curtailment.py</code>, <code>knmi.py</code>) models hourly
+                residential PV with <strong>pvlib + PVGIS</strong> and a <strong>KNMI</strong> cross-check,
+                detects peak-export hours, and computes lost kWh plus a two-bucket euro loss — netted volume
+                at roughly the retail rate, surplus at the <em>terugleververgoeding</em>, under 2026 full
+                <em>saldering</em>.</p>
             </div>
             <div class="outcome">
-              <h4>Adopted outcome</h4>
-              <p>A funding strategy the client <strong>adopted</strong> — pairing willingness-to-fund evidence
-                from investors with market data from peers, so every recommended revenue stream arrived with
-                proof that someone would pay for it.</p>
+              <h4>What the model outputs</h4>
+              <p>A per-area feed-in severity map and, for a modelled household, the curtailed kWh and the
+                split euro loss behind it. The link from severity to curtailment lives in
+                <code>bridge.py</code> and is <strong>an explicit, documented, adjustable assumption —
+                not a measured correlation</strong>. It is written down as a scenario dial precisely so a
+                reader can disagree with it and change it. That distinction is the point of the repo.</p>
             </div>
           </div>
 
           <figure class="case-viz">
-            <svg viewBox="0 0 280 186" role="img" aria-label="Diagram: 14 peer NGO financial statements and 20 investor interviews combine into one adopted funding strategy.">
-              <g fill="currentColor" opacity=".55" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing=".08em">
-                <text x="0" y="9">14 PEER NGOs · REVENUE MIX</text>
-                <text x="0" y="80">20 INVESTOR INTERVIEWS</text>
-                <text x="0" y="150">ADOPTED STRATEGY</text>
+            <svg viewBox="0 0 280 196" role="img" aria-label="Schematic: a spatial congestion layer and a temporal solar-generation layer are joined by bridge.py, an explicit documented assumption rather than a measured correlation, producing a pre-computed static choropleth in the docs folder.">
+              <g font-family="IBM Plex Mono, monospace" font-size="7.5" letter-spacing=".03em">
+                <rect x="0" y="4" width="130" height="60" rx="8" fill="#12683A" opacity=".12"/>
+                <rect x="150" y="4" width="130" height="60" rx="8" fill="#12683A" opacity=".12"/>
+                <g fill="#0F2A1E" font-size="8" letter-spacing=".1em">
+                  <text x="10" y="19">SPATIAL LAYER</text>
+                  <text x="160" y="19">TEMPORAL LAYER</text>
+                </g>
+                <g fill="#12683A">
+                  <text x="10" y="33">boundaries.py</text>
+                  <text x="10" y="43">congestion.py</text>
+                  <text x="160" y="33">pv_model.py · knmi.py</text>
+                  <text x="160" y="43">curtailment.py</text>
+                </g>
+                <g fill="#455C4E">
+                  <text x="10" y="57">ACM register · 4 states</text>
+                  <text x="160" y="57">pvlib + PVGIS hourly</text>
+                </g>
               </g>
-              <!-- 14 peer statements -->
-              <g fill="#12683A">
-                <rect x="0" y="18" width="16" height="22" rx="2" opacity=".85"/>
-                <rect x="20" y="22" width="16" height="18" rx="2" opacity=".55"/>
-                <rect x="40" y="14" width="16" height="26" rx="2" opacity=".95"/>
-                <rect x="60" y="26" width="16" height="14" rx="2" opacity=".4"/>
-                <rect x="80" y="20" width="16" height="20" rx="2" opacity=".7"/>
-                <rect x="100" y="24" width="16" height="16" rx="2" opacity=".5"/>
-                <rect x="120" y="16" width="16" height="24" rx="2" opacity=".9"/>
-                <rect x="140" y="28" width="16" height="12" rx="2" opacity=".35"/>
-                <rect x="160" y="21" width="16" height="19" rx="2" opacity=".65"/>
-                <rect x="180" y="17" width="16" height="23" rx="2" opacity=".8"/>
-                <rect x="200" y="27" width="16" height="13" rx="2" opacity=".38"/>
-                <rect x="220" y="23" width="16" height="17" rx="2" opacity=".55"/>
-                <rect x="240" y="19" width="16" height="21" rx="2" opacity=".72"/>
-                <rect x="260" y="25" width="16" height="15" rx="2" opacity=".45"/>
+              <g stroke="#12683A" stroke-width="1.1" fill="none" opacity=".5">
+                <path d="M65 64 C 65 82, 140 78, 140 94"/>
+                <path d="M215 64 C 215 82, 140 78, 140 94"/>
               </g>
-              <text x="0" y="52" fill="currentColor" opacity=".45" font-family="IBM Plex Mono, monospace" font-size="7.5">donor concentration mapped per organisation</text>
-              <!-- 20 interviews -->
-              <g fill="#0F2A1E" opacity=".8">
-                <circle cx="4" cy="92" r="3.4"/><circle cx="18" cy="92" r="3.4"/><circle cx="32" cy="92" r="3.4"/><circle cx="46" cy="92" r="3.4"/><circle cx="60" cy="92" r="3.4"/>
-                <circle cx="74" cy="92" r="3.4"/><circle cx="88" cy="92" r="3.4"/><circle cx="102" cy="92" r="3.4"/><circle cx="116" cy="92" r="3.4"/><circle cx="130" cy="92" r="3.4"/>
-                <circle cx="144" cy="92" r="3.4"/><circle cx="158" cy="92" r="3.4"/><circle cx="172" cy="92" r="3.4"/><circle cx="186" cy="92" r="3.4"/><circle cx="200" cy="92" r="3.4"/>
-                <circle cx="214" cy="92" r="3.4"/><circle cx="228" cy="92" r="3.4"/><circle cx="242" cy="92" r="3.4"/><circle cx="256" cy="92" r="3.4"/><circle cx="270" cy="92" r="3.4"/>
+              <rect x="24" y="96" width="232" height="42" rx="10" fill="#12683A"/>
+              <g font-family="IBM Plex Mono, monospace" text-anchor="middle">
+                <text x="140" y="112" fill="#F7F5EF" font-size="8.5" letter-spacing=".08em">bridge.py — severity 0–3 → scenario</text>
+                <text x="140" y="124" fill="#4ADE80" font-size="7">EXPLICIT · DOCUMENTED · ADJUSTABLE</text>
+                <text x="140" y="133" fill="#4ADE80" font-size="7">ASSUMPTION, NOT A CORRELATION</text>
               </g>
-              <text x="0" y="110" fill="currentColor" opacity=".45" font-family="IBM Plex Mono, monospace" font-size="7.5">coded in Atlas.ti · Gioia 1st order → 2nd order → dimensions</text>
-              <!-- convergence -->
-              <path d="M4 118 C 90 128, 120 128, 140 134" stroke="#12683A" stroke-width="1.2" fill="none" opacity=".5"/>
-              <path d="M276 118 C 190 128, 160 128, 140 134" stroke="#12683A" stroke-width="1.2" fill="none" opacity=".5"/>
-              <rect x="52" y="156" width="176" height="24" rx="12" fill="#12683A"/>
-              <text x="140" y="171.5" text-anchor="middle" fill="#F7F5EF" font-family="IBM Plex Mono, monospace" font-size="8.5" letter-spacing=".1em">FUNDING STRATEGY · ADOPTED</text>
+              <g stroke="#12683A" stroke-width="1" opacity=".45"><path d="M140 138v12"/></g>
+              <g fill="#12683A" opacity=".45"><path d="M137 148l3 4 3-4z"/></g>
+              <rect x="40" y="158" width="200" height="26" rx="13" fill="none" stroke="#12683A" stroke-width="1.2"/>
+              <text x="140" y="174.5" text-anchor="middle" fill="#0F2A1E" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing=".07em">STATIC CHOROPLETH → docs/</text>
             </svg>
-            <figcaption class="viz-cap">Quant peer benchmark × qualitative willingness-to-fund → one strategy.</figcaption>
+            <figcaption class="viz-cap">Where geography meets generation — with the assumption named, not buried.</figcaption>
           </figure>
         </div>
 
         <div class="case-actions">
-          <a class="link-inline" href="https://github.com/mushaha97-droid/ANBI-funding-structure-" target="_blank" rel="noopener noreferrer">
-            ANBI funding-structure analysis on GitHub
+          <a class="link-inline" href="https://github.com/mushaha97-droid/dutch-electric-grid-" target="_blank" rel="noopener noreferrer">
+            Open the repository
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
           </a>
+          <span class="stack">9 modules in <code>src/</code> · pytest suite + <code>conftest.py</code> · <code>environment.yml</code> · notebooks/ · <code>streamlit_app.py</code><br>
+            Map output is pre-computed to <code>docs/</code> — no live backend, and no hosted demo to log into.</span>
         </div>
       </article>
 
-      <!-- CASE 02 — Development Alternatives -->
+      <!-- PROJECT 02 — CSRD / ESRS compliance study -->
       <article class="case reveal" data-tilt aria-labelledby="case2">
         <div class="case-top">
           <div>
-            <p class="case-idx">CASE 02 / GO-TO-MARKET</p>
-            <h3 id="case2">Development Alternatives — Biomass go-to-market strategy
-              <small>A district biomass roadmap built from five blocks of field evidence.</small>
+            <p class="case-idx">PROJECT 02 / APPLIED RESEARCH</p>
+            <h3 id="case2">Does AI actually improve ESG compliance?
+              <small>The compliance-scoring component of an MSc thesis at Erasmus University Rotterdam,
+                extended with a deeper statistical re-analysis.</small>
             </h3>
           </div>
-          <p class="case-meta"><i>Delhi</i><i>Dec 2025–May 2026</i><i>Biomass enterprise</i></p>
+          <p class="case-meta"><i>Python</i><i>SQL · SQLite</i><i>Erasmus Rotterdam</i><i>MSc thesis</i></p>
         </div>
 
         <div class="case-body">
           <div class="pmo">
             <div>
-              <h4>Problem</h4>
-              <p>A district biomass strategy needed <strong>evidence, not assumptions</strong> — real adoption
-                barriers and real supply-chain constraints, before anyone committed to a product portfolio.</p>
+              <h4>The question</h4>
+              <p>AI-assisted ESG reporting tools claim they improve compliance. Do reports produced with
+                them actually score higher against the <strong>European Sustainability Reporting Standards
+                (ESRS)</strong> under CSRD? Thesis: <em>"The Sustainability Paradox: How AI is Revolutionizing
+                Sustainability Reporting While Creating New Challenges."</em></p>
             </div>
             <div>
-              <h4>Method</h4>
-              <p>Field study across <strong>5 administrative blocks</strong> on supply-chain bottlenecks and
-                adoption barriers, with <strong>8 interviews</strong> coded in Atlas.ti. Enterprise packages
-                standardised for <strong>2 business types</strong> — business plan, cost-benefit analysis and
-                financial projections for each. Technology pipeline screened on
-                <strong>technological and commercial readiness</strong>.</p>
+              <h4>The method</h4>
+              <p><strong>38 EU companies</strong> — 19 using AI ESG platforms, paired with 19 matched
+                traditional peers. Their <strong>2024 sustainability reports</strong> were scored against
+                the <strong>12 ESRS standards</strong> on a 0–3 disclosure-completeness rubric
+                (Morhardt et al., 2002). Scoring was human-led against the ESRS directive, AI-verified,
+                then human-reconciled: <strong>≈95% agreement, Cohen's κ ≈ 0.92</strong>.</p>
             </div>
             <div class="outcome">
-              <h4>Adopted outcome</h4>
-              <p><strong>10 biomass-linked products</strong> structured into a <strong>five-year roadmap</strong>
-                and go-to-market plan, with a modelled base case of <strong>25% sales growth</strong>.</p>
+              <h4>What the data said</h4>
+              <p>The AI group scored <strong>0.84 points higher on average out of 36</strong> — and the
+                difference is <strong>not statistically significant</strong>, under either a parametric
+                t-test (<strong>p = 0.58</strong>) or a non-parametric Wilcoxon test
+                (<strong>p = 0.50</strong>). Effect size is negligible (<strong>Cohen's d = 0.13</strong>),
+                and the 95% bootstrap CI on the gap spans <strong>[−2.0, +3.6]</strong>. A power analysis
+                shows that at n = 19 the study can only detect medium-to-large effects (d ≥ 0.68), so it
+                <strong>cannot rule out small effects in either direction</strong>. That is the finding,
+                reported as-is.</p>
             </div>
           </div>
 
           <figure class="case-viz">
-            <svg viewBox="0 0 280 200" role="img" aria-label="Pipeline diagram: 5 administrative blocks and 8 interviews feed 2 standardised enterprise packages, screening into 10 products and a five-year roadmap with a 25 percent modelled growth base case.">
-              <g font-family="IBM Plex Mono, monospace" font-size="8.5" letter-spacing=".04em">
-                <g fill="#12683A">
-                  <rect x="0" y="6" width="280" height="26" rx="6" opacity=".14"/>
-                  <rect x="14" y="42" width="252" height="26" rx="6" opacity=".22"/>
-                  <rect x="28" y="78" width="224" height="26" rx="6" opacity=".34"/>
-                  <rect x="42" y="114" width="196" height="26" rx="6" opacity=".5"/>
-                  <rect x="56" y="150" width="168" height="30" rx="8"/>
-                </g>
-                <g fill="#0F2A1E">
-                  <text x="140" y="23" text-anchor="middle">5 BLOCKS · FIELD STUDY</text>
-                  <text x="140" y="59" text-anchor="middle">8 INTERVIEWS · ATLAS.TI</text>
-                  <text x="140" y="95" text-anchor="middle">2 ENTERPRISE PACKAGES</text>
-                  <text x="140" y="131" text-anchor="middle">TECH + COMMERCIAL READINESS</text>
-                </g>
-                <text x="140" y="164" text-anchor="middle" fill="#F7F5EF">10 PRODUCTS · 5-YR ROADMAP</text>
-                <text x="140" y="175" text-anchor="middle" fill="#4ADE80" font-size="7.5">BASE CASE +25% SALES GROWTH</text>
-              </g>
-              <g stroke="#12683A" stroke-width="1" opacity=".45">
-                <path d="M140 32v10M140 68v10M140 104v10M140 140v10"/>
-              </g>
-              <g fill="#12683A" opacity=".45"><path d="M137 40l3 4 3-4zM137 76l3 4 3-4zM137 112l3 4 3-4zM137 148l3 4 3-4z"/></g>
-            </svg>
-            <figcaption class="viz-cap">Field evidence narrows into a portfolio decision — each stage screened.</figcaption>
-          </figure>
-        </div>
-
-        <div class="case-actions">
-          <span class="no-link">Client engagement · deliverables not public</span>
-        </div>
-      </article>
-
-      <!-- CASE 03 — CSRD / ESRS thesis -->
-      <article class="case reveal" data-tilt aria-labelledby="case3">
-        <div class="case-top">
-          <div>
-            <p class="case-idx">CASE 03 / APPLIED RESEARCH</p>
-            <h3 id="case3">Does AI actually improve ESG compliance?
-              <small>CSRD / ESRS master thesis — and the discipline to report a null result.</small>
-            </h3>
-          </div>
-          <p class="case-meta"><i>Erasmus RSM</i><i>2025–26</i><i>MSc thesis</i></p>
-        </div>
-
-        <div class="case-body">
-          <div class="pmo">
-            <div>
-              <h4>Problem</h4>
-              <p>AI ESG-reporting platforms claim they produce better compliance.
-                <strong>Is the claim true?</strong> Nobody had tested it against the standards themselves.</p>
-            </div>
-            <div>
-              <h4>Method</h4>
-              <p><strong>38 EU companies</strong> — 19 AI-platform users against 19 matched peers. Their 2024
-                reports scored against the <strong>12 ESRS standards</strong> on a 0–3 rubric: human-led scoring
-                with AI verification (<strong>≈95% agreement, Cohen's κ ≈ 0.92</strong>), then parametric and
-                non-parametric re-analysis with a power analysis.</p>
-            </div>
-            <div class="outcome">
-              <h4>Adopted outcome</h4>
-              <p>An <strong>honest null result</strong>. The AI group scores marginally higher, but the difference
-                is <strong>not statistically significant</strong> — and the data cannot rule out small effects.
-                Reported exactly that way, because a clean "no" is a finding.</p>
-            </div>
-          </div>
-
-          <figure class="case-viz">
-            <svg viewBox="0 0 280 176" role="img" aria-label="Dot matrix: 19 AI-platform users and 19 matched peers, 38 companies scored across 12 ESRS standards, agreement 95 percent, Cohen's kappa 0.92, difference not statistically significant.">
+            <svg viewBox="0 0 280 176" role="img" aria-label="Dot matrix: 19 AI-platform users and 19 matched peers, 38 companies scored across 12 ESRS standards for 456 data points. Cohen's kappa 0.92, t-test p equals 0.58, Cohen's d equals 0.13, difference not statistically significant.">
               <g font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing=".08em" fill="currentColor" opacity=".6">
                 <text x="0" y="9">19 AI-PLATFORM USERS</text>
                 <text x="0" y="72">19 MATCHED PEERS</text>
@@ -1590,21 +1467,114 @@ input[type="range"]::-moz-range-thumb{
               <text x="0" y="50" fill="currentColor" opacity=".45" font-family="IBM Plex Mono, monospace" font-size="7.5">scored 0–3 against 12 ESRS standards · 456 data points</text>
               <line x1="0" y1="118" x2="280" y2="118" stroke="#DCD7C8" stroke-width="1"/>
               <g font-family="IBM Plex Mono, monospace" font-size="8" fill="currentColor">
-                <text x="0" y="134" opacity=".6">AGREEMENT</text><text x="0" y="146" font-size="11" fill="#12683A">≈95%</text>
-                <text x="96" y="134" opacity=".6">COHEN'S κ</text><text x="96" y="146" font-size="11" fill="#12683A">0.92</text>
-                <text x="192" y="134" opacity=".6">DIFFERENCE</text><text x="192" y="146" font-size="11" fill="#8A5A05">n.s.</text>
+                <text x="0" y="134" opacity=".6">COHEN'S κ</text><text x="0" y="146" font-size="11" fill="#12683A">0.92</text>
+                <text x="72" y="134" opacity=".6">t-TEST</text><text x="72" y="146" font-size="11" fill="#8A5A05">p = 0.58</text>
+                <text x="152" y="134" opacity=".6">EFFECT</text><text x="152" y="146" font-size="11" fill="#8A5A05">d = 0.13</text>
+                <text x="228" y="134" opacity=".6">RESULT</text><text x="228" y="146" font-size="11" fill="#8A5A05">n.s.</text>
               </g>
-              <text x="0" y="168" fill="currentColor" opacity=".45" font-family="IBM Plex Mono, monospace" font-size="7.5">null result reported · small effects not excluded</text>
+              <text x="0" y="168" fill="currentColor" opacity=".45" font-family="IBM Plex Mono, monospace" font-size="7.5">95% CI on the gap: [−2.0, +3.6] · small effects not excluded</text>
             </svg>
-            <figcaption class="viz-cap">38 companies, 12 standards, one honest answer.</figcaption>
+            <figcaption class="viz-cap">38 companies, 12 standards, and an answer that stays inside its confidence interval.</figcaption>
           </figure>
         </div>
 
         <div class="case-actions">
           <a class="link-inline" href="https://github.com/mushaha97-droid/CSRD-compliance-" target="_blank" rel="noopener noreferrer">
-            CSRD compliance study on GitHub
+            Open the repository
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
           </a>
+          <span class="stack"><code>build_csv_from_thesis.py</code> · <code>build_database.py</code> · <code>run_analysis.py</code> · <code>analysis_queries.sql</code> · <code>compliance.db</code><br>
+            Written up in <code>FINDINGS.md</code>, <code>SCORING_METHODOLOGY.md</code> and <code>data_provenance.md</code>.</span>
+        </div>
+      </article>
+
+      <!-- PROJECT 03 — ANBI / NGO income-mix benchmark -->
+      <article class="case reveal" data-tilt aria-labelledby="case3">
+        <div class="case-top">
+          <div>
+            <p class="case-idx">PROJECT 03 / FUNDING STRUCTURE</p>
+            <h3 id="case3">How do land-use NGOs actually fund themselves?
+              <small>An income-mix benchmark of 14 peer NGOs in regenerative agriculture, nature
+                restoration and sustainable land use.</small>
+            </h3>
+          </div>
+          <p class="case-meta"><i>Jupyter Notebook</i><i>Python</i><i>Excel</i></p>
+        </div>
+
+        <div class="case-body">
+          <div class="pmo">
+            <div>
+              <h4>The question</h4>
+              <p>"Diversify your funding" is standard advice and almost never quantified. For NGOs working in
+                <strong>regenerative agriculture, nature restoration and sustainable land use</strong>: where
+                does the money actually come from, and what does the real distribution imply for a
+                diversification strategy?</p>
+            </div>
+            <div>
+              <h4>The method</h4>
+              <p>Built a dataset of <strong>14 peer NGOs' income by source</strong>
+                (<code>build_dataset.py</code> → <code>ngo_income_data.xlsx</code>), then analysed the mix in a
+                Jupyter notebook (<code>analysis.ipynb</code>). The notebook itself is generated
+                programmatically by <code>build_notebook.py</code>, so the analysis rebuilds from source
+                rather than living as an untracked, hand-edited file.</p>
+            </div>
+            <div class="outcome">
+              <h4>What the data said</h4>
+              <p>Business income — corporate sponsors and foundation grants — dominates the larger
+                organisations: NGOs above <strong>€5M</strong> draw roughly <strong>70%</strong> of income from
+                that category, while those under <strong>€1M</strong> anchor on community engagement
+                (member fees, lease income, programme services). <strong>More than half</strong> the NGOs
+                studied rely on a single source for over 50% of income — so realistic "diversification" in
+                this sector means <strong>one anchor plus two or three secondary streams</strong>, not an even
+                split. And <strong>zero of the 14</strong> report any venture-capital income.</p>
+            </div>
+          </div>
+
+          <figure class="case-viz">
+            <svg viewBox="0 0 280 186" role="img" aria-label="Chart: 14 peer NGOs benchmarked. For NGOs above 5 million euros, roughly 70 percent of income comes from business sources. NGOs under 1 million euros anchor on community engagement. Zero of the 14 report venture-capital income.">
+              <g font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing=".08em" fill="currentColor" opacity=".6">
+                <text x="0" y="9">14 PEER NGOs · INCOME BY SOURCE</text>
+              </g>
+              <g fill="#12683A" opacity=".8">
+                <rect x="0" y="18" width="16" height="18" rx="3"/><rect x="20" y="18" width="16" height="18" rx="3"/>
+                <rect x="40" y="18" width="16" height="18" rx="3"/><rect x="60" y="18" width="16" height="18" rx="3"/>
+                <rect x="80" y="18" width="16" height="18" rx="3"/><rect x="100" y="18" width="16" height="18" rx="3"/>
+                <rect x="120" y="18" width="16" height="18" rx="3"/><rect x="140" y="18" width="16" height="18" rx="3"/>
+                <rect x="160" y="18" width="16" height="18" rx="3"/><rect x="180" y="18" width="16" height="18" rx="3"/>
+                <rect x="200" y="18" width="16" height="18" rx="3"/><rect x="220" y="18" width="16" height="18" rx="3"/>
+                <rect x="240" y="18" width="16" height="18" rx="3"/><rect x="260" y="18" width="16" height="18" rx="3"/>
+              </g>
+              <line x1="0" y1="50" x2="280" y2="50" stroke="#DCD7C8" stroke-width="1"/>
+
+              <g font-family="IBM Plex Mono, monospace" font-size="7.5">
+                <text x="0" y="66" fill="currentColor" opacity=".6">NGOs &gt; €5M — SHARE FROM BUSINESS INCOME</text>
+                <rect x="0" y="72" width="280" height="14" rx="7" fill="#12683A" opacity=".14"/>
+                <rect x="0" y="72" width="196" height="14" rx="7" fill="#12683A"/>
+                <text x="204" y="82.5" fill="#12683A" font-size="10">≈70%</text>
+                <text x="0" y="98" fill="currentColor" opacity=".45">corporate sponsors + foundation grants</text>
+
+                <text x="0" y="120" fill="currentColor" opacity=".6">NGOs &lt; €1M — ANCHOR CATEGORY</text>
+                <rect x="0" y="126" width="280" height="14" rx="7" fill="#12683A" opacity=".14"/>
+                <text x="8" y="136.5" fill="#0F2A1E" font-size="7.5">COMMUNITY ENGAGEMENT · FEES · LEASE · PROGRAMMES</text>
+              </g>
+
+              <line x1="0" y1="154" x2="280" y2="154" stroke="#DCD7C8" stroke-width="1"/>
+              <g font-family="IBM Plex Mono, monospace">
+                <text x="0" y="170" font-size="8" fill="currentColor" opacity=".6">VENTURE CAPITAL</text>
+                <text x="112" y="171" font-size="11" fill="#8A5A05">0 of 14</text>
+                <text x="0" y="182" font-size="7.5" fill="currentColor" opacity=".45">&gt; half the sample: one source is over 50% of income</text>
+              </g>
+            </svg>
+            <figcaption class="viz-cap">One anchor plus a few secondary streams — what the distribution actually looks like.</figcaption>
+          </figure>
+        </div>
+
+        <div class="case-actions">
+          <a class="link-inline" href="https://github.com/mushaha97-droid/ANBI-funding-structure-" target="_blank" rel="noopener noreferrer">
+            Open the repository
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <span class="stack"><code>build_dataset.py</code> · <code>ngo_income_data.xlsx</code> · <code>build_notebook.py</code> → <code>analysis.ipynb</code></span>
         </div>
       </article>
     </div>
@@ -1612,24 +1582,14 @@ input[type="range"]::-moz-range-thumb{
     <!-- more on github -->
     <div class="repos reveal">
       <h3>More on GitHub</h3>
+      <p class="lede">All three repositories above are public and open to inspection — code, data,
+        tests and methodology notes included. The profile is the shortest route to them.</p>
       <div class="repo-grid">
-        <a class="repo" href="https://github.com/mushaha97-droid/dutch-electric-grid-" target="_blank" rel="noopener noreferrer">
-          <b>NL Grid Congestion × Solar Curtailment
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-          </b>
-          <span>Python · grid congestion → solar curtailment cost, with a choropleth map</span>
-        </a>
-        <a class="repo" href="https://github.com/mushaha97-droid/carbon-market-analysis-india-" target="_blank" rel="noopener noreferrer">
-          <b>Carbon Market Analysis — India
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-          </b>
-          <span>Five-year Verra and Gold Standard market analysis</span>
-        </a>
         <a class="repo" href="https://github.com/mushaha97-droid" target="_blank" rel="noopener noreferrer">
-          <b>All repositories
+          <b>github.com/mushaha97-droid
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
           </b>
-          <span>github.com/mushaha97-droid — profile and full project list</span>
+          <span>Profile and full project list — the three repositories on this page, and whatever is next</span>
         </a>
       </div>
     </div>
@@ -1639,26 +1599,22 @@ input[type="range"]::-moz-range-thumb{
 <section class="exp band t-light" id="experience" data-zone="light" aria-labelledby="expTitle">
   <div class="wrap">
     <div class="reveal">
-      <p class="eyebrow">03 — Experience</p>
-      <h2 class="h2" id="expTitle">Where the numbers came from.</h2>
-      <p class="lede">Five roles across the Netherlands and India — consulting, corporate sustainability
-        and the NGO sector.</p>
+      <p class="eyebrow">03 — Background</p>
+      <h2 class="h2" id="expTitle">The work above is the evidence.<br>This is the path.</h2>
+      <p class="lede">Five roles across the Netherlands and India, listed for context. The claims worth
+        checking are in the repositories.</p>
     </div>
 
     <div class="timeline reveal">
       <article class="job">
         <div class="job-head">
           <div>
-            <h3>Founder · Impact Consulting</h3>
+            <h3>Founder</h3>
             <span class="org">Impact Root — Rotterdam, NL</span>
           </div>
           <span class="when">Jul 2025 — present</span>
         </div>
-        <ul>
-          <li>Advises <strong>9 organisations</strong> on funding resilience and donor diversification.</li>
-          <li><strong>3 paid</strong> engagements and <strong>6 pro bono</strong>, spanning <strong>4</strong> Dutch ANBI partners and <strong>5</strong> international NGOs.</li>
-          <li>Combines scraped financial benchmarks with stakeholder interviews so every funding recommendation carries its own evidence.</li>
-        </ul>
+        <p class="note">Independent advisory for Dutch ANBI foundations and international NGOs.</p>
       </article>
 
       <article class="job">
@@ -1669,12 +1625,7 @@ input[type="range"]::-moz-range-thumb{
           </div>
           <span class="when">Dec 2025 — May 2026</span>
         </div>
-        <ul>
-          <li>Adoption-barrier field research across <strong>5 administrative blocks</strong>, with <strong>8 interviews</strong> coded in Atlas.ti.</li>
-          <li>Enterprise-package standardisation for <strong>2 business types</strong> — business plan, cost-benefit analysis and financial projections each.</li>
-          <li>Technology pipeline screening and market validation across MSME and startup ecosystems.</li>
-          <li><strong>10 products</strong> structured into a <strong>five-year roadmap</strong> and go-to-market plan; modelled base case of <strong>25%</strong> sales growth.</li>
-        </ul>
+        <p class="note">Biomass and enterprise-development research.</p>
       </article>
 
       <article class="job">
@@ -1683,14 +1634,9 @@ input[type="range"]::-moz-range-thumb{
             <h3>Sustainability Analyst (Intern)</h3>
             <span class="org">Enen Green — Delhi, India</span>
           </div>
-          <span class="when">May — Nov 2025</span>
+          <span class="when">May 2025 — Nov 2025</span>
         </div>
-        <ul>
-          <li>ESG workshops and executive briefings for steel-sector leadership.</li>
-          <li><strong>Scope 1–3</strong> GHG inventories with automated emission-factor lookups in Python.</li>
-          <li>Reusable <strong>CBAM</strong> template for the EU transitional regime.</li>
-          <li><strong>Five-year</strong> carbon-market screening in Python and Power BI, shortlisting projects for a four-year horizon.</li>
-        </ul>
+        <p class="note">GHG accounting and ESG reporting support.</p>
       </article>
 
       <article class="job">
@@ -1699,13 +1645,9 @@ input[type="range"]::-moz-range-thumb{
             <h3>Sustainability Data Researcher</h3>
             <span class="org">RAAP! — Rotterdam, NL</span>
           </div>
-          <span class="when">Jan — Apr 2025</span>
+          <span class="when">Jan 2025 — Apr 2025</span>
         </div>
-        <ul>
-          <li>Scraped anbi.nl financial statements; mapped revenue mix, cost structure and donor concentration across <strong>14 peer NGOs</strong>.</li>
-          <li><strong>20 impact-investor interviews</strong> coded in Atlas.ti using the Gioia methodology.</li>
-          <li>Delivered a revenue-diversification strategy the client adopted.</li>
-        </ul>
+        <p class="note">Funding-structure research for a regenerative-agriculture venture.</p>
       </article>
 
       <article class="job">
@@ -1714,13 +1656,9 @@ input[type="range"]::-moz-range-thumb{
             <h3>Data &amp; Operations Intern</h3>
             <span class="org">Pehchaan The Street School — Delhi, India</span>
           </div>
-          <span class="when">Jan — Aug 2024</span>
+          <span class="when">Jan 2024 — Aug 2024</span>
         </div>
-        <ul>
-          <li>Ranked <strong>1,000</strong> Delhi-NCR corporates on donation readiness into a prioritised outreach pipeline.</li>
-          <li>Contributed to <strong>USD 50,000</strong> raised.</li>
-          <li>Scraped the Government of India CSR portal into an analysis-ready dataset.</li>
-        </ul>
+        <p class="note">Data pipeline and fundraising analytics.</p>
       </article>
     </div>
   </div>
@@ -1731,7 +1669,9 @@ input[type="range"]::-moz-range-thumb{
   <div class="wrap">
     <div class="reveal">
       <p class="eyebrow">04 — Capabilities</p>
-      <h2 class="h2" id="skillsTitle">Strategy on one side,<br>the data stack on the other.</h2>
+      <h2 class="h2" id="skillsTitle">What I can do,<br>stated as capability.</h2>
+      <p class="lede">Methods I can run and tools I work in — not a list of results. The results are
+        upstairs, in the repositories.</p>
     </div>
 
     <div class="skill-groups reveal">
@@ -1745,8 +1685,6 @@ input[type="range"]::-moz-range-thumb{
           <li>Go-to-market roadmapping</li>
           <li>Stakeholder interviews</li>
           <li>Workshop design &amp; delivery</li>
-          <li>Adoption-barrier studies</li>
-          <li>Targeting models</li>
         </ul>
       </div>
 
@@ -1761,7 +1699,6 @@ input[type="range"]::-moz-range-thumb{
           <li>Power BI</li>
           <li>Qualitative coding (Atlas.ti, Gioia)</li>
           <li>Advanced Excel</li>
-          <li>Web scraping</li>
         </ul>
       </div>
 
@@ -1847,8 +1784,9 @@ input[type="range"]::-moz-range-thumb{
     <div class="reveal">
       <p class="eyebrow">06 — Contact</p>
       <h2 id="contactTitle">Let's build the evidence base for your <em>next decision.</em></h2>
-      <p class="lede">Funding strategy, go-to-market research, ESG and carbon analytics — for impact investors,
-        NGOs and the companies working with them. Open to consulting engagements and full-time roles.</p>
+      <p class="lede">Sustainability, energy and funding-structure analysis — for impact investors, NGOs and
+        the companies working with them. If you want to see how I work before we talk, the repositories
+        are the honest version. Open to analysis engagements and full-time roles.</p>
 
       <div class="contact-actions">
         <a class="btn btn-primary" href="mailto:musharraf@impactofy.org" data-magnetic>
@@ -1911,9 +1849,8 @@ input[type="range"]::-moz-range-thumb{
    C  reveal on scroll
    D  animated counters + lens control
    E  evidence chart (inline SVG, rendered 1:1 for crisp text)
-   F  timeline scrubber (gantt + sparkline)
-   G  hero node field (cursor-reactive canvas)
-   H  tactile details: tilt, magnetic buttons, ripples, copy
+   F  hero node field (cursor-reactive canvas)
+   G  tactile details: tilt, magnetic buttons, ripples, copy
    ============================================================ */
 (function(){
 "use strict";
@@ -2133,16 +2070,16 @@ if(yearEl) yearEl.textContent = String(new Date().getFullYear());
   if(!host) return;
 
   var DATA = [
-    {v:1000, label:'Delhi-NCR corporates ranked',    src:'Pehchaan The Street School — donation-readiness targeting model'},
-    {v:456,  label:'ESRS data points scored',        src:'MSc thesis — 38 companies × 12 ESRS standards on a 0–3 rubric'},
-    {v:38,   label:'EU company reports scored',      src:'MSc thesis — 19 AI-platform users vs 19 matched peers'},
-    {v:28,   label:'stakeholder interviews coded',   src:'RAAP! (20 investors) + Development Alternatives (8 field) — Atlas.ti'},
-    {v:14,   label:'peer NGO financials mapped',     src:'RAAP! — anbi.nl statements: revenue mix, cost structure, donor concentration'},
-    {v:10,   label:'biomass products structured',    src:'Development Alternatives — five-year roadmap and go-to-market plan'},
-    {v:5,    label:'years of carbon-market data',    src:'Enen Green — Verra and Gold Standard screening in Python and Power BI'},
-    {v:5,    label:'administrative blocks studied',  src:'Development Alternatives — supply-chain and adoption-barrier field study'}
+    {v:456, label:'ESRS data points scored',        src:'CSRD-compliance- — 38 companies × 12 standards on a 0–3 rubric, in compliance_scores.csv'},
+    {v:38,  label:'EU company reports scored',      src:'CSRD-compliance- — 2024 sustainability reports, listed in companies.csv'},
+    {v:19,  label:'matched company pairs',          src:'CSRD-compliance- — 19 AI-platform users paired with 19 traditional peers'},
+    {v:14,  label:'peer NGO income structures',     src:'ANBI-funding-structure- — income by source, built by build_dataset.py'},
+    {v:12,  label:'ESRS standards in the rubric',   src:'CSRD-compliance- — scoring scheme documented in SCORING_METHODOLOGY.md'},
+    {v:9,   label:'Python modules in the grid model', src:'dutch-electric-grid- — src/: boundaries, congestion, pv_model, curtailment, knmi, bridge …'},
+    {v:3,   label:'pytest modules on that model',   src:'dutch-electric-grid- — tests/: test_boundaries, test_config, test_congestion (+ conftest.py)'},
+    {v:3,   label:'public analysis repositories',   src:'github.com/mushaha97-droid — all three linked on this page'}
   ];
-  var MAX = 1000, drawn = false;
+  var MAX = 456, drawn = false;
   var DEFAULT_TEXT = out ? out.innerHTML : '';
 
   /* screen-reader table */
@@ -2223,122 +2160,7 @@ if(yearEl) yearEl.textContent = String(new Date().getFullYear());
   window.addEventListener('resize', debounce(render, 160), PASSIVE);
 })();
 
-/* ---------- F · timeline scrubber (gantt + sparkline) ---------- */
-(function(){
-  var slider = $('#scrubber');
-  var gantt  = $('#gantt');
-  if(!slider || !gantt) return;
-
-  var MAXM = 30; /* Jan 2024 (0) → Jul 2026 (30) */
-  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  function label(m){ return MONTHS[m % 12] + ' ' + (2024 + Math.floor(m / 12)); }
-
-  /* exact CV dates, expressed as months from Jan 2024 */
-  var ROLES = [
-    {n:'Impact Root — Founder, Impact Consulting', p:'Rotterdam', s:18, e:30, on:true},
-    {n:'Development Alternatives — Sustainability Analyst', p:'Delhi', s:23, e:28},
-    {n:'Enen Green — Sustainability Analyst (Intern)', p:'Delhi', s:16, e:22},
-    {n:'RAAP! — Sustainability Data Researcher', p:'Rotterdam', s:12, e:15},
-    {n:'Pehchaan The Street School — Data & Operations Intern', p:'Delhi', s:0, e:7}
-  ];
-  /* cumulative distinct organisations engaged */
-  var STEPS = [{m:0,v:1},{m:12,v:2},{m:16,v:3},{m:18,v:12},{m:23,v:13}];
-  function cumOrgs(m){
-    var v = 0;
-    for(var i=0;i<STEPS.length;i++){ if(m >= STEPS[i].m) v = STEPS[i].v; }
-    return v;
-  }
-
-  /* build gantt rows ahead of the playhead element */
-  var playhead = $('#playhead');
-  var rows = ROLES.map(function(r){
-    var row = document.createElement('div');
-    row.className = 'gantt-row';
-    var left = (r.s / MAXM) * 100;
-    var width = Math.max(2.2, ((r.e - r.s) / MAXM) * 100);
-    row.innerHTML =
-      '<span class="gantt-name">' + r.n + ' <em>' + r.p + '</em></span>' +
-      '<span class="gantt-track"><span class="gantt-bar" style="left:' + left.toFixed(2) + '%;width:' + width.toFixed(2) + '%"></span></span>';
-    gantt.insertBefore(row, playhead);
-    return {el:row, r:r};
-  });
-
-  /* sparkline: cumulative organisations engaged */
-  var sparkHost = $('#spark');
-  function renderSpark(m){
-    if(!sparkHost) return;
-    var W = Math.max(200, Math.round(sparkHost.clientWidth || 300)), H = 58, pad = 6;
-    var maxV = 13, pts = [];
-    for(var i=0;i<=MAXM;i++){
-      var x = (i / MAXM) * W;
-      var y = H - pad - (cumOrgs(i) / maxV) * (H - pad * 2);
-      pts.push([x,y]);
-    }
-    var d = '';
-    for(var j=0;j<pts.length;j++){
-      if(j === 0) d += 'M' + pts[j][0].toFixed(1) + ' ' + pts[j][1].toFixed(1);
-      else d += 'H' + pts[j][0].toFixed(1) + 'V' + pts[j][1].toFixed(1);
-    }
-    var area = d + 'V' + H + 'H0Z';
-    var cx = (m / MAXM) * W, cy = H - pad - (cumOrgs(m) / maxV) * (H - pad * 2);
-    sparkHost.innerHTML =
-      '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg">' +
-      '<defs><linearGradient id="spg" x1="0" y1="0" x2="0" y2="1">' +
-      '<stop offset="0" stop-color="#4ADE80" stop-opacity=".30"/><stop offset="1" stop-color="#4ADE80" stop-opacity="0"/>' +
-      '</linearGradient></defs>' +
-      '<path d="' + area + '" fill="url(#spg)"/>' +
-      '<path d="' + d + '" fill="none" stroke="#4ADE80" stroke-width="1.6" stroke-linejoin="round"/>' +
-      '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="4" fill="#F5B54A"/>' +
-      '</svg>';
-  }
-
-  var roActive = $('#roActive'), roOrgs = $('#roOrgs'), roYears = $('#roYears');
-  var dateA = $('#scrubDate'), dateB = $('#scrubDate2'), chips = $('#scrubChips');
-
-  function update(){
-    var m = clamp(parseInt(slider.value,10) || 0, 0, MAXM);
-    var active = 0, places = {};
-    rows.forEach(function(row){
-      var isActive = (m >= row.r.s && m <= row.r.e);
-      var isPast = (m > row.r.e);
-      row.el.classList.toggle('is-active', isActive);
-      row.el.classList.toggle('is-past', isPast);
-      if(isActive){ active++; places[row.r.p] = true; }
-    });
-
-    var orgs = cumOrgs(m);
-    if(roActive) roActive.textContent = String(active);
-    if(roOrgs)   roOrgs.textContent   = fmt(orgs);
-    if(roYears)  roYears.textContent  = (m / 12).toFixed(1);
-    if(dateA) dateA.textContent = label(m);
-    if(dateB) dateB.textContent = label(m);
-
-    if(playhead) playhead.style.left = ((m / MAXM) * 100).toFixed(2) + '%';
-    slider.style.setProperty('--pct', ((m / MAXM) * 100).toFixed(2) + '%');
-    slider.setAttribute('aria-valuetext',
-      label(m) + ' — ' + active + ' active engagement' + (active === 1 ? '' : 's') +
-      ', ' + orgs + ' organisation' + (orgs === 1 ? '' : 's') + ' engaged cumulatively');
-
-    if(chips){
-      chips.innerHTML =
-        ['Rotterdam, NL','Delhi, India'].map(function(p){
-          var key = p.indexOf('Rotterdam') === 0 ? 'Rotterdam' : 'Delhi';
-          return '<i class="' + (places[key] ? 'on' : '') + '">' + p + '</i>';
-        }).join('') +
-        '<i class="' + (active ? 'on' : '') + '">' + (active ? 'engaged' : 'between engagements') + '</i>';
-    }
-    renderSpark(m);
-  }
-
-  slider.addEventListener('input', update);
-  slider.addEventListener('change', update);
-  window.addEventListener('resize', debounce(update, 160), PASSIVE);
-  if(document.fonts && document.fonts.ready && document.fonts.ready.then){
-    document.fonts.ready.then(update);
-  }
-  update();
-})();
-/* ---------- G · hero node field (cursor-reactive canvas) ---------- */
+/* ---------- F · hero node field (cursor-reactive canvas) ---------- */
 (function(){
   var cv = $('#field');
   var hero = $('#hero');
@@ -2346,10 +2168,13 @@ if(yearEl) yearEl.textContent = String(new Date().getFullYear());
   var ctx = cv.getContext('2d');
   if(!ctx) return;
 
-  var w = 0, h = 0, dpr = 1, nodes = [], running = false, frame = 0;
+  var w = 0, h = 0, dpr = 1, pts = [], edges = [], streams = [], running = false, frame = 0;
   var pointer = {x:0, y:0, on:false};
-  var R = 150;          /* cursor influence radius */
-  var LINK = 118;       /* max link distance */
+  var R = 150;                 /* cursor influence radius */
+  var spin = 0;                /* globe rotation about its axis */
+  var cx = 0, cy = 0, rad = 0; /* globe centre + radius */
+  var tiltX = 0, tiltY = 0;    /* eased pointer parallax */
+  var GOLDEN = Math.PI * (3 - Math.sqrt(5));
 
   function build(){
     var rect = hero.getBoundingClientRect();
@@ -2362,82 +2187,143 @@ if(yearEl) yearEl.textContent = String(new Date().getFullYear());
     cv.style.height = h + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    var count = clamp(Math.round((w * h) / 17000), 24, 78);
-    nodes = [];
+    /* globe sits right of the headline on wide screens, centred on narrow ones */
+    var wide = w > 900;
+    cx  = wide ? w * 0.72 : w * 0.5;
+    cy  = wide ? h * 0.50 : h * 0.64;
+    rad = Math.min(wide ? w * 0.22 : w * 0.40, h * (wide ? 0.38 : 0.28));
+
+    /* even point distribution across the sphere (Fibonacci lattice) */
+    var count = clamp(Math.round(rad * 1.9), 150, 420);
+    pts = [];
     for(var i=0;i<count;i++){
-      nodes.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.18,
-        vy: (Math.random() - 0.5) * 0.18,
-        r: 0.9 + Math.random() * 1.7,
-        px: 0, py: 0
+      var yy = 1 - (i / (count - 1)) * 2;
+      var rr = Math.sqrt(Math.max(0, 1 - yy*yy));
+      var th = GOLDEN * i;
+      pts.push({
+        x: Math.cos(th) * rr, y: yy, z: Math.sin(th) * rr,
+        pulse: Math.random() * Math.PI * 2,
+        hot: Math.random() < 0.10,
+        px:0, py:0, pz:0, ps:1
+      });
+    }
+
+    /* the mesh is rigid, so neighbours are solved once and just re-projected */
+    edges = [];
+    var LINK3 = 3.2 / Math.sqrt(count);
+    for(var a=0;a<pts.length;a++){
+      for(var b=a+1;b<pts.length;b++){
+        var dx = pts[a].x-pts[b].x, dy = pts[a].y-pts[b].y, dz = pts[a].z-pts[b].z;
+        if(dx*dx + dy*dy + dz*dz < LINK3*LINK3 && edges.length < 1600) edges.push([a,b]);
+      }
+    }
+
+    /* data streams sweeping past the core */
+    streams = [];
+    for(var s=0;s<3;s++){
+      streams.push({
+        y: cy + (s - 1) * rad * 0.62,
+        amp: rad * (0.10 + s * 0.05),
+        off: Math.random() * 1000,
+        sp: 0.010 + s * 0.004,
+        a: 0.20 - s * 0.045
       });
     }
   }
 
   function draw(){
     ctx.clearRect(0, 0, w, h);
-    var i, j, n;
 
-    for(i=0;i<nodes.length;i++){
-      n = nodes[i];
-      n.px = n.x; n.py = n.y;
-      if(pointer.on){
-        var dx = n.x - pointer.x, dy = n.y - pointer.y;
-        var d  = Math.sqrt(dx*dx + dy*dy);
-        if(d > 0.001 && d < R){
-          var push = (1 - d / R);
-          var f = push * push * 34;
-          n.px = n.x + (dx / d) * f;
-          n.py = n.y + (dy / d) * f;
-        }
+    /* atmosphere */
+    var glow = ctx.createRadialGradient(cx, cy, rad * 0.15, cx, cy, rad * 1.85);
+    glow.addColorStop(0,    'rgba(74,222,128,0.13)');
+    glow.addColorStop(0.45, 'rgba(74,222,128,0.05)');
+    glow.addColorStop(1,    'rgba(74,222,128,0)');
+    ctx.fillStyle = glow;
+    ctx.beginPath(); ctx.arc(cx, cy, rad * 1.85, 0, Math.PI*2); ctx.fill();
+
+    /* streams */
+    ctx.lineWidth = 1.2;
+    for(var s=0;s<streams.length;s++){
+      var st = streams[s];
+      ctx.beginPath();
+      for(var xx=0; xx<=w; xx+=14){
+        var yv = st.y + Math.sin((xx * 0.006) + st.off) * st.amp;
+        if(xx === 0) ctx.moveTo(xx, yv); else ctx.lineTo(xx, yv);
       }
+      ctx.strokeStyle = 'rgba(74,222,128,' + st.a.toFixed(3) + ')';
+      ctx.stroke();
     }
 
-    /* links */
+    var ca = Math.cos(spin), sa = Math.sin(spin);
+    var tX = -0.34 + tiltY;
+    var ct = Math.cos(tX), stt = Math.sin(tX);
+    var i, p;
+
+    /* rotate → tilt → project */
+    for(i=0;i<pts.length;i++){
+      p = pts[i];
+      var x1 = p.x * ca + p.z * sa;
+      var z1 = p.z * ca - p.x * sa;
+      var y2 = p.y * ct - z1 * stt;
+      var z2 = p.y * stt + z1 * ct;
+      var persp = 1.9 / (1.9 - z2);
+      p.px = cx + x1 * rad * persp + tiltX * 16;
+      p.py = cy + y2 * rad * persp;
+      p.pz = z2;
+      p.ps = persp;
+    }
+
+    /* mesh — the far hemisphere fades out */
     ctx.lineWidth = 1;
-    for(i=0;i<nodes.length;i++){
-      for(j=i+1;j<nodes.length;j++){
-        var ax = nodes[i].px - nodes[j].px, ay = nodes[i].py - nodes[j].py;
-        var dd = Math.sqrt(ax*ax + ay*ay);
-        if(dd < LINK){
-          var a = (1 - dd / LINK) * 0.30;
-          ctx.strokeStyle = 'rgba(74,222,128,' + a.toFixed(3) + ')';
-          ctx.beginPath();
-          ctx.moveTo(nodes[i].px, nodes[i].py);
-          ctx.lineTo(nodes[j].px, nodes[j].py);
-          ctx.stroke();
-        }
-      }
+    for(i=0;i<edges.length;i++){
+      var A = pts[edges[i][0]], B = pts[edges[i][1]];
+      var dep = (A.pz + B.pz) * 0.5;
+      if(dep < -0.35) continue;
+      var al = (dep + 0.35) / 1.35 * 0.30;
+      if(al <= 0.004) continue;
+      ctx.strokeStyle = 'rgba(74,222,128,' + al.toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.moveTo(A.px, A.py); ctx.lineTo(B.px, B.py);
+      ctx.stroke();
     }
 
-    /* nodes — the ones near the cursor pick up the amber accent */
-    for(i=0;i<nodes.length;i++){
-      n = nodes[i];
+    /* points — live nodes pulse, and the cursor lights the ones it passes */
+    for(i=0;i<pts.length;i++){
+      p = pts[i];
+      var d = (p.pz + 1) / 2;
+      var base = 0.10 + d * 0.72;
       var lit = 0;
       if(pointer.on){
-        var ex = n.x - pointer.x, ey = n.y - pointer.y;
+        var ex = p.px - pointer.x, ey = p.py - pointer.y;
         var ed = Math.sqrt(ex*ex + ey*ey);
-        if(ed < R) lit = 1 - ed / R;
+        if(ed < R) lit = (1 - ed / R) * d;
       }
-      ctx.fillStyle = lit > 0.05
-        ? 'rgba(245,181,74,' + (0.35 + lit * 0.6).toFixed(3) + ')'
-        : 'rgba(169,196,179,0.42)';
+      var pl = p.hot ? (0.55 + 0.45 * Math.sin(p.pulse)) : 1;
+      var sz = (p.hot ? 1.7 : 1.15) * p.ps * pl + lit * 1.8;
+
+      if(lit > 0.05)      ctx.fillStyle = 'rgba(245,181,74,' + (0.40 + lit * 0.55).toFixed(3) + ')';
+      else if(p.hot)      ctx.fillStyle = 'rgba(110,231,160,' + (base * pl).toFixed(3) + ')';
+      else                ctx.fillStyle = 'rgba(169,196,179,' + (base * 0.60).toFixed(3) + ')';
+
       ctx.beginPath();
-      ctx.arc(n.px, n.py, n.r + lit * 1.6, 0, Math.PI * 2);
+      ctx.arc(p.px, p.py, Math.max(0.4, sz), 0, Math.PI * 2);
       ctx.fill();
     }
   }
 
   function step(){
     if(!running) return;
-    for(var i=0;i<nodes.length;i++){
-      var n = nodes[i];
-      n.x += n.vx; n.y += n.vy;
-      if(n.x < -20) n.x = w + 20; else if(n.x > w + 20) n.x = -20;
-      if(n.y < -20) n.y = h + 20; else if(n.y > h + 20) n.y = -20;
+    spin += 0.0016;
+    for(var i=0;i<pts.length;i++){ if(pts[i].hot) pts[i].pulse += 0.035; }
+    for(var s=0;s<streams.length;s++){ streams[s].off += streams[s].sp; }
+    var tx = 0, ty = 0;
+    if(pointer.on){
+      tx = (pointer.x - cx) / Math.max(1, w) * 2;
+      ty = (pointer.y - cy) / Math.max(1, h) * 0.34;
     }
+    tiltX += (tx - tiltX) * 0.05;
+    tiltY += (ty - tiltY) * 0.05;
     draw();
     frame = raf(step);
   }
@@ -2480,7 +2366,7 @@ if(yearEl) yearEl.textContent = String(new Date().getFullYear());
   }
 })();
 
-/* ---------- H · tactile details ---------- */
+/* ---------- G · tactile details ---------- */
 
 /* card tilt */
 (function(){

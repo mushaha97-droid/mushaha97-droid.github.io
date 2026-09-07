@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>India–EU Carbon Ratings — Scope 1 + 2 calculator</title>
+<meta name="description" content="Scope 1 + Scope 2 inventory for Indian suppliers exporting to the EU. Every line carries its emission factor, source and vintage.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <p class="eyebrow">India–EU Carbon Ratings</p>
+    <h1>The FTA removed the tariffs.<br><span class="hl">Carbon is the tariff that's left.</span></h1>
+    <p class="lede">Enter your operations. Get a Scope&nbsp;1 + Scope&nbsp;2 inventory where every single
+      line shows the emission factor it used, where that factor came from, and how old it is.</p>
+
+    <nav class="steps" aria-label="Progress">
+      <ol>
+        <li><button type="button" class="step-btn is-current" data-goto="1" aria-current="step"><span class="step-n">1</span><span class="step-t">Who you are</span></button></li>
+        <li><button type="button" class="step-btn" data-goto="2"><span class="step-n">2</span><span class="step-t">Activity data</span></button></li>
+        <li><button type="button" class="step-btn" data-goto="3"><span class="step-n">3</span><span class="step-t">Your board</span></button></li>
+      </ol>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<!-- ══════════════════════════ STEP 1 ══════════════════════════ -->
+<section id="step1" class="step" aria-labelledby="s1h">
+  <h2 id="s1h"><span class="num">1</span> Who are you</h2>
+
+  <div class="grid">
+    <p class="field">
+      <label for="f-name">Supplier name <span class="opt">optional</span></label>
+      <input id="f-name" type="text" autocomplete="organization" placeholder="Stays in this browser tab">
+      <span class="hint">Never sent anywhere. Used only to label your downloaded files.</span>
+    </p>
+
+    <p class="field">
+      <label for="f-sector">Sector</label>
+      <select id="f-sector">
+        <option value="textiles">Textiles &amp; apparel</option>
+        <option value="leather">Leather &amp; footwear</option>
+        <option value="steel">Iron &amp; steel</option>
+        <option value="aluminium">Aluminium</option>
+        <option value="cement">Cement</option>
+        <option value="fertilisers">Fertilisers</option>
+      </select>
+    </p>
+
+    <p class="field">
+      <label for="f-role">Your role</label>
+      <select id="f-role">
+        <option value="manufacturer">Manufacturer</option>
+        <option value="trader">Trader / wholesaler</option>
+      </select>
+    </p>
+
+    <p class="field">
+      <label for="f-state">Indian state / UT</label>
+      <select id="f-state"></select>
+      <span class="hint">Recorded for context. Scope&nbsp;2 uses the national CEA factor — see the limitation note in the results.</span>
+    </p>
+
+    <p class="field">
+      <label for="f-year">Reporting year</label>
+      <select id="f-year">
+        <option>FY 2023-24</option>
+        <option>FY 2024-25</option>
+        <option selected>FY 2025-26</option>
+      </select>
+    </p>
+
+    <p class="field">
+      <label for="f-output">Production output</label>
+      <span class="row-inline">
+        <input id="f-output" type="number" min="0" step="any" inputmode="decimal" placeholder="0">
+        <select id="f-output-unit"></select>
+      </span>
+      <span class="hint" id="output-hint">Used for the intensity figure and the CBAM comparison.</span>
+    </p>
+  </div>
+
+  <div id="trader-notice" class="notice notice-amber" hidden>
+    <strong>You are filing as a trader / wholesaler.</strong>
+    <p>This tool will compute <em>your own operations footprint</em> — the warehouse electricity,
+      the vehicles, the refrigerants. That is <strong>not the product footprint</strong> of the
+      goods you sell, and it cannot be used as one.</p>
+    <p>A product rating requires the manufacturer's own activity data. In the full platform your
+      record links to a rated manufacturer and the product rating flows through, giving you a
+      <em>traceability grade</em> A–D (A = full pass-through to a rated manufacturer,
+      D = origin unknown). Sector process blocks are hidden below because they are not yours to claim.</p>
+  </div>
+
+  <div class="step-nav">
+    <button type="button" class="btn btn-primary" data-goto="2">Next: activity data →</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════ STEP 2 ══════════════════════════ -->
+<section id="step2" class="step" aria-labelledby="s2h" hidden>
+  <h2 id="s2h"><span class="num">2</span> Your activity data</h2>
+
+  <!-- ─── AI fill ─── -->
+  <details class="ai-panel" id="ai-panel">
+    <summary><span class="ai-badge">optional</span> Fill the form with AI, from plain language</summary>
+
+    <div class="ai-body">
+      <p class="ai-rule"><strong>The AI never does the arithmetic.</strong> It only reads your
+        description and drops numbers into the form fields below. Every calculation is done by
+        deterministic JavaScript in this page, against the sourced factor database. You review
+        every populated field before anything is computed.</p>
+
+      <p class="field">
+        <label for="ai-text">Describe your operations in plain language</label>
+        <textarea id="ai-text" rows="6" placeholder="e.g. We're a spinning mill in Tamil Nadu. Last year we ran the boiler on about 900 tonnes of rice husk, bought 2.4 million units of electricity from the grid, our DG set took roughly 18,000 litres of diesel, and we topped up 12 kg of R-410A."></textarea>
+      </p>
+
+      <p class="field">
+        <label for="ai-key">Your OpenAI API key <span class="opt">optional</span></label>
+        <input id="ai-key" type="password" autocomplete="off" spellcheck="false" placeholder="sk-…">
+        <span class="hint hint-key">🔒 Your key stays in this browser tab and is sent only to
+          <code>api.openai.com</code>. It is held in a JavaScript variable — <strong>not</strong> in
+          localStorage, not in a cookie, never transmitted to this site's host, and it is gone the
+          moment you close or reload this tab. No key ships with this app.</span>
+      </p>
+
+      <div class="ai-actions">
+        <button type="button" class="btn btn-primary" id="ai-run">Extract with AI →</button>
+        <button type="button" class="btn" id="ai-example">Load worked example (no key needed)</button>
+      </div>
+      <p class="hint">No key? The worked example runs the same flow from a bundled, pre-extracted
+        field set (cached-AI mode), so you can see exactly what the extraction produces.</p>
+
+      <div id="ai-status" class="ai-status" role="status" aria-live="polite"></div>
+    </div>
+  </details>
+
+  <!-- ─── Common block ─── -->
+  <h3 class="block-h">Common block <span class="block-sub">every sector, every role</span></h3>
+
+  <fieldset class="block">
+    <legend>Fuels burned on site <span class="lg-sub">boilers, kilns, furnaces, ovens</span></legend>
+    <div id="fuel-rows" class="rows"></div>
+    <button type="button" class="btn btn-add" data-add="fuel">+ Add a fuel</button>
+    <p class="hint">Liquid fuels are computed on a <strong>mass basis</strong>. If you enter litres,
+      the app converts to tonnes with a density you can override — and shows the density it used in
+      the trail. (Per-litre factors embed a generic ~0.91&nbsp;kg/L density that overstates Indian diesel.)</p>
+  </fieldset>
+
+  <fieldset class="block">
+    <legend>DG sets <span class="lg-sub">diesel generator sets — India's own line item</span></legend>
+    <div class="grid grid-tight">
+      <p class="field">
+        <label for="f-dg">Diesel consumed by DG sets</label>
+        <span class="row-inline">
+          <input id="f-dg" type="number" min="0" step="any" inputmode="decimal" placeholder="0">
+          <span class="unit-tag">litres</span>
+        </span>
+      </p>
+      <p class="field">
+        <label for="f-dg-density">Density used <span class="opt">kg/L</span></label>
+        <input id="f-dg-density" type="number" min="0.5" max="1.2" step="0.00001" inputmode="decimal">
+        <span class="hint">Indian diesel is typically ~0.82–0.85 kg/L — override with your invoice density.</span>
+      </p>
+    </div>
+  </fieldset>
+
+  <fieldset class="block">
+    <legend>Owned vehicles &amp; forklifts</legend>
+    <div id="veh-rows" class="rows"></div>
+    <button type="button" class="btn btn-add" data-add="veh">+ Add a vehicle fuel</button>
+  </fieldset>
+
+  <fieldset class="block">
+    <legend>Refrigerant top-ups <span class="lg-sub">kg recharged over the year = kg leaked</span></legend>
+    <div id="ref-rows" class="rows"></div>
+    <button type="button" class="btn btn-add" data-add="ref">+ Add a refrigerant</button>
+  </fieldset>
+
+  <fieldset class="block">
+    <legend>Electricity</legend>
+    <div id="elec-rows" class="rows"></div>
+    <button type="button" class="btn btn-add" data-add="elec">+ Add an electricity source</button>
+  </fieldset>
+
+  <fieldset class="block">
+    <legend>Purchased steam / heat</legend>
+    <p class="field field-narrow">
+      <label for="f-steam">Steam purchased</label>
+      <span class="row-inline">
+        <input id="f-steam" type="number" min="0" step="any" inputmode="decimal" placeholder="0">
+        <span class="unit-tag">tonnes</span>
+      </span>
+    </p>
+    <div class="notice notice-amber" id="steam-note"></div>
+  </fieldset>
+
+  <!-- ─── Sector extras ─── -->
+  <div id="sector-extras">
+    <h3 class="block-h">Sector process block <span class="block-sub" id="sector-extra-name"></span></h3>
+
+    <!-- STEEL -->
+    <fieldset class="block sector-block" data-sector="steel" hidden>
+      <legend>Iron &amp; steel</legend>
+      <div class="grid grid-tight">
+        <p class="field">
+          <label for="st-route">Production route</label>
+          <select id="st-route">
+            <option value="bf_bof">BF-BOF (blast furnace → basic oxygen furnace)</option>
+            <option value="eaf_grid">EAF — grid electricity</option>
+            <option value="eaf_captive">EAF — captive electricity</option>
+            <option value="dri_coal">Coal-based DRI</option>
+          </select>
+        </p>
+        <p class="field">
+          <label for="st-red-type">Reductant</label>
+          <select id="st-red-type"></select>
+        </p>
+        <p class="field">
+          <label for="st-red-qty">Reductant consumed</label>
+          <span class="row-inline"><input id="st-red-qty" type="number" min="0" step="any" inputmode="decimal" placeholder="0"><span class="unit-tag">t</span></span>
+        </p>
+        <p class="field">
+          <label for="st-limestone">Limestone flux</label>
+          <span class="row-inline"><input id="st-limestone" type="number" min="0" step="any" inputmode="decimal" placeholder="0"><span class="unit-tag">t</span></span>
+        </p>
+        <p class="field">
+          <label for="st-dolomite">Dolomite flux</label>
+          <span class="row-inline"><input id="st-dolomite" type="number" min="0" step="any" inputmode="decimal" placeholder="0"><span class="unit-tag">t</span></span>
+        </p>
+        <p class="field" id="st-electrode-field">
+          <label for="st-electrode">Carbon electrodes consumed</label>
+          <span class="row-inline"><input id="st-electrode" type="number" min="0" step="any" inputmode="decimal" placeholder="0"><span class="unit-tag">t</span></span>
+          <span class="hint">EAF routes only.</span>
+        </p>
+      </div>
+      <div class="notice notice-amber" id="st-dri-note" hidden></div>
+    </fieldset>
+
+    <!-- ALUMINIUM -->
+    <fieldset class="block sector-block" data-sector="aluminium" hidden>
+      <legend>Aluminium</legend>
+      <div class="grid grid-tight">
+        <p class="field">
+          <label for="al-type">Plant type</label>
+          <select id="al-type">
+            <option value="smelter">Primary smelter</option>
+            <option value="downstream">Downstream (rolling / extrusion / casting)</option>
+          </select>
+        </p>
+        <p class="field al-smelter">
+          <label for="al-tonnes">Aluminium produced</label>
+          <span class="row-inline"><input id="al-tonnes" type="number" min="0" step="any" inputmode="decimal" placeholder="0"><span class="unit-tag">t Al</span></span>
+        </p>
+        <p class="field al-smelter">
+          <label for="al-tech">Cell technology</label>
+          <select id="al-tech">
+            <option value="cwpb">CWPB — centre worked prebake</option>
+            <option value="swpb">SWPB — side worked prebake</option>
+            <option value="vss">VSS — vertical stud Søderberg</option>
+            <option value="hss">HSS — horizontal stud Søderberg</option>
+          </select>
+          <span class="hint" id="al-tech-hint"></span>
+        </p>
+      </div>
+      <div class="notice" id="al-downstream-note" hidden>
+        <strong>Downstream plant — no smelting process lines.</strong>
+        <p>Anode CO₂ and PFCs are emitted in the electrolysis cell, which you do not operate.
+          Your footprint is the common block above: furnace fuels, electricity, refrigerants.</p>
+      </div>
+      <div class="notice notice-amber al-smelter" id="al-pfc-note"></div>
+    </fieldset>
+
+    <!-- CEMENT -->
+    <fieldset class="block sector-block" data-sector="cement" hidden>
+      <legend>Cement</legend>
+      <div class="grid grid-tight">
+        <p class="field">
+          <label for="cm-clinker">Clinker produced</label>
+          <span class="row-inline"><input id="cm-clinker" type="number" min="0" step="any" inputmode="decimal" placeholder="0"><span class="unit-tag">t</span></span>
+        </p>
+        <p class="field">
+          <label for="cm-ratio">Clinker-to-cement ratio</label>
+          <input id="cm-ratio" type="number" min="0.2" max="1" step="0.01" inputmode="decimal" placeholder="e.g. 0.68">
+          <span class="hint">The dominant lever in cement. Surfaced in the results, never assumed.</span>
+        </p>
+      </div>
+    </fieldset>
+
+    <!-- FERTILISERS -->
+    <fieldset class="block sector-block" data-sector="fertilisers" hidden>
+      <legend>Fertilisers</legend>
+      <div class="grid grid-tight">
+        <p class="field">
+          <label for="ft-product">Main product</label>
+          <select id="ft-product">
+            <option value="ammonia">Ammonia</option>
+            <option value="urea">Urea</option>
+            <option value="nitric">Nitric acid</option>
+            <option value="other">Other</option>
+          </select>
+        </p>
+        <p class="field ft-nitric">
+          <label for="ft-hno3-class">Nitric acid plant class</label>
+          <select id="ft-hno3-class"></select>
+        </p>
+        <p class="field ft-nitric">
+          <label for="ft-hno3-qty">Nitric acid produced <span class="opt">100% HNO₃ basis</span></label>
+          <span class="row-inline"><input id="ft-hno3-qty" type="number" min="0" step="any" inputmode="decimal" placeholder="0"><span class="unit-tag">t</span></span>
+        </p>
+        <p class="field ft-urea">
+          <label for="ft-urea-qty">Urea produced</label>
+          <span class="row-inline"><input id="ft-urea-qty" type="number" min="0" step="any" inputmode="decimal" placeholder="0"><span class="unit-tag">t</span></span>
+          <span class="hint">Booked as an explicit <strong>negative</strong> line — CO₂ consumed, never silently absorbed.</span>
+        </p>
+      </div>
+      <div class="notice" id="ft-note"></div>
+    </fieldset>
+
+    <!-- TEXTILES / LEATHER -->
+    <fieldset class="block sector-block" data-sector="textiles" hidden>
+      <legend>Textiles &amp; apparel</legend>
+      <p class="field field-narrow">
+        <label for="tx-segment">Segment</label>
+        <select id="tx-segment">
+          <option value="spinning">Spinning</option>
+          <option value="wet">Wet processing (dyeing / finishing)</option>
+          <option value="garmenting">Garmenting</option>
+        </select>
+      </p>
+      <p class="hint">No extra process lines: textile emissions are combustion and electricity, both
+        already captured in the common block. The segment sets the intensity denominator.</p>
+    </fieldset>
+
+    <fieldset class="block sector-block" data-sector="leather" hidden>
+      <legend>Leather &amp; footwear</legend>
+      <p class="field field-narrow">
+        <label for="lt-segment">Segment</label>
+        <select id="lt-segment">
+          <option value="tanning">Tanning / finishing</option>
+          <option value="footwear">Footwear manufacture</option>
+        </select>
+      </p>
+      <p class="hint">No extra process lines in this MVP. Effluent CH₄ (COD × B₀ × MCF) is a
+        flagged-estimate line in the full engine and is not offered here rather than guessed.</p>
+    </fieldset>
+  </div>
+
+  <div class="step-nav">
+    <button type="button" class="btn" data-goto="1">← Back</button>
+    <button type="button" class="btn btn-primary" id="open-board">Open my board →</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════ THE BOARD ══════════════════════════ -->
+<section id="step3" class="step board" aria-labelledby="s3h" hidden>
+  <h2 id="s3h"><span class="num">3</span> Your board</h2>
+
+  <div id="profile-bar" class="profile-bar"></div>
+  <div id="board-headline"></div>
+
+  <div class="board-actions">
+    <button type="button" class="btn btn-primary" id="calc-all">Calculate all</button>
+    <span id="calc-stamp" class="hint" role="status" aria-live="polite"></span>
+  </div>
+
+  <div id="cards" class="cards"></div>
+
+  <details id="full-trail" class="full-trail">
+    <summary>Full calculation trail — every line, every source</summary>
+    <div class="full-trail-body">
+      <p class="hint">Each row shows the activity you entered, the factor that was applied, where
+        that factor comes from, its vintage, and the uncertainty class of the result.</p>
+      <div id="gas-breakdown"></div>
+      <div id="trail"></div>
+    </div>
+  </details>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p class="foot-sources">Factors: GHG Protocol v2.0 · CEA v21.0 · IPCC 2006/AR6 · DEFRA 2026
+      cross-check — every line carries its source</p>
+    <p class="foot-meta">
+      <a href="#" id="repo-link" rel="noopener">Source code &amp; factor database on GitHub</a>
+      <span id="build-stamp"></span>
+    </p>
+    <p class="foot-meta">Indicative exposure only — not a CBAM filing, not verified assurance.
+      Nothing you type leaves this browser tab except, if you choose it, the text you send to
+      <code>api.openai.com</code>.</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

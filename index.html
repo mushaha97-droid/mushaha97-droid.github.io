@@ -1272,7 +1272,7 @@ h1.triad .w:nth-child(3){animation-delay:.22s}
   <div class="wrap">
     <div class="reveal">
       <p class="eyebrow">02 — Projects</p>
-      <h2 class="h2" id="workTitle">Three questions, three methods,<br>three repositories you can open.</h2>
+      <h2 class="h2" id="workTitle">Each one is a question, a method,<br>and a repository you can open.</h2>
       <p class="lede">Each states its question, its method, and what the data said — including where the
         result is null and where a number is an assumption, not a measurement.</p>
     </div>
@@ -1372,11 +1372,105 @@ h1.triad .w:nth-child(3){animation-delay:.22s}
         </div>
       </article>
 
-      <!-- PROJECT 02 — NL grid congestion × solar curtailment -->
+      <!-- PROJECT 02 — CBAM borrower screening panel (engine public, UI in build) -->
+      <article class="case reveal" data-tilt aria-labelledby="case5">
+        <div class="case-top">
+          <div>
+            <p class="case-idx">PROJECT 02 / CREDIT RISK · ENGINE PUBLIC, UI IN BUILD</p>
+            <h3 id="case5">CBAM borrower screening for bank risk teams
+              <small>From a borrower list to "who do we call before the February 2027 certificate window."</small>
+            </h3>
+          </div>
+          <p class="case-meta"><i>Python · pydantic</i><i>sourced YAML rules</i><i>pytest ×235</i><i>Streamlit (next)</i></p>
+        </div>
+
+        <div class="case-body">
+          <div class="pmo">
+            <div>
+              <h4>The question</h4>
+              <p>CBAM's definitive regime gives a bank's corporate borrowers certificate costs, a
+                one-block <strong>Feb–Sep 2027</strong> cash-out for the 2026 obligation, and gaps
+                against the bank's own transition ratings. Which borrowers actually matter?</p>
+            </div>
+            <div>
+              <h4>The method</h4>
+              <p>A spec-driven build (<code>CLAUDE.md</code>, tasks with test gates). Every rule, price
+                and factor lives in <strong>sourced YAML</strong> with an <code>adopted | proposal</code>
+                status — Reg (EU) 2023/956, the 2025 Simplification Regulation, IR 2025/2621 default
+                values, the <strong>COM(2026) 616</strong> slower phase-out schedule. The engine: a tier
+                decision tree (precedence 2&gt;1&gt;3&gt;4), certificate-cost model, 2027 liquidity
+                timing, six flag rules. <strong>235 tests</strong>, including the hand example
+                1,000 t × 1.9 tCO₂/t × €80 × 2.5% = €3,800.</p>
+            </div>
+            <div class="outcome">
+              <h4>What sourcing the rules surfaced</h4>
+              <p>Two brief-breaking findings: the ETS <strong>CBAM factor is allocation retained, not
+                phased out</strong> — encoding it as written would invert every cost, so a test now
+                guards the two numbers against each other; and electricity moved to Annex II
+                (direct-only). The NGFS Phase V price input is <strong>honestly gated</strong> — the
+                data sits behind a login, so a strict-xfail test stands guard instead of an invented
+                price path. Analyst UI and the synthetic 300-borrower demo are the next round.</p>
+            </div>
+          </div>
+
+          <figure class="case-viz">
+            <svg viewBox="0 0 280 196" role="img" aria-label="Schematic: a borrower table flows through a config-driven rules engine of tiering, cost, liquidity and flags, out to a risk-committee summary. Prices from NGFS are marked as a gated input.">
+              <g font-family="IBM Plex Mono, monospace" font-size="7.5" letter-spacing=".03em">
+                <rect x="0" y="4" width="130" height="60" rx="8" fill="#12683A" opacity=".12"/>
+                <rect x="150" y="4" width="130" height="60" rx="8" fill="#12683A" opacity=".12"/>
+                <g fill="#0F2A1E" font-size="8" letter-spacing=".1em">
+                  <text x="10" y="19">BORROWER TABLE</text>
+                  <text x="160" y="19">SOURCED CONFIG</text>
+                </g>
+                <g fill="#12683A">
+                  <text x="10" y="33">7 required columns</text>
+                  <text x="10" y="43">rest filled + estimated</text>
+                  <text x="160" y="33">rules · factors · prices</text>
+                  <text x="160" y="43">adopted | proposal</text>
+                </g>
+                <g fill="#455C4E">
+                  <text x="10" y="57">no real borrower data</text>
+                  <text x="160" y="57">NGFS prices: gated TODO</text>
+                </g>
+              </g>
+              <g stroke="#12683A" stroke-width="1.1" fill="none" opacity=".5">
+                <path d="M65 64 C 65 82, 140 78, 140 94"/>
+                <path d="M215 64 C 215 82, 140 78, 140 94"/>
+              </g>
+              <rect x="24" y="96" width="232" height="42" rx="10" fill="#12683A"/>
+              <g font-family="IBM Plex Mono, monospace" text-anchor="middle">
+                <text x="140" y="112" fill="#F7F5EF" font-size="8.5" letter-spacing=".08em">tier → cost → 2027 liquidity → flags</text>
+                <text x="140" y="124" fill="#4ADE80" font-size="7">235 TESTS · HAND EXAMPLE €3,800</text>
+                <text x="140" y="133" fill="#4ADE80" font-size="7">CONFIG CHANGES OUTPUT, CODE DOES NOT</text>
+              </g>
+              <g stroke="#12683A" stroke-width="1" opacity=".45"><path d="M140 138v12"/></g>
+              <g fill="#12683A" opacity=".45"><path d="M137 148l3 4 3-4z"/></g>
+              <rect x="40" y="158" width="200" height="26" rx="13" fill="none" stroke="#12683A" stroke-width="1.2"/>
+              <text x="140" y="174.5" text-anchor="middle" fill="#0F2A1E" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing=".07em">RISK-COMMITTEE VIEW (IN BUILD)</text>
+            </svg>
+            <figcaption class="viz-cap">Rules with sources on one side, borrowers on the other — the engine in between is tested.</figcaption>
+          </figure>
+        </div>
+
+        <div class="case-actions">
+          <a class="link-inline" href="https://github.com/mushaha97-droid/mushaha97-droid.github.io/tree/main/cbam-screen" target="_blank" rel="noopener noreferrer">
+            Browse the source
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <a class="link-inline" href="https://github.com/mushaha97-droid/mushaha97-droid.github.io/blob/main/cbam-screen/CLAUDE.md" target="_blank" rel="noopener noreferrer">
+            Read the build spec
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <span class="stack">Engine + configs + tests are public now · synthetic demo only, no real borrower data ·
+            proposals labelled <code>proposal</code> · not affiliated with any bank.</span>
+        </div>
+      </article>
+
+      <!-- PROJECT 03 — NL grid congestion × solar curtailment -->
       <article class="case reveal" data-tilt aria-labelledby="case1">
         <div class="case-top">
           <div>
-            <p class="case-idx">PROJECT 02 / ENERGY MODELLING</p>
+            <p class="case-idx">PROJECT 03 / ENERGY MODELLING</p>
             <h3 id="case1">NL grid congestion × solar curtailment
               <small>What does Dutch grid congestion actually cost a household with rooftop solar?</small>
             </h3>
@@ -1466,7 +1560,7 @@ h1.triad .w:nth-child(3){animation-delay:.22s}
       <article class="case reveal" data-tilt aria-labelledby="case2">
         <div class="case-top">
           <div>
-            <p class="case-idx">PROJECT 03 / APPLIED RESEARCH</p>
+            <p class="case-idx">PROJECT 04 / APPLIED RESEARCH</p>
             <h3 id="case2">Does AI actually improve ESG compliance?
               <small>The compliance-scoring component of an MSc thesis at Erasmus University Rotterdam,
                 extended with a deeper statistical re-analysis.</small>
@@ -1550,7 +1644,7 @@ h1.triad .w:nth-child(3){animation-delay:.22s}
       <article class="case reveal" data-tilt aria-labelledby="case3">
         <div class="case-top">
           <div>
-            <p class="case-idx">PROJECT 04 / FUNDING STRUCTURE</p>
+            <p class="case-idx">PROJECT 05 / FUNDING STRUCTURE</p>
             <h3 id="case3">How do land-use NGOs actually fund themselves?
               <small>An income-mix benchmark of 14 peer NGOs in regenerative agriculture, nature
                 restoration and sustainable land use.</small>

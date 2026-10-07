@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sustainability Paradox — thesis deck</title>
+<meta name="description" content="MSc thesis presentation: How AI is revolutionising sustainability reporting while creating new challenges. Erasmus University Rotterdam.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#0B1512; --surface:#121F19; --line:#24382D;
+    --ink:#E7F0E9; --muted:#8FA89A; --acc:#4ADE80;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;
+    min-height:100vh;display:flex;flex-direction:column}
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    padding:14px 20px;border-bottom:1px solid var(--line)}
+  header h1{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;letter-spacing:-.01em}
+  header h1 span{color:var(--acc)}
+  .meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
+  .actions{display:flex;gap:8px}
+  .btn{font-family:'IBM Plex Mono',monospace;font-size:12px;text-decoration:none;color:var(--ink);
+    border:1px solid var(--line);border-radius:7px;padding:8px 13px;background:var(--surface);min-height:36px;
+    display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+  .btn:hover{border-color:var(--acc)}
+  .btn.solid{background:var(--acc);border-color:var(--acc);color:#08130E;font-weight:500}
+  .stage{flex:1;display:flex;align-items:center;justify-content:center;padding:18px;position:relative}
+  .frame{max-width:1100px;width:100%;position:relative}
+  .frame img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);
+    background:var(--surface)}
+  .nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;
+    border:1px solid var(--line);background:rgba(18,31,25,.85);color:var(--ink);font-size:19px;
+    cursor:pointer;display:grid;place-items:center}
+  .nav:hover{border-color:var(--acc);color:var(--acc)}
+  .nav:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+  .nav.prev{left:-10px}.nav.next{right:-10px}
+  .nav[disabled]{opacity:.3;cursor:default}
+  footer{display:flex;align-items:center;justify-content:center;gap:16px;padding:12px 20px 20px;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted)}
+  .count{font-variant-numeric:tabular-nums;min-width:64px;text-align:center}
+  .dots{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;max-width:60vw}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--line);border:none;cursor:pointer;padding:0}
+  .dot.on{background:var(--acc)}
+  .dot:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+  @media (max-width:700px){.nav.prev{left:4px}.nav.next{right:4px}.dots{display:none}}
+  @media (prefers-reduced-motion: no-preference){.frame img{transition:opacity .18s ease}}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>The Sustainability <span>Paradox</span></h1>
+    <p class="meta">MSc thesis presentation · Erasmus University Rotterdam · 20 slides</p>
+  </div>
+  <div class="actions">
+    <a class="btn" href="../">← Portfolio</a>
+    <a class="btn solid" href="Sustainability-Paradox.pdf" download>Download PDF</a>
+  </div>
+</header>
+
+<main class="stage">
+  <div class="frame">
+    <button class="nav prev" id="prev" aria-label="Previous slide">‹</button>
+    <img id="slide" src="slides/s01.jpg" alt="Slide 1 of 20: The Sustainability Paradox — how AI is revolutionising sustainability reporting while creating new challenges">
+    <button class="nav next" id="next" aria-label="Next slide">›</button>
+  </div>
+</main>
+
+<footer>
+  <span class="count" id="count" aria-live="polite">1 / 20</span>
+  <div class="dots" id="dots" role="tablist" aria-label="Slides"></div>
+</footer>
+
+<script>
+  var N = 20, i = 0;
+  var img = document.getElementById('slide'), count = document.getElementById('count');
+  var prev = document.getElementById('prev'), next = document.getElementById('next');
+  var dots = document.getElementById('dots');
+  function src(n){ return 'slides/s' + String(n + 1).padStart(2, '0') + '.jpg'; }
+  for (var d = 0; d < N; d++) {
+    var b = document.createElement('button');
+    b.className = 'dot'; b.setAttribute('aria-label', 'Slide ' + (d + 1));
+    b.dataset.i = d;
+    b.addEventListener('click', function(){ go(parseInt(this.dataset.i, 10)); });
+    dots.appendChild(b);
+  }
+  function go(n){
+    i = Math.max(0, Math.min(N - 1, n));
+    img.src = src(i);
+    img.alt = 'Slide ' + (i + 1) + ' of ' + N;
+    count.textContent = (i + 1) + ' / ' + N;
+    prev.disabled = i === 0; next.disabled = i === N - 1;
+    dots.querySelectorAll('.dot').forEach(function(el, k){ el.classList.toggle('on', k === i); });
+    if (i + 1 < N) { (new Image()).src = src(i + 1); } /* preload next */
+  }
+  prev.addEventListener('click', function(){ go(i - 1); });
+  next.addEventListener('click', function(){ go(i + 1); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === ' ') go(i + 1);
+    if (e.key === 'ArrowLeft') go(i - 1);
+  });
+  var x0 = null;
+  img.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+  img.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, {passive:true});
+  go(0);
+</script>
+</body>
+</html>
